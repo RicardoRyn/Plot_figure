@@ -1,0 +1,1 @@
+mris_sphere -rusage /media/nhp/data2/KIZ_data/NMT/free_data/subjects/2021_NMT.T1/touch/rusage.mris_sphere.lh.dat -seed 1234 ../surf/lh.inflated ../surf/lh.sphere

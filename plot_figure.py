@@ -1,10 +1,12 @@
 import numpy as np
+import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib.ticker import FuncFormatter
 from matplotlib.ticker import ScalarFormatter
 from mpl_toolkits.axes_grid1 import make_axes_locatable
 from scipy import stats
 import statsmodels.api as sm
+import mne
 
 
 def plot_one_group_bar_figure(data, test_method, labels_name=None, ax=None, width=0.5, colors=None, title_name='', title_fontsize=15, title_pad=20, x_label_name='', x_label_fontsize=10, x_tick_fontsize=10, x_tick_rotation=0, x_label_ha='center', y_label_name='', y_label_fontsize=10, y_tick_fontsize=10, y_tick_rotation=0, y_max_tick_to_one=False, y_max_tick_to_value=1, math_text=True, one_decimal_place=False, percentage=False, ax_min_is_0=False, asterisk_fontsize=10, multicorrect=False, **kwargs):
@@ -895,4 +897,107 @@ def plot_correlation_figure(data, ax=None, dots_color=None, line_color=None, tit
         ax.text(x_start + x_width / 10, y_start + 8 * y_width / 10, '***', va='center', fontsize=asterisk_fontsize)
     else:
         ax.text(x_start + x_width / 10, y_start + 8 * y_width / 10, 'p = '+str(round(p,3)), va='center', fontsize=asterisk_fontsize)  # 参数保留小数点后3位
+    return
+
+def plot_brain_figure(file_path=None, ax=None, cmap=None, title_name='', title_fontsize=20, title_pad=0, cbarlabel_name='', cbarlabel_fontsize=10, cbartick_fontsize=10, cbartick_rotation=60, vmin=None, vmax=None):
+    """
+    ## 说明:
+    该函数用于绘制一个单组带点bar图。
+
+    ## 参数:
+    - file_path: 指定.csv文件路径。
+    - ax: ax，事先创建的Axes。
+    - cmap: str，colorbar颜色.
+    - title_name: str，图像标题。
+    - title_fontsize: float，图像标题的字体大小。
+    - title_pad: float，图像标题与图像间隔。
+    - cbarlabel_name: str，colorbar的label。
+    - cbarlabel_fontsize: float，colorbar的label的字体大小。
+    - cbartick_fontsize: float，colorbar的tick的字体大小。
+    - cbartick_rotation: float，colorbar的tick旋转的角度。
+    - vmin: float，指定colorbar的最小值。
+    - vmax: float，指定colorbar的最大值。
+
+    ## 返回值:
+    无。
+
+    ## 注意事项:
+    暂无！y(=~ω~=)y
+
+    ## 例子:
+    输入最多参数调用:
+    >>> plot_brain_figure(file_path="./ROIs.csv", title_name='Diff or High-Low', cbarlabel_name='Volume diff')
+    """
+    subj_dir = "./FS/"
+    subj = "NMT_template"
+    if ax is None:
+        ax = plt.gca()
+    if file_path == None:
+        df = pd.read_csv("./ROIs.csv", header=0, index_col=0)
+    else:
+        df = pd.read_csv(file_path, header=0, index_col=0)
+    if cmap == None:
+        cmap = 'bwr'
+    for hemi in ['lh', 'rh']:
+        globals()[hemi + '_rr_mm'], globals()[hemi + '_tris'] = mne.read_surface(subj_dir + subj + '/surf/' + hemi + '.inflated')
+        globals()[hemi + '_data'] = np.zeros(len(eval(hemi + '_rr_mm')))
+        labels = mne.read_labels_from_annot(subj, parc='charm5_atlas', hemi=hemi, subjects_dir=subj_dir, sort=False)
+        for label in labels:
+            if label.name == 'unknown-lh' or label.name == 'unknown-rh':
+                continue
+            eval(hemi + '_data')[label.vertices] = df.loc[label.name, 'Values']
+    if np.all(lh_data == 0) and np.all(rh_data == 0):  # 如果 lh_data 和 rh_data 数组全是0值
+        print("所有顶点值为0，请检查结果。")
+        flag = False
+        vmax = 1
+        vmin = -1
+    else:
+        abs_max_value = np.max(np.abs([np.max(lh_data), np.min(lh_data), np.max(rh_data), np.min(rh_data)]))
+        if vmin == None and vmax == None:
+            flag = True
+            vmax = abs_max_value
+            vmin = -vmax
+        elif vmin == None and vmax != None:
+            if vmax <= -abs_max_value:
+                print(f"指定的vmax过小，小于自动计算的最小值{-abs_max_value}，请重新指定vmax值！")
+                return
+            else:
+                flag = True
+                vmin = -abs_max_value
+        elif vmin != None and vmax == None:
+            if vmin >= abs_max_value:
+                print(f"指定的vmin过大，大于自动计算的最大值{abs_max_value}，请重新指定vmmin值！")
+                return
+            else:
+                flag = True
+                vmax = abs_max_value
+        else:
+            if vmin >= vmax:
+                print(f"指定的vmin大于指定的vmax值，请重新指定！")
+                return
+            flag = True
+        print(f"顶点最大值为{vmax}，最小值为{vmin}。")
+    lh_data[lh_data == 0], rh_data[rh_data == 0] = np.nan, np.nan
+    brain = mne.viz.Brain(subj, hemi="split", surf="inflated", subjects_dir=subj_dir, cortex="low_contrast", background="white", size=(1000, 1000), views=['lateral', 'medial'])
+    if flag:  # 如果一个显著的脑区都没有，就不会add_data，否则会报错
+        brain.add_data(lh_data, hemi='lh', colormap=cmap, colorbar=False, fmin=vmin, fmax=vmax)
+        brain.add_data(rh_data, hemi='rh', colormap=cmap, colorbar=False, fmin=vmin, fmax=vmax)
+    screenshot = brain.screenshot()
+    brain.close()
+    im = ax.imshow(screenshot, cmap=cmap, vmin=vmin, vmax=vmax)
+    ################################################## ax ##################################################
+    ax.spines[['top', 'bottom', 'left', 'right']].set_visible(False)  # 去掉上边和右边的spine
+    ax.set_xticks([])
+    ax.set_yticks([])
+    ax.set_title(title_name, fontsize=title_fontsize, pad=title_pad)
+    ############################################### colorbar ###############################################
+    # 创建colorbar
+    cbar = ax.figure.colorbar(im, shrink=0.5, orientation='horizontal', cmap=cmap, pad=-0.53)
+    cbar.ax.set_title(cbarlabel_name)  #  fontsize=cbarlabel_fontsize, labelpad=-50
+    cbar.ax.tick_params(axis='x', which='major', labelsize=cbartick_fontsize, rotation=cbartick_rotation)
+    # 获取当前图形的坐标轴
+    if vmax < 0.1 or vmax > 100:  # y轴设置科学计数法
+        formatter = ScalarFormatter(useMathText=True)
+        formatter.set_powerlimits((-1, 2))  # <=-2也就是小于等于0.01，>=2，也就是大于等于100，会写成科学计数法
+        cbar.ax.yaxis.set_major_formatter(formatter)
     return

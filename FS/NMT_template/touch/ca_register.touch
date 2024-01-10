@@ -1,0 +1,1 @@
+mri_ca_register -rusage /media/nhp/data2/KIZ_data/NMT/free_data/subjects/2021_NMT.T1/touch/rusage.mri_ca_register.dat -nobigventricles -T transforms/talairach.lta -align-after -mask brainmask.mgz norm.mgz /media/nhp/data2/template/RB_all_2016-05-10.vc700.gca transforms/talairach.m3z

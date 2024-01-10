@@ -1,0 +1,1 @@
+mri_ca_register -invert-and-save transforms/talairach.m3z -rusage /media/nhp/data2/KIZ_data/NMT/free_data/subjects/2021_NMT.T1/touch/rusage.mri_ca_register.inv.dat

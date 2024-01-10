@@ -1,0 +1,13 @@
+------------------------------
+SUBJECT 2021_NMT.T1
+START_TIME 2023年 04月 11日 星期二 12:46:09 CST
+END_TIME 2023年 04月 11日 星期二 12:46:10 CST
+RUNTIME_HOURS 0.000
+USER nhp
+HOST nhp-XPS-8940-3
+PROCESSOR x86_64
+OS Linux
+UNAME Linux nhp-XPS-8940-3 4.15.0-142-generic #146~16.04.1-Ubuntu SMP Tue Apr 13 09:27:15 UTC 2021 x86_64 x86_64 x86_64 GNU/Linux
+VERSION $Id: recon-all,v 1.580.2.16 2017/01/18 14:11:24 zkaufman Exp $
+CMDPATH /media/nhp/data/freesurfer/freesurfer/bin/recon-all
+CMDARGS -subjid 2021_NMT.T1 -sd /media/nhp/data2/KIZ_data/NMT/free_data/subjects/ -jacobian_white

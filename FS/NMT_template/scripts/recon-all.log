@@ -1,0 +1,2003 @@
+2023年 04月 11日 星期二 11:11:31 CST
+/media/nhp/data2/KIZ_data/NMT/free_data/subjects/2021_NMT.T1
+/media/nhp/data/freesurfer/freesurfer/bin/recon-all
+-subjid 2021_NMT.T1 -sd /media/nhp/data2/KIZ_data/NMT/free_data/subjects/ -gcareg -canorm -careg -careginv -gca-dir /media/nhp/data2/template -norandomness -rng-seed 1234
+subjid 2021_NMT.T1
+setenv SUBJECTS_DIR /media/nhp/data2/KIZ_data/NMT/free_data/subjects
+FREESURFER_HOME /media/nhp/data/freesurfer/freesurfer
+Actual FREESURFER_HOME /media/nhp/data/freesurfer/freesurfer
+build-stamp.txt: freesurfer-Linux-centos6_x86_64-stable-pub-v6.0.0-2beb96c
+Linux nhp-XPS-8940-3 4.15.0-142-generic #146~16.04.1-Ubuntu SMP Tue Apr 13 09:27:15 UTC 2021 x86_64 x86_64 x86_64 GNU/Linux
+cputime      unlimited
+filesize     unlimited
+datasize     unlimited
+stacksize    8192 kbytes
+coredumpsize 0 kbytes
+memoryuse    unlimited
+vmemoryuse   unlimited
+descriptors  1024 
+memorylocked 64 kbytes
+maxproc      126555 
+maxlocks     unlimited
+maxsignal    126555 
+maxmessage   819200 
+maxnice      0 
+maxrtprio    0 
+maxrttime    unlimited
+
+              total        used        free      shared  buff/cache   available
+Mem:       32602996     6681404     2403604      463424    23517988    24900680
+Swap:       1000444       60672      939772
+
+########################################
+program versions used
+$Id: recon-all,v 1.580.2.16 2017/01/18 14:11:24 zkaufman Exp $
+$Id: mri_motion_correct.fsl,v 1.15 2016/02/16 17:17:20 zkaufman Exp $
+mri_convert.bin -all-info 
+ProgramName: mri_convert.bin  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-03:11:31-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_convert.c,v 1.226 2016/02/26 16:15:24 mreuter Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+FLIRT version 5.5
+$Id: talairach_avi,v 1.13 2015/12/23 04:25:17 greve Exp $
+mri_convert.bin --version 
+stable6
+ProgramName: tkregister2_cmdl  ProgramArguments: --all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-03:11:31-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: tkregister2.c,v 1.132.2.1 2016/08/02 21:17:29 greve Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+Program nu_correct, built from:
+Package MNI N3, version 1.12.0, compiled by nicks@terrier (x86_64-unknown-linux-gnu) on 2015-06-19 at 01:25:34
+ProgramName: mri_make_uchar  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-03:11:32-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_make_uchar.c,v 1.4 2011/03/02 00:04:14 nicks Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_normalize  ProgramArguments: -all-info  ProgramVersion: $Name:  $  TimeStamp: 2023/04/11-03:11:32-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_normalize.c,v 1.88.2.3 2016/12/27 16:47:13 zkaufman Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_watershed  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-03:11:32-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_watershed.cpp,v 1.103 2016/06/17 18:00:49 zkaufman Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_gcut  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-03:11:32-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_gcut.cpp,v 1.14 2011/03/02 00:04:16 nicks Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_segment  ProgramArguments: -all-info  ProgramVersion: $Name:  $  TimeStamp: 2023/04/11-03:11:32-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_segment.c,v 1.43.2.1 2016/10/27 22:24:52 zkaufman Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_label2label.bin  ProgramArguments: -all-info  ProgramVersion: $Name:  $  TimeStamp: 2023/04/11-03:11:32-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_label2label.c,v 1.48.2.2 2016/12/12 14:15:26 zkaufman Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_em_register  ProgramArguments: -all-info  ProgramVersion: $Name:  $  TimeStamp: 2023/04/11-03:11:32-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_em_register.c,v 1.105.2.1 2016/10/27 22:25:10 zkaufman Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_ca_normalize  ProgramArguments: -all-info  ProgramVersion: $Name:  $  TimeStamp: 2023/04/11-03:11:32-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_ca_normalize.c,v 1.67.2.2 2016/10/27 22:25:09 zkaufman Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_ca_register  ProgramArguments: -all-info  ProgramVersion: $Name:  $  TimeStamp: 2023/04/11-03:11:32-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_ca_register.c,v 1.96.2.3 2016/10/27 22:25:10 zkaufman Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_ca_label  ProgramArguments: -all-info  ProgramVersion: $Name:  $  TimeStamp: 2023/04/11-03:11:32-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_ca_label.c,v 1.113.2.2 2016/10/27 22:25:10 zkaufman Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_pretess  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-03:11:32-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_pretess.c,v 1.22 2013/08/30 18:12:25 mreuter Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_fill  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-03:11:32-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_fill.c,v 1.119 2011/10/25 14:09:58 fischl Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_tessellate  ProgramArguments: -all-info  ProgramVersion: $Name:  $  TimeStamp: 2023/04/11-03:11:33-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_tessellate.c,v 1.38.2.1 2016/07/26 18:46:38 zkaufman Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_concatenate_lta.bin  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-03:11:33-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_concatenate_lta.c,v 1.16 2015/11/21 00:06:20 greve Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_normalize_tp2  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-03:11:33-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_normalize_tp2.c,v 1.8 2011/03/02 00:04:23 nicks Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mris_smooth  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-03:11:33-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mris_smooth.c,v 1.30 2014/01/21 18:48:21 fischl Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mris_inflate  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-03:11:33-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mris_inflate.c,v 1.45 2016/01/20 23:42:15 greve Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mris_curvature  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-03:11:33-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mris_curvature.c,v 1.31 2011/03/02 00:04:30 nicks Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mris_sphere  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-03:11:33-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mris_sphere.c,v 1.61 2016/01/20 23:42:15 greve Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mris_fix_topology  ProgramArguments: -all-info  ProgramVersion: $Name:  $  TimeStamp: 2023/04/11-03:11:33-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mris_fix_topology.c,v 1.50.2.1 2016/10/27 22:25:58 zkaufman Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mris_topo_fixer  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-03:11:33-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mris_topo_fixer.cpp,v 1.29 2011/03/02 00:04:34 nicks Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mris_ca_label  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-03:11:33-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mris_ca_label.c,v 1.37 2014/02/04 17:46:42 fischl Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mris_euler_number  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-03:11:33-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mris_euler_number.c,v 1.10 2013/01/14 22:39:14 greve Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mris_make_surfaces  ProgramArguments: -all-info  ProgramVersion: $Name:  $  TimeStamp: 2023/04/11-03:11:33-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mris_make_surfaces.c,v 1.164.2.4 2016/12/13 22:26:32 zkaufman Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mris_register  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-03:11:34-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mris_register.c,v 1.63 2016/01/20 23:43:04 greve Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mris_volmask  ProgramArguments: --all-info  ProgramVersion: $Name:  $  TimeStamp: 2023/04/11-03:11:34-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mris_volmask.cpp,v 1.26.2.2 2016/11/18 20:05:18 zkaufman Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mris_anatomical_stats  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-03:11:34-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mris_anatomical_stats.c,v 1.79 2016/03/14 15:15:34 greve Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mrisp_paint  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-03:11:34-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mrisp_paint.c,v 1.12 2016/03/22 14:47:57 fischl Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mris_curvature_stats  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-03:11:34-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mris_curvature_stats.c,v 1.65 2015/06/04 20:50:51 nicks Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mris_calc  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-03:11:34-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mris_calc.c,v 1.54.2.1 2016/09/27 18:51:28 greve Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+$Id: mri_robust_register.cpp,v 1.77 2016/01/20 23:36:17 greve Exp $
+
+ProgramName: mri_robust_register.bin  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-03:11:34-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_robust_register.cpp,v 1.77 2016/01/20 23:36:17 greve Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+$Id: mri_robust_template.cpp,v 1.54 2016/05/05 21:17:08 mreuter Exp $
+
+ProgramName: mri_robust_template  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-03:11:34-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_robust_template.cpp,v 1.54 2016/05/05 21:17:08 mreuter Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_and  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-03:11:34-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_and.c,v 1.4 2011/03/02 00:04:13 nicks Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_or  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-03:11:34-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_or.c,v 1.5 2013/03/20 15:03:29 lzollei Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_fuse_segmentations  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-03:11:34-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_fuse_segmentations.c,v 1.8 2011/03/02 00:04:15 nicks Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_segstats  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-03:11:34-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_segstats.c,v 1.121 2016/05/31 17:27:11 greve Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_relabel_hypointensities  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-03:11:35-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_relabel_hypointensities.c,v 1.13 2015/05/15 18:44:10 nicks Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+#######################################
+GCADIR /media/nhp/data2/template
+GCA RB_all_2016-05-10.vc700.gca
+GCASkull RB_all_withskull_2016-05-10.vc700.gca
+AvgCurvTif folding.atlas.acfb40.noaparc.i12.2016-08-02.tif
+GCSDIR /media/nhp/data/freesurfer/freesurfer/average
+GCS DKaparc.atlas.acfb40.noaparc.i12.2016-08-02.gcs
+#######################################
+#-------------------------------------
+#@# EM Registration 2023年 04月 11日 星期二 11:11:35 CST
+/media/nhp/data2/KIZ_data/NMT/free_data/subjects/2021_NMT.T1/mri
+
+ mri_em_register -rusage /media/nhp/data2/KIZ_data/NMT/free_data/subjects/2021_NMT.T1/touch/rusage.mri_em_register.dat -uns 3 -mask brainmask.mgz nu.mgz /media/nhp/data2/template/RB_all_2016-05-10.vc700.gca transforms/talairach.lta 
+
+setting unknown_nbr_spacing = 3
+using MR volume brainmask.mgz to mask input volume...
+
+== Number of threads available to mri_em_register for OpenMP = 1 == 
+reading 1 input volumes...
+logging results to talairach.log
+reading '/media/nhp/data2/template/RB_all_2016-05-10.vc700.gca'...
+average std = 4.8   using min determinant for regularization = 2.3
+0 singular and 292 ill-conditioned covariance matrices regularized
+reading 'nu.mgz'...
+freeing gibbs priors...done.
+accounting for voxel sizes in initial transform
+bounding unknown intensity as < 16.2 or > 388.1 
+total sample mean = 79.9 (560 zeros)
+************************************************
+spacing=8, using 1291 sample points, tol=1.00e-05...
+************************************************
+register_mri: find_optimal_transform
+find_optimal_transform: nsamples 1291, passno 0, spacing 8
+resetting wm mean[0]: 96 --> 96
+resetting gm mean[0]: 69 --> 69
+input volume #1 is the most T1-like
+using real data threshold=27.9
+skull bounding box = (69, 88, 56) --> (186, 169, 195)
+using (108, 115, 126) as brain centroid...
+mean wm in atlas = 96, using box (94,105,109) --> (122, 124,143) to find MRI wm
+before smoothing, mri peak at 110
+robust fit to distribution - 110 +- 4.0
+after smoothing, mri peak at 110, scaling input intensities by 0.873
+scaling channel 0 by 0.872727
+initial log_p = -4.197
+************************************************
+First Search limited to translation only.
+************************************************
+max log p =    -3.499814 @ (-9.091, -9.091, -27.273)
+max log p =    -3.214125 @ (4.545, 4.545, 4.545)
+max log p =    -2.742123 @ (2.273, -2.273, 2.273)
+max log p =    -2.735218 @ (-1.136, -1.136, 1.136)
+max log p =    -2.695562 @ (1.705, 0.568, 0.568)
+max log p =    -2.695562 @ (0.000, 0.000, 0.000)
+Found translation: (-1.7, -7.4, -18.8): log p = -2.696
+****************************************
+Nine parameter search.  iteration 0 nscales = 0 ...
+****************************************
+Result so far: scale 1.000: max_log_p=-2.537, old_max_log_p =-2.696 (thresh=-2.7)
+ 1.07500   0.00000   0.00000  -11.31305;
+ 0.00000   1.07500   0.00000  -16.86884;
+ 0.00000   0.00000   1.00000  -18.75000;
+ 0.00000   0.00000   0.00000   1.00000;
+****************************************
+Nine parameter search.  iteration 1 nscales = 0 ...
+****************************************
+Result so far: scale 1.000: max_log_p=-2.537, old_max_log_p =-2.537 (thresh=-2.5)
+ 1.07500   0.00000   0.00000  -11.31305;
+ 0.00000   1.07500   0.00000  -16.86884;
+ 0.00000   0.00000   1.00000  -18.75000;
+ 0.00000   0.00000   0.00000   1.00000;
+reducing scale to 0.2500
+****************************************
+Nine parameter search.  iteration 2 nscales = 1 ...
+****************************************
+Result so far: scale 0.250: max_log_p=-2.385, old_max_log_p =-2.537 (thresh=-2.5)
+ 1.03469   0.00000   0.00000  -6.14847;
+ 0.00000   1.07451   0.03149  -20.55249;
+ 0.00000  -0.03710   1.01742  -16.13148;
+ 0.00000   0.00000   0.00000   1.00000;
+****************************************
+Nine parameter search.  iteration 3 nscales = 1 ...
+****************************************
+Result so far: scale 0.250: max_log_p=-2.385, old_max_log_p =-2.385 (thresh=-2.4)
+ 1.03469   0.00000   0.00000  -6.14847;
+ 0.00000   1.07451   0.03149  -20.55249;
+ 0.00000  -0.03710   1.01742  -16.13148;
+ 0.00000   0.00000   0.00000   1.00000;
+reducing scale to 0.0625
+****************************************
+Nine parameter search.  iteration 4 nscales = 2 ...
+****************************************
+Result so far: scale 0.062: max_log_p=-2.365, old_max_log_p =-2.385 (thresh=-2.4)
+ 1.03819  -0.01759  -0.00079  -4.27950;
+ 0.01695   1.07236   0.04804  -23.95025;
+ 0.00000  -0.05452   1.01320  -13.89473;
+ 0.00000   0.00000   0.00000   1.00000;
+****************************************
+Nine parameter search.  iteration 5 nscales = 2 ...
+****************************************
+Result so far: scale 0.062: max_log_p=-2.361, old_max_log_p =-2.365 (thresh=-2.4)
+ 1.03819  -0.01759  -0.00079  -4.27950;
+ 0.01693   1.07110   0.04798  -23.78228;
+ 0.00000  -0.05452   1.01320  -13.89473;
+ 0.00000   0.00000   0.00000   1.00000;
+****************************************
+Nine parameter search.  iteration 6 nscales = 2 ...
+****************************************
+Result so far: scale 0.062: max_log_p=-2.361, old_max_log_p =-2.361 (thresh=-2.4)
+ 1.03819  -0.01759  -0.00079  -4.27950;
+ 0.01693   1.07110   0.04798  -23.78228;
+ 0.00000  -0.05452   1.01320  -13.89473;
+ 0.00000   0.00000   0.00000   1.00000;
+min search scale 0.025000 reached
+***********************************************
+Computing MAP estimate using 1291 samples...
+***********************************************
+dt = 5.00e-06, momentum=0.80, tol=1.00e-05
+l_intensity = 1.0000
+Aligning input volume to GCA...
+Transform matrix
+ 1.03819  -0.01759  -0.00079  -4.27950;
+ 0.01693   1.07110   0.04798  -23.78228;
+ 0.00000  -0.05452   1.01320  -13.89473;
+ 0.00000   0.00000   0.00000   1.00000;
+nsamples 1291
+Quasinewton: input matrix
+ 1.03819  -0.01759  -0.00079  -4.27950;
+ 0.01693   1.07110   0.04798  -23.78228;
+ 0.00000  -0.05452   1.01320  -13.89473;
+ 0.00000   0.00000   0.00000   1.00000;
+outof QuasiNewtonEMA: 009: -log(p) =   -0.0  tol 0.000010
+Resulting transform:
+ 1.03819  -0.01759  -0.00079  -4.27950;
+ 0.01693   1.07110   0.04798  -23.78228;
+ 0.00000  -0.05452   1.01320  -13.89473;
+ 0.00000   0.00000   0.00000   1.00000;
+
+pass 1, spacing 8: log(p) = -2.361 (old=-4.197)
+transform before final EM align:
+ 1.03819  -0.01759  -0.00079  -4.27950;
+ 0.01693   1.07110   0.04798  -23.78228;
+ 0.00000  -0.05452   1.01320  -13.89473;
+ 0.00000   0.00000   0.00000   1.00000;
+
+**************************************************
+ EM alignment process ...
+ Computing final MAP estimate using 167414 samples. 
+**************************************************
+dt = 5.00e-06, momentum=0.80, tol=1.00e-07
+l_intensity = 1.0000
+Aligning input volume to GCA...
+Transform matrix
+ 1.03819  -0.01759  -0.00079  -4.27950;
+ 0.01693   1.07110   0.04798  -23.78228;
+ 0.00000  -0.05452   1.01320  -13.89473;
+ 0.00000   0.00000   0.00000   1.00000;
+nsamples 167414
+Quasinewton: input matrix
+ 1.03819  -0.01759  -0.00079  -4.27950;
+ 0.01693   1.07110   0.04798  -23.78228;
+ 0.00000  -0.05452   1.01320  -13.89473;
+ 0.00000   0.00000   0.00000   1.00000;
+dfp_em_step_func: 010: -log(p) = 3.0
+after pass:transform: ( 1.04, -0.02, -0.00, -4.28)
+                      ( 0.02, 1.07, 0.05, -23.78)
+                      ( 0.00, -0.05, 1.01, -13.89)
+dfp_em_step_func: 011: -log(p) = 3.0
+after pass:transform: ( 1.04, -0.02, -0.00, -4.28)
+                      ( 0.02, 1.07, 0.05, -23.78)
+                      ( 0.00, -0.05, 1.01, -13.89)
+pass 2 through quasi-newton minimization...
+dfp_em_step_func: 012: -log(p) = 3.0
+after pass:transform: ( 1.04, -0.02, -0.00, -4.28)
+                      ( 0.02, 1.07, 0.05, -23.78)
+                      ( 0.00, -0.05, 1.01, -13.89)
+dfp_em_step_func: 013: -log(p) = 3.0
+after pass:transform: ( 1.04, -0.02, -0.00, -4.28)
+                      ( 0.02, 1.07, 0.05, -23.78)
+                      ( 0.00, -0.05, 1.01, -13.89)
+pass 3 through quasi-newton minimization...
+dfp_em_step_func: 014: -log(p) = 3.0
+after pass:transform: ( 1.04, -0.02, -0.00, -4.28)
+                      ( 0.02, 1.07, 0.05, -23.78)
+                      ( 0.00, -0.05, 1.01, -13.89)
+dfp_em_step_func: 015: -log(p) = 3.0
+after pass:transform: ( 1.04, -0.02, -0.00, -4.28)
+                      ( 0.02, 1.07, 0.05, -23.78)
+                      ( 0.00, -0.05, 1.01, -13.89)
+pass 4 through quasi-newton minimization...
+dfp_em_step_func: 016: -log(p) = 3.0
+after pass:transform: ( 1.04, -0.02, -0.00, -4.28)
+                      ( 0.02, 1.07, 0.05, -23.78)
+                      ( 0.00, -0.05, 1.01, -13.89)
+dfp_em_step_func: 017: -log(p) = 3.0
+after pass:transform: ( 1.04, -0.02, -0.00, -4.28)
+                      ( 0.02, 1.07, 0.05, -23.78)
+                      ( 0.00, -0.05, 1.01, -13.89)
+pass 5 through quasi-newton minimization...
+dfp_em_step_func: 018: -log(p) = 3.0
+after pass:transform: ( 1.04, -0.02, -0.00, -4.28)
+                      ( 0.02, 1.07, 0.05, -23.78)
+                      ( 0.00, -0.05, 1.01, -13.89)
+dfp_em_step_func: 019: -log(p) = 3.0
+after pass:transform: ( 1.04, -0.02, 0.00, -4.28)
+                      ( 0.02, 1.07, 0.05, -23.78)
+                      ( 0.00, -0.05, 1.01, -13.89)
+pass 6 through quasi-newton minimization...
+outof QuasiNewtonEMA: 021: -log(p) =    3.0  tol 0.000000
+final transform:
+ 1.03918  -0.01668   0.00007  -4.27950;
+ 0.01760   1.07196   0.04864  -23.78228;
+ 0.00065  -0.05385   1.01398  -13.89473;
+ 0.00000   0.00000   0.00000   1.00000;
+
+writing output transformation to transforms/talairach.lta...
+mri_em_register utimesec    188.456371
+mri_em_register stimesec    0.544012
+mri_em_register ru_maxrss   654404
+mri_em_register ru_ixrss    0
+mri_em_register ru_idrss    0
+mri_em_register ru_isrss    0
+mri_em_register ru_minflt   217283
+mri_em_register ru_majflt   6
+mri_em_register ru_nswap    0
+mri_em_register ru_inblock  119504
+mri_em_register ru_oublock  0
+mri_em_register ru_msgsnd   0
+mri_em_register ru_msgrcv   0
+mri_em_register ru_nsignals 0
+mri_em_register ru_nvcsw    208
+mri_em_register ru_nivcsw   64
+registration took 3 minutes and 9 seconds.
+#--------------------------------------
+#@# CA Normalize 2023年 04月 11日 星期二 11:14:44 CST
+/media/nhp/data2/KIZ_data/NMT/free_data/subjects/2021_NMT.T1/mri
+
+ mri_ca_normalize -c ctrl_pts.mgz -mask brainmask.mgz nu.mgz /media/nhp/data2/template/RB_all_2016-05-10.vc700.gca transforms/talairach.lta norm.mgz 
+
+writing control point volume to ctrl_pts.mgz
+using MR volume brainmask.mgz to mask input volume...
+reading 1 input volume
+reading atlas from '/media/nhp/data2/template/RB_all_2016-05-10.vc700.gca'...
+reading transform from 'transforms/talairach.lta'...
+reading input volume from nu.mgz...
+resetting wm mean[0]: 96 --> 96
+resetting gm mean[0]: 69 --> 69
+input volume #1 is the most T1-like
+using real data threshold=28.9
+skull bounding box = (69, 88, 56) --> (186, 169, 195)
+using (108, 115, 126) as brain centroid...
+mean wm in atlas = 96, using box (94,105,109) --> (122, 124,143) to find MRI wm
+before smoothing, mri peak at 110
+robust fit to distribution - 110 +- 4.0
+after smoothing, mri peak at 110, scaling input intensities by 0.873
+scaling channel 0 by 0.872727
+using 122887 sample points...
+INFO: compute sample coordinates transform
+ 1.03918  -0.01668   0.00007  -4.27950;
+ 0.01760   1.07196   0.04864  -23.78228;
+ 0.00065  -0.05385   1.01398  -13.89473;
+ 0.00000   0.00000   0.00000   1.00000;
+INFO: transform used
+finding control points in Left_Cerebral_White_Matter....
+found 13889 control points for structure...
+bounding box (127, 88, 58) --> (183, 160, 196)
+Left_Cerebral_White_Matter: limiting intensities to 88.0 --> 131.0
+0 of 1512 (0.0%) samples deleted
+finding control points in Right_Cerebral_White_Matter....
+found 13038 control points for structure...
+bounding box (75, 89, 58) --> (129, 161, 194)
+Right_Cerebral_White_Matter: limiting intensities to 88.0 --> 131.0
+1 of 1208 (0.1%) samples deleted
+finding control points in Left_Cerebellum_White_Matter....
+found 1089 control points for structure...
+bounding box (131, 137, 75) --> (164, 164, 121)
+Left_Cerebellum_White_Matter: limiting intensities to 88.0 --> 131.0
+0 of 66 (0.0%) samples deleted
+finding control points in Right_Cerebellum_White_Matter....
+found 1088 control points for structure...
+bounding box (93, 137, 75) --> (130, 163, 119)
+Right_Cerebellum_White_Matter: limiting intensities to 88.0 --> 131.0
+0 of 89 (0.0%) samples deleted
+finding control points in Brain_Stem....
+found 3822 control points for structure...
+bounding box (111, 130, 84) --> (145, 182, 130)
+Brain_Stem: limiting intensities to 88.0 --> 131.0
+1032 of 1032 (100.0%) samples deleted
+using 3907 total control points for intensity normalization...
+bias field = 0.997 +- 0.034
+0 of 2874 control points discarded
+finding control points in Left_Cerebral_White_Matter....
+found 13889 control points for structure...
+bounding box (127, 88, 58) --> (183, 160, 196)
+Left_Cerebral_White_Matter: limiting intensities to 88.0 --> 130.0
+2 of 1566 (0.1%) samples deleted
+finding control points in Right_Cerebral_White_Matter....
+found 13038 control points for structure...
+bounding box (75, 89, 58) --> (129, 161, 194)
+Right_Cerebral_White_Matter: limiting intensities to 88.0 --> 130.0
+4 of 1220 (0.3%) samples deleted
+finding control points in Left_Cerebellum_White_Matter....
+found 1089 control points for structure...
+bounding box (131, 137, 75) --> (164, 164, 121)
+Left_Cerebellum_White_Matter: limiting intensities to 89.0 --> 130.0
+0 of 61 (0.0%) samples deleted
+finding control points in Right_Cerebellum_White_Matter....
+found 1088 control points for structure...
+bounding box (93, 137, 75) --> (130, 163, 119)
+Right_Cerebellum_White_Matter: limiting intensities to 88.0 --> 130.0
+0 of 93 (0.0%) samples deleted
+finding control points in Brain_Stem....
+found 3822 control points for structure...
+bounding box (111, 130, 84) --> (145, 182, 130)
+Brain_Stem: limiting intensities to 88.0 --> 130.0
+1046 of 1046 (100.0%) samples deleted
+using 3986 total control points for intensity normalization...
+bias field = 0.994 +- 0.029
+2 of 2926 control points discarded
+finding control points in Left_Cerebral_White_Matter....
+found 13889 control points for structure...
+bounding box (127, 88, 58) --> (183, 160, 196)
+Left_Cerebral_White_Matter: limiting intensities to 88.0 --> 130.0
+0 of 1572 (0.0%) samples deleted
+finding control points in Right_Cerebral_White_Matter....
+found 13038 control points for structure...
+bounding box (75, 89, 58) --> (129, 161, 194)
+Right_Cerebral_White_Matter: limiting intensities to 88.0 --> 130.0
+0 of 1218 (0.0%) samples deleted
+finding control points in Left_Cerebellum_White_Matter....
+found 1089 control points for structure...
+bounding box (131, 137, 75) --> (164, 164, 121)
+Left_Cerebellum_White_Matter: limiting intensities to 88.0 --> 130.0
+1 of 67 (1.5%) samples deleted
+finding control points in Right_Cerebellum_White_Matter....
+found 1088 control points for structure...
+bounding box (93, 137, 75) --> (130, 163, 119)
+Right_Cerebellum_White_Matter: limiting intensities to 88.0 --> 130.0
+0 of 87 (0.0%) samples deleted
+finding control points in Brain_Stem....
+found 3822 control points for structure...
+bounding box (111, 130, 84) --> (145, 182, 130)
+Brain_Stem: limiting intensities to 88.0 --> 130.0
+1053 of 1053 (100.0%) samples deleted
+using 3997 total control points for intensity normalization...
+bias field = 0.996 +- 0.026
+4 of 2926 control points discarded
+writing normalized volume to norm.mgz...
+writing control points to ctrl_pts.mgz
+freeing GCA...done.
+normalization took 0 minutes and 42 seconds.
+#--------------------------------------
+#@# CA Reg 2023年 04月 11日 星期二 11:15:26 CST
+/media/nhp/data2/KIZ_data/NMT/free_data/subjects/2021_NMT.T1/mri
+
+ mri_ca_register -rusage /media/nhp/data2/KIZ_data/NMT/free_data/subjects/2021_NMT.T1/touch/rusage.mri_ca_register.dat -nobigventricles -T transforms/talairach.lta -align-after -mask brainmask.mgz norm.mgz /media/nhp/data2/template/RB_all_2016-05-10.vc700.gca transforms/talairach.m3z 
+
+not handling expanded ventricles...
+using previously computed transform transforms/talairach.lta
+renormalizing sequences with structure alignment, equivalent to:
+	-renormalize
+	-regularize_mean 0.500
+	-regularize 0.500
+using MR volume brainmask.mgz to mask input volume...
+
+== Number of threads available to mri_ca_register for OpenMP = 1 == 
+reading 1 input volumes...
+logging results to talairach.log
+reading input volume 'norm.mgz'...
+reading GCA '/media/nhp/data2/template/RB_all_2016-05-10.vc700.gca'...
+label assignment complete, 0 changed (0.00%)
+det(m_affine) = 1.13 (predicted orig area = 7.1)
+label assignment complete, 0 changed (0.00%)
+freeing gibbs priors...done.
+average std[0] = 5.0
+**************** pass 1 of 1 ************************
+enabling zero nodes
+setting smoothness coefficient to 0.039
+blurring input image with Gaussian with sigma=2.000...
+0000: dt=0.000, rms=0.477, neg=0, invalid=762
+0001: dt=198.547643, rms=0.413 (13.578%), neg=0, invalid=762
+0002: dt=150.957419, rms=0.395 (4.263%), neg=0, invalid=762
+0003: dt=221.952000, rms=0.383 (3.050%), neg=0, invalid=762
+0004: dt=141.730909, rms=0.377 (1.605%), neg=0, invalid=762
+0005: dt=221.952000, rms=0.370 (1.918%), neg=0, invalid=762
+0006: dt=110.976000, rms=0.366 (0.877%), neg=0, invalid=762
+0007: dt=443.904000, rms=0.360 (1.818%), neg=0, invalid=762
+0008: dt=76.566210, rms=0.357 (0.726%), neg=0, invalid=762
+0009: dt=1183.744000, rms=0.351 (1.695%), neg=0, invalid=762
+0010: dt=93.273543, rms=0.348 (0.958%), neg=0, invalid=762
+0011: dt=443.904000, rms=0.347 (0.171%), neg=0, invalid=762
+0012: dt=443.904000, rms=0.347 (-0.016%), neg=0, invalid=762
+blurring input image with Gaussian with sigma=0.500...
+0000: dt=0.000, rms=0.348, neg=0, invalid=762
+0013: dt=129.472000, rms=0.344 (0.948%), neg=0, invalid=762
+0014: dt=73.984000, rms=0.344 (0.047%), neg=0, invalid=762
+0015: dt=73.984000, rms=0.344 (0.070%), neg=0, invalid=762
+0016: dt=73.984000, rms=0.344 (0.115%), neg=0, invalid=762
+0017: dt=73.984000, rms=0.343 (0.153%), neg=0, invalid=762
+0018: dt=73.984000, rms=0.342 (0.175%), neg=0, invalid=762
+0019: dt=73.984000, rms=0.342 (0.191%), neg=0, invalid=762
+0020: dt=73.984000, rms=0.341 (0.196%), neg=0, invalid=762
+0021: dt=73.984000, rms=0.340 (0.185%), neg=0, invalid=762
+0022: dt=73.984000, rms=0.340 (0.171%), neg=0, invalid=762
+0023: dt=73.984000, rms=0.339 (0.163%), neg=0, invalid=762
+0024: dt=73.984000, rms=0.339 (0.146%), neg=0, invalid=762
+0025: dt=73.984000, rms=0.338 (0.137%), neg=0, invalid=762
+0026: dt=73.984000, rms=0.338 (0.135%), neg=0, invalid=762
+0027: dt=73.984000, rms=0.337 (0.134%), neg=0, invalid=762
+0028: dt=73.984000, rms=0.337 (0.120%), neg=0, invalid=762
+0029: dt=73.984000, rms=0.337 (0.108%), neg=0, invalid=762
+0030: dt=1479.680000, rms=0.336 (0.137%), neg=0, invalid=762
+0031: dt=129.472000, rms=0.336 (0.185%), neg=0, invalid=762
+0032: dt=0.000000, rms=0.336 (0.003%), neg=0, invalid=762
+0033: dt=0.850000, rms=0.336 (-0.000%), neg=0, invalid=762
+setting smoothness coefficient to 0.154
+blurring input image with Gaussian with sigma=2.000...
+0000: dt=0.000, rms=0.338, neg=0, invalid=762
+0034: dt=68.413793, rms=0.336 (0.591%), neg=0, invalid=762
+0035: dt=248.832000, rms=0.329 (2.003%), neg=0, invalid=762
+0036: dt=25.920000, rms=0.329 (0.176%), neg=0, invalid=762
+0037: dt=25.920000, rms=0.329 (0.045%), neg=0, invalid=762
+0038: dt=25.920000, rms=0.329 (0.008%), neg=0, invalid=762
+0039: dt=25.920000, rms=0.328 (0.078%), neg=0, invalid=762
+0040: dt=25.920000, rms=0.327 (0.311%), neg=0, invalid=762
+0041: dt=25.920000, rms=0.326 (0.446%), neg=0, invalid=762
+0042: dt=25.920000, rms=0.325 (0.406%), neg=0, invalid=762
+0043: dt=25.920000, rms=0.324 (0.285%), neg=0, invalid=762
+0044: dt=25.920000, rms=0.323 (0.180%), neg=0, invalid=762
+0045: dt=25.920000, rms=0.323 (0.064%), neg=0, invalid=762
+0046: dt=25.920000, rms=0.323 (-0.008%), neg=0, invalid=762
+0047: dt=0.000000, rms=0.323 (0.000%), neg=0, invalid=762
+blurring input image with Gaussian with sigma=0.500...
+0000: dt=0.000, rms=0.323, neg=0, invalid=762
+0048: dt=145.152000, rms=0.321 (0.859%), neg=0, invalid=762
+0049: dt=31.104000, rms=0.320 (0.085%), neg=0, invalid=762
+0050: dt=31.104000, rms=0.320 (0.004%), neg=0, invalid=762
+0051: dt=31.104000, rms=0.320 (-0.010%), neg=0, invalid=762
+setting smoothness coefficient to 0.588
+blurring input image with Gaussian with sigma=2.000...
+0000: dt=0.000, rms=0.328, neg=0, invalid=762
+0052: dt=11.200000, rms=0.326 (0.338%), neg=0, invalid=762
+0053: dt=11.200000, rms=0.326 (0.071%), neg=0, invalid=762
+0054: dt=11.200000, rms=0.326 (0.044%), neg=0, invalid=762
+0055: dt=11.200000, rms=0.326 (-0.037%), neg=0, invalid=762
+blurring input image with Gaussian with sigma=0.500...
+0000: dt=0.000, rms=0.327, neg=0, invalid=762
+0056: dt=25.600000, rms=0.325 (0.367%), neg=0, invalid=762
+0057: dt=44.800000, rms=0.325 (0.209%), neg=0, invalid=762
+0058: dt=44.800000, rms=0.324 (0.271%), neg=0, invalid=762
+0059: dt=44.800000, rms=0.323 (0.350%), neg=0, invalid=762
+0060: dt=44.800000, rms=0.321 (0.346%), neg=0, invalid=762
+0061: dt=44.800000, rms=0.320 (0.347%), neg=0, invalid=762
+0062: dt=44.800000, rms=0.319 (0.356%), neg=0, invalid=762
+0063: dt=44.800000, rms=0.318 (0.290%), neg=0, invalid=762
+0064: dt=44.800000, rms=0.318 (0.136%), neg=0, invalid=762
+0065: dt=44.800000, rms=0.318 (0.092%), neg=0, invalid=762
+0066: dt=44.800000, rms=0.317 (0.086%), neg=0, invalid=762
+0067: dt=8.000000, rms=0.317 (0.000%), neg=0, invalid=762
+0068: dt=8.000000, rms=0.317 (0.005%), neg=0, invalid=762
+0069: dt=8.000000, rms=0.317 (-0.000%), neg=0, invalid=762
+setting smoothness coefficient to 2.000
+blurring input image with Gaussian with sigma=2.000...
+0000: dt=0.000, rms=0.331, neg=0, invalid=762
+0070: dt=0.000000, rms=0.330 (0.105%), neg=0, invalid=762
+0071: dt=0.000000, rms=0.330 (0.000%), neg=0, invalid=762
+blurring input image with Gaussian with sigma=0.500...
+0000: dt=0.000, rms=0.331, neg=0, invalid=762
+0072: dt=0.000000, rms=0.330 (0.105%), neg=0, invalid=762
+0073: dt=0.000000, rms=0.330 (0.000%), neg=0, invalid=762
+setting smoothness coefficient to 5.000
+blurring input image with Gaussian with sigma=2.000...
+0000: dt=0.000, rms=0.357, neg=0, invalid=762
+0074: dt=0.448000, rms=0.355 (0.441%), neg=0, invalid=762
+0075: dt=0.000000, rms=0.355 (-0.004%), neg=0, invalid=762
+0076: dt=0.100000, rms=0.355 (-0.016%), neg=0, invalid=762
+blurring input image with Gaussian with sigma=0.500...
+0000: dt=0.000, rms=0.356, neg=0, invalid=762
+0077: dt=0.028000, rms=0.355 (0.090%), neg=0, invalid=762
+0078: dt=0.007000, rms=0.355 (0.001%), neg=0, invalid=762
+0079: dt=0.007000, rms=0.355 (-0.000%), neg=0, invalid=762
+resetting metric properties...
+setting smoothness coefficient to 10.000
+blurring input image with Gaussian with sigma=2.000...
+0000: dt=0.000, rms=0.318, neg=0, invalid=762
+0080: dt=0.950404, rms=0.306 (3.820%), neg=0, invalid=762
+0081: dt=0.080000, rms=0.305 (0.261%), neg=0, invalid=762
+0082: dt=0.000000, rms=0.306 (-0.003%), neg=0, invalid=762
+0083: dt=0.050000, rms=0.306 (-0.090%), neg=0, invalid=762
+blurring input image with Gaussian with sigma=0.500...
+0000: dt=0.000, rms=0.306, neg=0, invalid=762
+0084: dt=0.000375, rms=0.306 (0.128%), neg=0, invalid=762
+0085: dt=0.000000, rms=0.306 (-0.000%), neg=0, invalid=762
+renormalizing by structure alignment....
+renormalizing input #0
+gca peak = 0.20742 (24)
+mri peak = 0.07799 (16)
+gca peak = 0.25462 (22)
+mri peak = 0.06837 (21)
+gca peak = 0.20823 (94)
+mri peak = 0.07194 (101)
+Right_Pallidum: unreasonable value (195.1/100.8), not in range [75, 135] - rejecting
+gca peak = 0.28274 (92)
+mri peak = 0.06674 (97)
+Left_Pallidum: unreasonable value (190.9/97.3), not in range [75, 135] - rejecting
+gca peak = 0.26948 (60)
+mri peak = 0.05078 (59)
+Right_Hippocampus: unreasonable value (118.5/58.8), not in range [50, 90] - rejecting
+gca peak = 0.25497 (56)
+mri peak = 0.04716 (63)
+Left_Hippocampus: unreasonable value (117.9/63.3), not in range [50, 90] - rejecting
+gca peak = 0.22820 (97)
+mri peak = 0.06458 (98)
+Right_Cerebral_White_Matter: unreasonable value (192.5/98.3), not in range [90, 130] - rejecting
+gca peak = 0.19976 (96)
+mri peak = 0.06871 (100)
+Left_Cerebral_White_Matter: unreasonable value (192.5/99.8), not in range [90, 130] - rejecting
+gca peak = 0.15153 (68)
+mri peak = 0.03873 (59)
+Left_Cerebral_Cortex: unreasonable value (118.0/59.3), not in range [40, 95] - rejecting
+gca peak = 0.14699 (65)
+mri peak = 0.04176 (59)
+Right_Cerebral_Cortex: unreasonable value (115.4/58.8), not in range [40, 95] - rejecting
+gca peak = 0.22394 (67)
+mri peak = 0.10757 (64)
+Right_Caudate: unreasonable value (127.6/64.4), not in range [50, 100] - rejecting
+gca peak = 0.20351 (71)
+mri peak = 0.11830 (65)
+Left_Caudate: unreasonable value (130.3/65.4), not in range [50, 100] - rejecting
+gca peak = 0.25971 (68)
+mri peak = 0.04067 (67)
+Left_Cerebellum_Cortex (8): linear fit = 1.93 x + 0.0 (4399 voxels, overlap=0.004)
+Left_Cerebellum_Cortex (8): linear fit = 1.93 x + 0.0 (4399 voxels, peak = 132), gca=131.6
+gca peak = 0.26154 (71)
+mri peak = 0.04695 (65)
+Right_Cerebellum_Cortex (47): linear fit = 1.84 x + 0.0 (4774 voxels, overlap=0.004)
+Right_Cerebellum_Cortex (47): linear fit = 1.84 x + 0.0 (4774 voxels, peak = 130), gca=130.3
+gca peak = 0.23200 (93)
+mri peak = 0.04510 (98)
+Left_Cerebellum_White_Matter (7): linear fit = 2.08 x + 0.0 (2013 voxels, overlap=0.011)
+Left_Cerebellum_White_Matter (7): linear fit = 2.08 x + 0.0 (2013 voxels, peak = 193), gca=193.0
+gca peak = 0.23517 (93)
+mri peak = 0.05092 (99)
+Right_Cerebellum_White_Matter (46): linear fit = 2.08 x + 0.0 (2413 voxels, overlap=0.013)
+Right_Cerebellum_White_Matter (46): linear fit = 2.08 x + 0.0 (2413 voxels, peak = 193), gca=193.0
+gca peak = 0.28865 (59)
+mri peak = 0.07930 (64)
+Left_Amygdala: unreasonable value (125.4/63.8), not in range [50, 90] - rejecting
+gca peak = 0.30384 (60)
+mri peak = 0.07072 (55)
+Right_Amygdala: unreasonable value (109.5/55.2), not in range [50, 90] - rejecting
+gca peak = 0.24066 (87)
+mri peak = 0.06112 (79)
+Left_Thalamus_Proper: unreasonable value (154.4/78.5), not in range [75, 120] - rejecting
+gca peak = 0.23171 (86)
+mri peak = 0.06361 (76)
+Right_Thalamus_Proper: unreasonable value (156.9/76.0), not in range [75, 120] - rejecting
+gca peak = 0.21103 (75)
+mri peak = 0.05355 (78)
+Left_Putamen: unreasonable value (150.4/78.0), not in range [60, 107] - rejecting
+gca peak = 0.21158 (77)
+mri peak = 0.06150 (79)
+Right_Putamen: unreasonable value (152.8/79.0), not in range [60, 107] - rejecting
+gca peak = 0.24712 (84)
+mri peak = 0.13593 (80)
+Brain_Stem: unreasonable value (159.2/80.1), not in range [80, 110] - rejecting
+gca peak = 0.19639 (89)
+mri peak = 0.19305 (81)
+Right_VentralDC: unreasonable value (158.9/81.1), not in range [80, 110] - rejecting
+gca peak = 0.24960 (90)
+mri peak = 0.09265 (80)
+Left_VentralDC: unreasonable value (159.8/79.6), not in range [80, 110] - rejecting
+gca peak = 0.32518 (57)
+mri peak = 0.11258 (51)
+gca peak = 0.12135 (40)
+mri peak = 0.15195 ( 9)
+gca peak Unknown = 0.97396 ( 0)
+gca peak Left_Cerebral_White_Matter = 0.19976 (96)
+gca peak Left_Cerebral_Cortex = 0.15153 (68)
+gca peak Left_Lateral_Ventricle = 0.20742 (24)
+gca peak Left_Inf_Lat_Vent = 0.27344 (39)
+gca peak Left_Cerebellum_White_Matter = 0.23200 (93)
+gca peak Left_Cerebellum_Cortex = 0.25971 (68)
+gca peak Left_Thalamus_Proper = 0.24066 (87)
+gca peak Left_Caudate = 0.20351 (71)
+gca peak Left_Putamen = 0.21103 (75)
+gca peak Left_Pallidum = 0.28274 (92)
+gca peak Third_Ventricle = 0.32518 (57)
+gca peak Fourth_Ventricle = 0.12135 (40)
+gca peak Brain_Stem = 0.24712 (84)
+gca peak Left_Hippocampus = 0.25497 (56)
+gca peak Left_Amygdala = 0.28865 (59)
+gca peak CSF = 0.22603 (66)
+gca peak Left_Accumbens_area = 0.35773 (63)
+gca peak Left_VentralDC = 0.24960 (90)
+gca peak Left_vessel = 0.28061 (65)
+gca peak Left_choroid_plexus = 0.19533 (66)
+gca peak Right_Cerebral_White_Matter = 0.22820 (97)
+gca peak Right_Cerebral_Cortex = 0.14699 (65)
+gca peak Right_Lateral_Ventricle = 0.25462 (22)
+gca peak Right_Inf_Lat_Vent = 0.22388 (34)
+gca peak Right_Cerebellum_White_Matter = 0.23517 (93)
+gca peak Right_Cerebellum_Cortex = 0.26154 (71)
+gca peak Right_Thalamus_Proper = 0.23171 (86)
+gca peak Right_Caudate = 0.22394 (67)
+gca peak Right_Putamen = 0.21158 (77)
+gca peak Right_Pallidum = 0.20823 (94)
+gca peak Right_Hippocampus = 0.26948 (60)
+gca peak Right_Amygdala = 0.30384 (60)
+gca peak Right_Accumbens_area = 0.33224 (62)
+gca peak Right_VentralDC = 0.19639 (89)
+gca peak Right_vessel = 0.35810 (58)
+gca peak Right_choroid_plexus = 0.15729 (69)
+gca peak WM_hypointensities = 0.26190 (38)
+gca peak non_WM_hypointensities = 0.52842 (57)
+gca peak Optic_Chiasm = 0.40729 (106)
+label assignment complete, 0 changed (0.00%)
+not using caudate to estimate GM means
+estimating mean gm scale to be 1.00 x + 0.0
+estimating mean wm scale to be 1.00 x + 0.0
+estimating mean csf scale to be 1.00 x + 0.0
+setting left cbm cortex = 1.00 x + 0.00
+setting right cbm cortex = 1.00 x + 0.00
+Right_Pallidum too bright - rescaling by 0.996 (from 1.000) to 93.6 (was 94.0)
+saving intensity scales to talairach.label_intensities.txt
+**************** pass 1 of 1 ************************
+enabling zero nodes
+setting smoothness coefficient to 0.008
+blurring input image with Gaussian with sigma=2.000...
+0000: dt=0.000, rms=0.299, neg=0, invalid=762
+0086: dt=32.368000, rms=0.298 (0.197%), neg=0, invalid=762
+0087: dt=27.744000, rms=0.298 (0.019%), neg=0, invalid=762
+0088: dt=27.744000, rms=0.298 (0.009%), neg=0, invalid=762
+0089: dt=27.744000, rms=0.298 (-0.035%), neg=0, invalid=762
+blurring input image with Gaussian with sigma=0.500...
+0000: dt=0.000, rms=0.299, neg=0, invalid=762
+0090: dt=221.952000, rms=0.297 (0.600%), neg=0, invalid=762
+0091: dt=110.976000, rms=0.297 (0.100%), neg=0, invalid=762
+0092: dt=129.472000, rms=0.296 (0.143%), neg=0, invalid=762
+0093: dt=92.480000, rms=0.296 (0.043%), neg=0, invalid=762
+0094: dt=92.480000, rms=0.296 (0.059%), neg=0, invalid=762
+0095: dt=92.480000, rms=0.296 (0.035%), neg=0, invalid=762
+0096: dt=92.480000, rms=0.296 (0.015%), neg=0, invalid=762
+0097: dt=92.480000, rms=0.296 (-0.031%), neg=0, invalid=762
+0098: dt=443.904000, rms=0.296 (0.043%), neg=0, invalid=762
+0099: dt=0.022578, rms=0.296 (-0.004%), neg=0, invalid=762
+setting smoothness coefficient to 0.031
+blurring input image with Gaussian with sigma=2.000...
+0000: dt=0.000, rms=0.296, neg=0, invalid=762
+0100: dt=25.333333, rms=0.295 (0.206%), neg=0, invalid=762
+0101: dt=25.920000, rms=0.295 (0.045%), neg=0, invalid=762
+0102: dt=25.920000, rms=0.295 (0.035%), neg=0, invalid=762
+0103: dt=25.920000, rms=0.295 (-0.027%), neg=0, invalid=762
+0104: dt=31.104000, rms=0.295 (0.029%), neg=0, invalid=762
+0105: dt=36.288000, rms=0.295 (0.024%), neg=0, invalid=762
+blurring input image with Gaussian with sigma=0.500...
+0000: dt=0.000, rms=0.296, neg=0, invalid=762
+0106: dt=145.152000, rms=0.292 (1.142%), neg=0, invalid=762
+0107: dt=17.142857, rms=0.292 (0.049%), neg=0, invalid=762
+0108: dt=17.142857, rms=0.292 (-0.014%), neg=0, invalid=762
+setting smoothness coefficient to 0.118
+blurring input image with Gaussian with sigma=2.000...
+0000: dt=0.000, rms=0.293, neg=0, invalid=762
+0109: dt=11.200000, rms=0.291 (0.445%), neg=0, invalid=762
+0110: dt=11.200000, rms=0.291 (0.214%), neg=0, invalid=762
+0111: dt=0.700000, rms=0.291 (0.010%), neg=0, invalid=762
+0112: dt=0.350000, rms=0.291 (0.006%), neg=0, invalid=762
+0113: dt=0.087500, rms=0.291 (0.001%), neg=0, invalid=762
+0114: dt=0.010937, rms=0.291 (0.000%), neg=0, invalid=762
+0115: dt=0.009375, rms=0.291 (0.000%), neg=0, invalid=762
+0116: dt=0.001500, rms=0.291 (0.000%), neg=0, invalid=762
+blurring input image with Gaussian with sigma=0.500...
+0000: dt=0.000, rms=0.291, neg=0, invalid=762
+0117: dt=0.000000, rms=0.291 (0.145%), neg=0, invalid=762
+0118: dt=0.000000, rms=0.291 (0.000%), neg=0, invalid=762
+0119: dt=0.000008, rms=0.291 (0.000%), neg=0, invalid=762
+0120: dt=0.000002, rms=0.291 (0.000%), neg=0, invalid=762
+0121: dt=0.000001, rms=0.291 (0.000%), neg=0, invalid=762
+setting smoothness coefficient to 0.400
+blurring input image with Gaussian with sigma=2.000...
+0000: dt=0.000, rms=0.292, neg=0, invalid=762
+0122: dt=0.000000, rms=0.291 (0.144%), neg=0, invalid=762
+0123: dt=0.000000, rms=0.291 (0.000%), neg=0, invalid=762
+0124: dt=0.000000, rms=0.291 (-0.000%), neg=0, invalid=762
+blurring input image with Gaussian with sigma=0.500...
+0000: dt=0.000, rms=0.292, neg=0, invalid=762
+0125: dt=1.008000, rms=0.290 (0.443%), neg=0, invalid=762
+0126: dt=1.008000, rms=0.290 (0.279%), neg=0, invalid=762
+0127: dt=0.252000, rms=0.289 (0.063%), neg=0, invalid=762
+0128: dt=0.252000, rms=0.289 (0.065%), neg=0, invalid=762
+0129: dt=0.180000, rms=0.289 (0.045%), neg=0, invalid=762
+0130: dt=0.011250, rms=0.289 (0.004%), neg=0, invalid=762
+0131: dt=0.002813, rms=0.289 (0.001%), neg=0, invalid=762
+0132: dt=0.001406, rms=0.289 (0.001%), neg=0, invalid=762
+0133: dt=0.000703, rms=0.289 (-0.000%), neg=0, invalid=762
+setting smoothness coefficient to 1.000
+blurring input image with Gaussian with sigma=2.000...
+0000: dt=0.000, rms=0.291, neg=0, invalid=762
+0134: dt=1.792000, rms=0.288 (1.136%), neg=0, invalid=762
+0135: dt=1.792000, rms=0.287 (0.419%), neg=0, invalid=762
+0136: dt=2.222222, rms=0.286 (0.231%), neg=0, invalid=762
+0137: dt=1.792000, rms=0.286 (0.065%), neg=0, invalid=762
+0138: dt=1.792000, rms=0.286 (0.031%), neg=0, invalid=762
+0139: dt=1.792000, rms=0.286 (0.018%), neg=0, invalid=762
+0140: dt=1.792000, rms=0.286 (0.013%), neg=0, invalid=762
+0141: dt=1.792000, rms=0.286 (0.001%), neg=0, invalid=762
+0142: dt=0.000000, rms=0.286 (0.001%), neg=0, invalid=762
+blurring input image with Gaussian with sigma=0.500...
+0000: dt=0.000, rms=0.286, neg=0, invalid=762
+0143: dt=5.120000, rms=0.283 (0.993%), neg=0, invalid=762
+0144: dt=0.448000, rms=0.283 (-0.002%), neg=0, invalid=762
+0145: dt=0.448000, rms=0.283 (0.001%), neg=0, invalid=762
+0146: dt=0.448000, rms=0.283 (-0.005%), neg=0, invalid=762
+resetting metric properties...
+setting smoothness coefficient to 2.000
+blurring input image with Gaussian with sigma=2.000...
+0000: dt=0.000, rms=0.281, neg=0, invalid=762
+0147: dt=0.448000, rms=0.272 (3.083%), neg=0, invalid=762
+0148: dt=0.448000, rms=0.272 (0.212%), neg=0, invalid=762
+0149: dt=0.448000, rms=0.271 (0.197%), neg=0, invalid=762
+0150: dt=0.448000, rms=0.271 (0.097%), neg=0, invalid=762
+0151: dt=0.448000, rms=0.271 (0.060%), neg=0, invalid=762
+0152: dt=0.448000, rms=0.271 (0.044%), neg=0, invalid=762
+0153: dt=0.448000, rms=0.271 (0.029%), neg=0, invalid=762
+0154: dt=0.448000, rms=0.270 (0.044%), neg=0, invalid=762
+0155: dt=0.448000, rms=0.270 (0.012%), neg=0, invalid=762
+0156: dt=0.448000, rms=0.270 (0.020%), neg=0, invalid=762
+0157: dt=0.448000, rms=0.270 (0.002%), neg=0, invalid=762
+0158: dt=0.256000, rms=0.270 (0.001%), neg=0, invalid=762
+0159: dt=0.256000, rms=0.270 (0.001%), neg=0, invalid=762
+0160: dt=0.256000, rms=0.270 (0.000%), neg=0, invalid=762
+0161: dt=0.256000, rms=0.270 (0.000%), neg=0, invalid=762
+blurring input image with Gaussian with sigma=0.500...
+0000: dt=0.000, rms=0.271, neg=0, invalid=762
+0162: dt=0.448000, rms=0.269 (0.706%), neg=0, invalid=762
+0163: dt=0.448000, rms=0.269 (0.042%), neg=0, invalid=762
+0164: dt=0.448000, rms=0.269 (0.020%), neg=0, invalid=762
+0165: dt=0.448000, rms=0.269 (0.034%), neg=0, invalid=762
+0166: dt=0.448000, rms=0.269 (-0.003%), neg=0, invalid=762
+0167: dt=0.112000, rms=0.269 (0.001%), neg=0, invalid=762
+0168: dt=0.112000, rms=0.269 (0.002%), neg=0, invalid=762
+0169: dt=0.320000, rms=0.269 (0.002%), neg=0, invalid=762
+label assignment complete, 0 changed (0.00%)
+********************* ALLOWING NEGATIVE NODES IN DEFORMATION********************************
+**************** pass 1 of 1 ************************
+enabling zero nodes
+setting smoothness coefficient to 0.008
+blurring input image with Gaussian with sigma=2.000...
+0000: dt=0.000, rms=0.269, neg=0, invalid=762
+0170: dt=0.000000, rms=0.268 (0.201%), neg=0, invalid=762
+0171: dt=0.000000, rms=0.268 (0.000%), neg=0, invalid=762
+blurring input image with Gaussian with sigma=0.500...
+0000: dt=0.000, rms=0.269, neg=0, invalid=762
+0172: dt=0.000000, rms=0.268 (0.201%), neg=0, invalid=762
+0173: dt=0.000000, rms=0.268 (0.000%), neg=0, invalid=762
+setting smoothness coefficient to 0.031
+blurring input image with Gaussian with sigma=2.000...
+0000: dt=0.000, rms=0.269, neg=0, invalid=762
+0174: dt=0.000000, rms=0.268 (0.201%), neg=0, invalid=762
+0175: dt=0.000000, rms=0.268 (0.000%), neg=0, invalid=762
+blurring input image with Gaussian with sigma=0.500...
+0000: dt=0.000, rms=0.269, neg=0, invalid=762
+0176: dt=0.001395, rms=0.268 (0.201%), neg=0, invalid=762
+0177: dt=0.000000, rms=0.268 (0.000%), neg=0, invalid=762
+setting smoothness coefficient to 0.118
+blurring input image with Gaussian with sigma=2.000...
+0000: dt=0.000, rms=0.269, neg=0, invalid=762
+0178: dt=2.400000, rms=0.268 (0.205%), neg=0, invalid=762
+0179: dt=1.600000, rms=0.268 (-0.002%), neg=0, invalid=762
+blurring input image with Gaussian with sigma=0.500...
+0000: dt=0.000, rms=0.269, neg=0, invalid=762
+0180: dt=32.000000, rms=0.267 (0.504%), neg=0, invalid=762
+0181: dt=44.800000, rms=0.266 (0.269%), neg=0, invalid=762
+0182: dt=11.200000, rms=0.266 (0.132%), neg=0, invalid=762
+0183: dt=11.200000, rms=0.266 (0.073%), neg=0, invalid=762
+0184: dt=11.200000, rms=0.266 (0.120%), neg=0, invalid=762
+0185: dt=11.200000, rms=0.265 (0.135%), neg=0, invalid=762
+0186: dt=11.200000, rms=0.265 (0.154%), neg=0, invalid=762
+0187: dt=11.200000, rms=0.264 (0.142%), neg=0, invalid=762
+0188: dt=11.200000, rms=0.264 (0.126%), neg=0, invalid=762
+0189: dt=11.200000, rms=0.264 (0.124%), neg=0, invalid=762
+0190: dt=11.200000, rms=0.263 (0.125%), neg=0, invalid=762
+iter 0, gcam->neg = 1
+after 6 iterations, nbhd size=1, neg = 0
+0191: dt=11.200000, rms=0.263 (0.010%), neg=0, invalid=762
+iter 0, gcam->neg = 1
+after 4 iterations, nbhd size=0, neg = 0
+0192: dt=44.800000, rms=0.263 (0.060%), neg=0, invalid=762
+0193: dt=11.200000, rms=0.263 (0.014%), neg=0, invalid=762
+0194: dt=11.200000, rms=0.263 (0.012%), neg=0, invalid=762
+iter 0, gcam->neg = 1
+after 2 iterations, nbhd size=0, neg = 0
+0195: dt=11.200000, rms=0.263 (0.028%), neg=0, invalid=762
+iter 0, gcam->neg = 2
+after 3 iterations, nbhd size=0, neg = 0
+0196: dt=11.200000, rms=0.263 (0.029%), neg=0, invalid=762
+iter 0, gcam->neg = 1
+after 1 iterations, nbhd size=0, neg = 0
+0197: dt=11.200000, rms=0.263 (0.051%), neg=0, invalid=762
+0198: dt=11.200000, rms=0.263 (0.048%), neg=0, invalid=762
+0199: dt=11.200000, rms=0.263 (0.039%), neg=0, invalid=762
+setting smoothness coefficient to 0.400
+blurring input image with Gaussian with sigma=2.000...
+0000: dt=0.000, rms=0.264, neg=0, invalid=762
+iter 0, gcam->neg = 2
+after 6 iterations, nbhd size=1, neg = 0
+0200: dt=6.666667, rms=0.264 (0.281%), neg=0, invalid=762
+iter 0, gcam->neg = 6
+after 4 iterations, nbhd size=0, neg = 0
+0201: dt=10.461538, rms=0.264 (0.089%), neg=0, invalid=762
+iter 0, gcam->neg = 5
+after 4 iterations, nbhd size=0, neg = 0
+0202: dt=10.461538, rms=0.263 (0.067%), neg=0, invalid=762
+iter 0, gcam->neg = 18
+after 7 iterations, nbhd size=0, neg = 0
+0203: dt=10.461538, rms=0.263 (0.033%), neg=0, invalid=762
+iter 0, gcam->neg = 17
+after 7 iterations, nbhd size=0, neg = 0
+0204: dt=10.461538, rms=0.263 (0.075%), neg=0, invalid=762
+iter 0, gcam->neg = 24
+after 5 iterations, nbhd size=0, neg = 0
+0205: dt=10.461538, rms=0.263 (0.070%), neg=0, invalid=762
+iter 0, gcam->neg = 16
+after 4 iterations, nbhd size=0, neg = 0
+0206: dt=24.648649, rms=0.262 (0.233%), neg=0, invalid=762
+iter 0, gcam->neg = 8
+after 3 iterations, nbhd size=0, neg = 0
+0207: dt=9.216000, rms=0.262 (0.061%), neg=0, invalid=762
+blurring input image with Gaussian with sigma=0.500...
+0000: dt=0.000, rms=0.263, neg=0, invalid=762
+iter 0, gcam->neg = 3
+after 2 iterations, nbhd size=0, neg = 0
+0208: dt=17.137778, rms=0.260 (0.960%), neg=0, invalid=762
+iter 0, gcam->neg = 3
+after 4 iterations, nbhd size=0, neg = 0
+0209: dt=8.137931, rms=0.260 (0.130%), neg=0, invalid=762
+iter 0, gcam->neg = 3
+after 4 iterations, nbhd size=0, neg = 0
+0210: dt=8.137931, rms=0.259 (0.109%), neg=0, invalid=762
+iter 0, gcam->neg = 5
+after 3 iterations, nbhd size=0, neg = 0
+0211: dt=8.137931, rms=0.259 (0.096%), neg=0, invalid=762
+iter 0, gcam->neg = 7
+after 4 iterations, nbhd size=0, neg = 0
+0212: dt=8.137931, rms=0.259 (0.109%), neg=0, invalid=762
+iter 0, gcam->neg = 7
+after 4 iterations, nbhd size=0, neg = 0
+0213: dt=8.137931, rms=0.259 (0.140%), neg=0, invalid=762
+iter 0, gcam->neg = 5
+after 7 iterations, nbhd size=0, neg = 0
+0214: dt=8.137931, rms=0.258 (0.107%), neg=0, invalid=762
+iter 0, gcam->neg = 9
+after 5 iterations, nbhd size=0, neg = 0
+0215: dt=8.137931, rms=0.258 (0.079%), neg=0, invalid=762
+iter 0, gcam->neg = 4
+after 4 iterations, nbhd size=0, neg = 0
+0216: dt=7.040000, rms=0.258 (0.016%), neg=0, invalid=762
+iter 0, gcam->neg = 1
+after 0 iterations, nbhd size=0, neg = 0
+0217: dt=7.040000, rms=0.258 (0.001%), neg=0, invalid=762
+iter 0, gcam->neg = 2
+after 3 iterations, nbhd size=0, neg = 0
+0218: dt=7.040000, rms=0.258 (0.018%), neg=0, invalid=762
+iter 0, gcam->neg = 6
+after 3 iterations, nbhd size=0, neg = 0
+0219: dt=7.040000, rms=0.258 (0.022%), neg=0, invalid=762
+iter 0, gcam->neg = 7
+after 7 iterations, nbhd size=0, neg = 0
+0220: dt=7.040000, rms=0.258 (0.026%), neg=0, invalid=762
+iter 0, gcam->neg = 8
+after 5 iterations, nbhd size=0, neg = 0
+0221: dt=7.040000, rms=0.258 (0.009%), neg=0, invalid=762
+iter 0, gcam->neg = 6
+after 7 iterations, nbhd size=0, neg = 0
+0222: dt=7.040000, rms=0.258 (0.035%), neg=0, invalid=762
+iter 0, gcam->neg = 7
+after 4 iterations, nbhd size=0, neg = 0
+0223: dt=7.040000, rms=0.258 (-0.004%), neg=0, invalid=762
+setting smoothness coefficient to 1.000
+blurring input image with Gaussian with sigma=2.000...
+0000: dt=0.000, rms=0.260, neg=0, invalid=762
+0224: dt=-0.000208, rms=0.260 (0.193%), neg=0, invalid=762
+0225: dt=0.000000, rms=0.260 (0.000%), neg=0, invalid=762
+blurring input image with Gaussian with sigma=0.500...
+0000: dt=0.000, rms=0.260, neg=0, invalid=762
+0226: dt=0.000000, rms=0.260 (0.193%), neg=0, invalid=762
+0227: dt=0.000000, rms=0.260 (0.000%), neg=0, invalid=762
+resetting metric properties...
+setting smoothness coefficient to 2.000
+blurring input image with Gaussian with sigma=2.000...
+0000: dt=0.000, rms=0.257, neg=0, invalid=762
+iter 0, gcam->neg = 137
+after 9 iterations, nbhd size=0, neg = 0
+0228: dt=2.026692, rms=0.241 (6.342%), neg=0, invalid=762
+0229: dt=0.000013, rms=0.241 (0.005%), neg=0, invalid=762
+0230: dt=0.000013, rms=0.241 (-0.000%), neg=0, invalid=762
+blurring input image with Gaussian with sigma=0.500...
+0000: dt=0.000, rms=0.241, neg=0, invalid=762
+0231: dt=0.024000, rms=0.241 (0.289%), neg=0, invalid=762
+0232: dt=0.000000, rms=0.241 (-0.000%), neg=0, invalid=762
+0233: dt=0.050000, rms=0.241 (-0.029%), neg=0, invalid=762
+label assignment complete, 0 changed (0.00%)
+label assignment complete, 0 changed (0.00%)
+***************** morphing with label term set to 0 *******************************
+**************** pass 1 of 1 ************************
+enabling zero nodes
+setting smoothness coefficient to 0.008
+blurring input image with Gaussian with sigma=2.000...
+0000: dt=0.000, rms=0.234, neg=0, invalid=762
+0234: dt=0.000000, rms=0.234 (0.000%), neg=0, invalid=762
+blurring input image with Gaussian with sigma=0.500...
+0000: dt=0.000, rms=0.234, neg=0, invalid=762
+0235: dt=0.000000, rms=0.234 (0.000%), neg=0, invalid=762
+setting smoothness coefficient to 0.031
+blurring input image with Gaussian with sigma=2.000...
+0000: dt=0.000, rms=0.234, neg=0, invalid=762
+0236: dt=0.000000, rms=0.234 (0.000%), neg=0, invalid=762
+blurring input image with Gaussian with sigma=0.500...
+0000: dt=0.000, rms=0.234, neg=0, invalid=762
+0237: dt=0.000000, rms=0.234 (0.000%), neg=0, invalid=762
+setting smoothness coefficient to 0.118
+blurring input image with Gaussian with sigma=2.000...
+0000: dt=0.000, rms=0.235, neg=0, invalid=762
+0238: dt=0.000000, rms=0.235 (0.000%), neg=0, invalid=762
+blurring input image with Gaussian with sigma=0.500...
+0000: dt=0.000, rms=0.235, neg=0, invalid=762
+0239: dt=0.000000, rms=0.235 (0.000%), neg=0, invalid=762
+setting smoothness coefficient to 0.400
+blurring input image with Gaussian with sigma=2.000...
+0000: dt=0.000, rms=0.236, neg=0, invalid=762
+0240: dt=0.864000, rms=0.236 (0.004%), neg=0, invalid=762
+0241: dt=0.063000, rms=0.236 (0.000%), neg=0, invalid=762
+0242: dt=0.063000, rms=0.236 (0.000%), neg=0, invalid=762
+0243: dt=0.063000, rms=0.236 (-0.000%), neg=0, invalid=762
+blurring input image with Gaussian with sigma=0.500...
+0000: dt=0.000, rms=0.236, neg=0, invalid=762
+iter 0, gcam->neg = 1
+after 1 iterations, nbhd size=0, neg = 0
+0244: dt=3.076923, rms=0.236 (0.028%), neg=0, invalid=762
+0245: dt=1.008000, rms=0.236 (0.003%), neg=0, invalid=762
+iter 0, gcam->neg = 1
+after 0 iterations, nbhd size=0, neg = 0
+0246: dt=1.008000, rms=0.236 (0.001%), neg=0, invalid=762
+0247: dt=1.008000, rms=0.236 (-0.004%), neg=0, invalid=762
+setting smoothness coefficient to 1.000
+blurring input image with Gaussian with sigma=2.000...
+0000: dt=0.000, rms=0.238, neg=0, invalid=762
+0248: dt=0.000109, rms=0.238 (0.000%), neg=0, invalid=762
+0249: dt=0.000000, rms=0.238 (0.000%), neg=0, invalid=762
+blurring input image with Gaussian with sigma=0.500...
+0000: dt=0.000, rms=0.238, neg=0, invalid=762
+0250: dt=0.000000, rms=0.238 (0.000%), neg=0, invalid=762
+resetting metric properties...
+setting smoothness coefficient to 2.000
+blurring input image with Gaussian with sigma=2.000...
+0000: dt=0.000, rms=0.234, neg=0, invalid=762
+0251: dt=0.584071, rms=0.233 (0.684%), neg=0, invalid=762
+0252: dt=0.448000, rms=0.232 (0.206%), neg=0, invalid=762
+0253: dt=0.448000, rms=0.232 (-0.199%), neg=0, invalid=762
+blurring input image with Gaussian with sigma=0.500...
+0000: dt=0.000, rms=0.232, neg=0, invalid=762
+0254: dt=0.448000, rms=0.232 (0.219%), neg=0, invalid=762
+0255: dt=0.466216, rms=0.231 (0.314%), neg=0, invalid=762
+0256: dt=0.000000, rms=0.231 (0.000%), neg=0, invalid=762
+0257: dt=0.050000, rms=0.231 (-0.015%), neg=0, invalid=762
+writing output transformation to transforms/talairach.m3z...
+GCAMwrite
+mri_ca_register took 0 hours, 39 minutes and 0 seconds.
+mri_ca_register utimesec    2336.756790
+mri_ca_register stimesec    2.916055
+mri_ca_register ru_maxrss   1426516
+mri_ca_register ru_ixrss    0
+mri_ca_register ru_idrss    0
+mri_ca_register ru_isrss    0
+mri_ca_register ru_minflt   3892652
+mri_ca_register ru_majflt   8
+mri_ca_register ru_nswap    0
+mri_ca_register ru_inblock  1440
+mri_ca_register ru_oublock  0
+mri_ca_register ru_msgsnd   0
+mri_ca_register ru_msgrcv   0
+mri_ca_register ru_nsignals 0
+mri_ca_register ru_nvcsw    11423
+mri_ca_register ru_nivcsw   1193
+FSRUNTIME@ mri_ca_register  0.6500 hours 1 threads
+#--------------------------------------
+#@# CA Reg Inv 2023年 04月 11日 星期二 11:54:27 CST
+/media/nhp/data2/KIZ_data/NMT/free_data/subjects/2021_NMT.T1/mri
+
+ mri_ca_register -invert-and-save transforms/talairach.m3z -rusage /media/nhp/data2/KIZ_data/NMT/free_data/subjects/2021_NMT.T1/touch/rusage.mri_ca_register.inv.dat 
+
+Loading, Inverting, Saving, Exiting ...
+Reading transforms/talairach.m3z 
+setting orig areas to linear transform determinant scaled 7.06
+Inverting GCAM
+Saving inverse to transforms/talairach.inv.m3z
+GCAMwrite
+
+Started at 2023年 04月 11日 星期二 11:11:31 CST 
+Ended   at 2023年 04月 11日 星期二 11:54:51 CST
+#@#%# recon-all-run-time-hours 0.722
+recon-all -s 2021_NMT.T1 finished without error at 2023年 04月 11日 星期二 11:54:51 CST
+
+
+
+New invocation of recon-all 
+
+
+
+2023年 04月 11日 星期二 12:01:13 CST
+/media/nhp/data2/KIZ_data/NMT/free_data/subjects/2021_NMT.T1
+/media/nhp/data/freesurfer/freesurfer/bin/recon-all
+-subjid 2021_NMT.T1 -sd /media/nhp/data2/KIZ_data/NMT/free_data/subjects/ -normalization2
+subjid 2021_NMT.T1
+setenv SUBJECTS_DIR /media/nhp/data2/KIZ_data/NMT/free_data/subjects
+FREESURFER_HOME /media/nhp/data/freesurfer/freesurfer
+Actual FREESURFER_HOME /media/nhp/data/freesurfer/freesurfer
+build-stamp.txt: freesurfer-Linux-centos6_x86_64-stable-pub-v6.0.0-2beb96c
+Linux nhp-XPS-8940-3 4.15.0-142-generic #146~16.04.1-Ubuntu SMP Tue Apr 13 09:27:15 UTC 2021 x86_64 x86_64 x86_64 GNU/Linux
+cputime      unlimited
+filesize     unlimited
+datasize     unlimited
+stacksize    8192 kbytes
+coredumpsize 0 kbytes
+memoryuse    unlimited
+vmemoryuse   unlimited
+descriptors  1024 
+memorylocked 64 kbytes
+maxproc      126555 
+maxlocks     unlimited
+maxsignal    126555 
+maxmessage   819200 
+maxnice      0 
+maxrtprio    0 
+maxrttime    unlimited
+
+              total        used        free      shared  buff/cache   available
+Mem:       32602996     6665880     2209168      463424    23727948    24915544
+Swap:       1000444       60672      939772
+
+########################################
+program versions used
+$Id: recon-all,v 1.580.2.16 2017/01/18 14:11:24 zkaufman Exp $
+$Id: mri_motion_correct.fsl,v 1.15 2016/02/16 17:17:20 zkaufman Exp $
+mri_convert.bin -all-info 
+ProgramName: mri_convert.bin  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:01:13-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_convert.c,v 1.226 2016/02/26 16:15:24 mreuter Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+FLIRT version 5.5
+$Id: talairach_avi,v 1.13 2015/12/23 04:25:17 greve Exp $
+mri_convert.bin --version 
+stable6
+ProgramName: tkregister2_cmdl  ProgramArguments: --all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:01:13-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: tkregister2.c,v 1.132.2.1 2016/08/02 21:17:29 greve Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+Program nu_correct, built from:
+Package MNI N3, version 1.12.0, compiled by nicks@terrier (x86_64-unknown-linux-gnu) on 2015-06-19 at 01:25:34
+ProgramName: mri_make_uchar  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:01:13-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_make_uchar.c,v 1.4 2011/03/02 00:04:14 nicks Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_normalize  ProgramArguments: -all-info  ProgramVersion: $Name:  $  TimeStamp: 2023/04/11-04:01:13-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_normalize.c,v 1.88.2.3 2016/12/27 16:47:13 zkaufman Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_watershed  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:01:13-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_watershed.cpp,v 1.103 2016/06/17 18:00:49 zkaufman Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_gcut  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:01:13-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_gcut.cpp,v 1.14 2011/03/02 00:04:16 nicks Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_segment  ProgramArguments: -all-info  ProgramVersion: $Name:  $  TimeStamp: 2023/04/11-04:01:13-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_segment.c,v 1.43.2.1 2016/10/27 22:24:52 zkaufman Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_label2label.bin  ProgramArguments: -all-info  ProgramVersion: $Name:  $  TimeStamp: 2023/04/11-04:01:13-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_label2label.c,v 1.48.2.2 2016/12/12 14:15:26 zkaufman Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_em_register  ProgramArguments: -all-info  ProgramVersion: $Name:  $  TimeStamp: 2023/04/11-04:01:13-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_em_register.c,v 1.105.2.1 2016/10/27 22:25:10 zkaufman Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_ca_normalize  ProgramArguments: -all-info  ProgramVersion: $Name:  $  TimeStamp: 2023/04/11-04:01:13-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_ca_normalize.c,v 1.67.2.2 2016/10/27 22:25:09 zkaufman Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_ca_register  ProgramArguments: -all-info  ProgramVersion: $Name:  $  TimeStamp: 2023/04/11-04:01:13-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_ca_register.c,v 1.96.2.3 2016/10/27 22:25:10 zkaufman Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_ca_label  ProgramArguments: -all-info  ProgramVersion: $Name:  $  TimeStamp: 2023/04/11-04:01:13-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_ca_label.c,v 1.113.2.2 2016/10/27 22:25:10 zkaufman Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_pretess  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:01:13-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_pretess.c,v 1.22 2013/08/30 18:12:25 mreuter Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_fill  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:01:13-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_fill.c,v 1.119 2011/10/25 14:09:58 fischl Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_tessellate  ProgramArguments: -all-info  ProgramVersion: $Name:  $  TimeStamp: 2023/04/11-04:01:13-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_tessellate.c,v 1.38.2.1 2016/07/26 18:46:38 zkaufman Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_concatenate_lta.bin  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:01:13-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_concatenate_lta.c,v 1.16 2015/11/21 00:06:20 greve Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_normalize_tp2  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:01:13-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_normalize_tp2.c,v 1.8 2011/03/02 00:04:23 nicks Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mris_smooth  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:01:13-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mris_smooth.c,v 1.30 2014/01/21 18:48:21 fischl Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mris_inflate  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:01:13-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mris_inflate.c,v 1.45 2016/01/20 23:42:15 greve Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mris_curvature  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:01:13-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mris_curvature.c,v 1.31 2011/03/02 00:04:30 nicks Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mris_sphere  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:01:13-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mris_sphere.c,v 1.61 2016/01/20 23:42:15 greve Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mris_fix_topology  ProgramArguments: -all-info  ProgramVersion: $Name:  $  TimeStamp: 2023/04/11-04:01:13-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mris_fix_topology.c,v 1.50.2.1 2016/10/27 22:25:58 zkaufman Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mris_topo_fixer  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:01:13-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mris_topo_fixer.cpp,v 1.29 2011/03/02 00:04:34 nicks Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mris_ca_label  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:01:13-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mris_ca_label.c,v 1.37 2014/02/04 17:46:42 fischl Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mris_euler_number  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:01:13-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mris_euler_number.c,v 1.10 2013/01/14 22:39:14 greve Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mris_make_surfaces  ProgramArguments: -all-info  ProgramVersion: $Name:  $  TimeStamp: 2023/04/11-04:01:13-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mris_make_surfaces.c,v 1.164.2.4 2016/12/13 22:26:32 zkaufman Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mris_register  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:01:13-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mris_register.c,v 1.63 2016/01/20 23:43:04 greve Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mris_volmask  ProgramArguments: --all-info  ProgramVersion: $Name:  $  TimeStamp: 2023/04/11-04:01:13-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mris_volmask.cpp,v 1.26.2.2 2016/11/18 20:05:18 zkaufman Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mris_anatomical_stats  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:01:13-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mris_anatomical_stats.c,v 1.79 2016/03/14 15:15:34 greve Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mrisp_paint  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:01:13-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mrisp_paint.c,v 1.12 2016/03/22 14:47:57 fischl Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mris_curvature_stats  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:01:13-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mris_curvature_stats.c,v 1.65 2015/06/04 20:50:51 nicks Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mris_calc  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:01:13-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mris_calc.c,v 1.54.2.1 2016/09/27 18:51:28 greve Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+$Id: mri_robust_register.cpp,v 1.77 2016/01/20 23:36:17 greve Exp $
+
+ProgramName: mri_robust_register.bin  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:01:13-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_robust_register.cpp,v 1.77 2016/01/20 23:36:17 greve Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+$Id: mri_robust_template.cpp,v 1.54 2016/05/05 21:17:08 mreuter Exp $
+
+ProgramName: mri_robust_template  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:01:13-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_robust_template.cpp,v 1.54 2016/05/05 21:17:08 mreuter Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_and  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:01:13-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_and.c,v 1.4 2011/03/02 00:04:13 nicks Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_or  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:01:13-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_or.c,v 1.5 2013/03/20 15:03:29 lzollei Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_fuse_segmentations  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:01:13-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_fuse_segmentations.c,v 1.8 2011/03/02 00:04:15 nicks Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_segstats  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:01:13-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_segstats.c,v 1.121 2016/05/31 17:27:11 greve Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_relabel_hypointensities  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:01:13-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_relabel_hypointensities.c,v 1.13 2015/05/15 18:44:10 nicks Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+#######################################
+GCADIR /media/nhp/data/freesurfer/freesurfer/average
+GCA RB_all_2016-05-10.vc700.gca
+GCASkull RB_all_withskull_2016-05-10.vc700.gca
+AvgCurvTif folding.atlas.acfb40.noaparc.i12.2016-08-02.tif
+GCSDIR /media/nhp/data/freesurfer/freesurfer/average
+GCS DKaparc.atlas.acfb40.noaparc.i12.2016-08-02.gcs
+#######################################
+#--------------------------------------------
+#@# Intensity Normalization2 2023年 04月 11日 星期二 12:01:13 CST
+/media/nhp/data2/KIZ_data/NMT/free_data/subjects/2021_NMT.T1/mri
+
+ mri_normalize -mprage -aseg aseg.presurf.mgz -mask brainmask.mgz norm.mgz brain.mgz 
+
+assuming input volume is MGH (Van der Kouwe) MP-RAGE
+using segmentation for initial intensity normalization
+using MR volume brainmask.mgz to mask input volume...
+reading from norm.mgz...
+Reading aseg aseg.presurf.mgz
+normalizing image...
+processing with aseg
+removing outliers in the aseg WM...
+23 control points removed
+Building bias image
+building Voronoi diagram...
+performing soap bubble smoothing, sigma = 0...
+Smoothing with sigma 8
+Applying bias correction
+building Voronoi diagram...
+performing soap bubble smoothing, sigma = 8...
+
+Iterating 2 times
+---------------------------------
+3d normalization pass 1 of 2
+white matter peak found at 110
+white matter peak found at 110
+gm peak at 67 (67), valley at  0 (-1)
+csf peak at 33, setting threshold to 55
+building Voronoi diagram...
+performing soap bubble smoothing, sigma = 8...
+---------------------------------
+3d normalization pass 2 of 2
+white matter peak found at 110
+white matter peak found at 110
+gm peak at 67 (67), valley at  0 (-1)
+csf peak at 33, setting threshold to 55
+building Voronoi diagram...
+performing soap bubble smoothing, sigma = 8...
+Done iterating ---------------------------------
+writing output to brain.mgz
+3D bias adjustment took 1 minutes and 16 seconds.
+
+Started at 2023年 04月 11日 星期二 12:01:13 CST 
+Ended   at 2023年 04月 11日 星期二 12:02:30 CST
+#@#%# recon-all-run-time-hours 0.021
+recon-all -s 2021_NMT.T1 finished without error at 2023年 04月 11日 星期二 12:02:30 CST
+
+
+
+New invocation of recon-all 
+
+
+
+2023年 04月 11日 星期二 12:02:30 CST
+/media/nhp/data2/KIZ_data/NMT/free_data/subjects/2021_NMT.T1
+/media/nhp/data/freesurfer/freesurfer/bin/recon-all
+-subjid 2021_NMT.T1 -sd /media/nhp/data2/KIZ_data/NMT/free_data/subjects/ -maskbfs -segmentation
+subjid 2021_NMT.T1
+setenv SUBJECTS_DIR /media/nhp/data2/KIZ_data/NMT/free_data/subjects
+FREESURFER_HOME /media/nhp/data/freesurfer/freesurfer
+Actual FREESURFER_HOME /media/nhp/data/freesurfer/freesurfer
+build-stamp.txt: freesurfer-Linux-centos6_x86_64-stable-pub-v6.0.0-2beb96c
+Linux nhp-XPS-8940-3 4.15.0-142-generic #146~16.04.1-Ubuntu SMP Tue Apr 13 09:27:15 UTC 2021 x86_64 x86_64 x86_64 GNU/Linux
+cputime      unlimited
+filesize     unlimited
+datasize     unlimited
+stacksize    8192 kbytes
+coredumpsize 0 kbytes
+memoryuse    unlimited
+vmemoryuse   unlimited
+descriptors  1024 
+memorylocked 64 kbytes
+maxproc      126555 
+maxlocks     unlimited
+maxsignal    126555 
+maxmessage   819200 
+maxnice      0 
+maxrtprio    0 
+maxrttime    unlimited
+
+              total        used        free      shared  buff/cache   available
+Mem:       32602996     6668436     2204144      463424    23730416    24913644
+Swap:       1000444       60672      939772
+
+########################################
+program versions used
+$Id: recon-all,v 1.580.2.16 2017/01/18 14:11:24 zkaufman Exp $
+$Id: mri_motion_correct.fsl,v 1.15 2016/02/16 17:17:20 zkaufman Exp $
+mri_convert.bin -all-info 
+ProgramName: mri_convert.bin  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:02:30-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_convert.c,v 1.226 2016/02/26 16:15:24 mreuter Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+FLIRT version 5.5
+$Id: talairach_avi,v 1.13 2015/12/23 04:25:17 greve Exp $
+mri_convert.bin --version 
+stable6
+ProgramName: tkregister2_cmdl  ProgramArguments: --all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:02:30-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: tkregister2.c,v 1.132.2.1 2016/08/02 21:17:29 greve Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+Program nu_correct, built from:
+Package MNI N3, version 1.12.0, compiled by nicks@terrier (x86_64-unknown-linux-gnu) on 2015-06-19 at 01:25:34
+ProgramName: mri_make_uchar  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:02:30-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_make_uchar.c,v 1.4 2011/03/02 00:04:14 nicks Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_normalize  ProgramArguments: -all-info  ProgramVersion: $Name:  $  TimeStamp: 2023/04/11-04:02:30-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_normalize.c,v 1.88.2.3 2016/12/27 16:47:13 zkaufman Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_watershed  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:02:30-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_watershed.cpp,v 1.103 2016/06/17 18:00:49 zkaufman Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_gcut  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:02:30-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_gcut.cpp,v 1.14 2011/03/02 00:04:16 nicks Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_segment  ProgramArguments: -all-info  ProgramVersion: $Name:  $  TimeStamp: 2023/04/11-04:02:30-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_segment.c,v 1.43.2.1 2016/10/27 22:24:52 zkaufman Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_label2label.bin  ProgramArguments: -all-info  ProgramVersion: $Name:  $  TimeStamp: 2023/04/11-04:02:30-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_label2label.c,v 1.48.2.2 2016/12/12 14:15:26 zkaufman Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_em_register  ProgramArguments: -all-info  ProgramVersion: $Name:  $  TimeStamp: 2023/04/11-04:02:30-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_em_register.c,v 1.105.2.1 2016/10/27 22:25:10 zkaufman Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_ca_normalize  ProgramArguments: -all-info  ProgramVersion: $Name:  $  TimeStamp: 2023/04/11-04:02:30-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_ca_normalize.c,v 1.67.2.2 2016/10/27 22:25:09 zkaufman Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_ca_register  ProgramArguments: -all-info  ProgramVersion: $Name:  $  TimeStamp: 2023/04/11-04:02:30-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_ca_register.c,v 1.96.2.3 2016/10/27 22:25:10 zkaufman Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_ca_label  ProgramArguments: -all-info  ProgramVersion: $Name:  $  TimeStamp: 2023/04/11-04:02:30-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_ca_label.c,v 1.113.2.2 2016/10/27 22:25:10 zkaufman Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_pretess  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:02:30-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_pretess.c,v 1.22 2013/08/30 18:12:25 mreuter Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_fill  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:02:30-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_fill.c,v 1.119 2011/10/25 14:09:58 fischl Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_tessellate  ProgramArguments: -all-info  ProgramVersion: $Name:  $  TimeStamp: 2023/04/11-04:02:30-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_tessellate.c,v 1.38.2.1 2016/07/26 18:46:38 zkaufman Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_concatenate_lta.bin  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:02:30-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_concatenate_lta.c,v 1.16 2015/11/21 00:06:20 greve Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_normalize_tp2  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:02:30-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_normalize_tp2.c,v 1.8 2011/03/02 00:04:23 nicks Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mris_smooth  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:02:30-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mris_smooth.c,v 1.30 2014/01/21 18:48:21 fischl Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mris_inflate  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:02:30-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mris_inflate.c,v 1.45 2016/01/20 23:42:15 greve Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mris_curvature  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:02:30-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mris_curvature.c,v 1.31 2011/03/02 00:04:30 nicks Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mris_sphere  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:02:30-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mris_sphere.c,v 1.61 2016/01/20 23:42:15 greve Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mris_fix_topology  ProgramArguments: -all-info  ProgramVersion: $Name:  $  TimeStamp: 2023/04/11-04:02:30-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mris_fix_topology.c,v 1.50.2.1 2016/10/27 22:25:58 zkaufman Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mris_topo_fixer  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:02:30-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mris_topo_fixer.cpp,v 1.29 2011/03/02 00:04:34 nicks Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mris_ca_label  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:02:30-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mris_ca_label.c,v 1.37 2014/02/04 17:46:42 fischl Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mris_euler_number  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:02:30-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mris_euler_number.c,v 1.10 2013/01/14 22:39:14 greve Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mris_make_surfaces  ProgramArguments: -all-info  ProgramVersion: $Name:  $  TimeStamp: 2023/04/11-04:02:30-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mris_make_surfaces.c,v 1.164.2.4 2016/12/13 22:26:32 zkaufman Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mris_register  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:02:30-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mris_register.c,v 1.63 2016/01/20 23:43:04 greve Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mris_volmask  ProgramArguments: --all-info  ProgramVersion: $Name:  $  TimeStamp: 2023/04/11-04:02:30-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mris_volmask.cpp,v 1.26.2.2 2016/11/18 20:05:18 zkaufman Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mris_anatomical_stats  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:02:30-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mris_anatomical_stats.c,v 1.79 2016/03/14 15:15:34 greve Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mrisp_paint  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:02:30-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mrisp_paint.c,v 1.12 2016/03/22 14:47:57 fischl Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mris_curvature_stats  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:02:30-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mris_curvature_stats.c,v 1.65 2015/06/04 20:50:51 nicks Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mris_calc  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:02:30-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mris_calc.c,v 1.54.2.1 2016/09/27 18:51:28 greve Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+$Id: mri_robust_register.cpp,v 1.77 2016/01/20 23:36:17 greve Exp $
+
+ProgramName: mri_robust_register.bin  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:02:30-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_robust_register.cpp,v 1.77 2016/01/20 23:36:17 greve Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+$Id: mri_robust_template.cpp,v 1.54 2016/05/05 21:17:08 mreuter Exp $
+
+ProgramName: mri_robust_template  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:02:30-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_robust_template.cpp,v 1.54 2016/05/05 21:17:08 mreuter Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_and  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:02:30-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_and.c,v 1.4 2011/03/02 00:04:13 nicks Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_or  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:02:30-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_or.c,v 1.5 2013/03/20 15:03:29 lzollei Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_fuse_segmentations  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:02:30-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_fuse_segmentations.c,v 1.8 2011/03/02 00:04:15 nicks Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_segstats  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:02:30-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_segstats.c,v 1.121 2016/05/31 17:27:11 greve Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_relabel_hypointensities  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:02:30-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_relabel_hypointensities.c,v 1.13 2015/05/15 18:44:10 nicks Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+#######################################
+GCADIR /media/nhp/data/freesurfer/freesurfer/average
+GCA RB_all_2016-05-10.vc700.gca
+GCASkull RB_all_withskull_2016-05-10.vc700.gca
+AvgCurvTif folding.atlas.acfb40.noaparc.i12.2016-08-02.tif
+GCSDIR /media/nhp/data/freesurfer/freesurfer/average
+GCS DKaparc.atlas.acfb40.noaparc.i12.2016-08-02.gcs
+#######################################
+#--------------------------------------------
+#@# Mask BFS 2023年 04月 11日 星期二 12:02:30 CST
+/media/nhp/data2/KIZ_data/NMT/free_data/subjects/2021_NMT.T1/mri
+
+ mri_mask -T 5 brain.mgz brainmask.mgz brain.finalsurfs.mgz 
+
+threshold mask volume at 5
+DoAbs = 0
+Found 736293 voxels in mask (pct=  4.39)
+Writing masked volume to brain.finalsurfs.mgz...done.
+#--------------------------------------------
+#@# WM Segmentation 2023年 04月 11日 星期二 12:02:32 CST
+
+ mri_segment -mprage brain.mgz wm.seg.mgz 
+
+doing initial intensity segmentation...
+using local statistics to label ambiguous voxels...
+computing class statistics for intensity windows...
+WM (106.0): 105.6 +- 7.0 [79.0 --> 125.0]
+GM (73.0) : 71.6 +- 9.9 [30.0 --> 95.0]
+setting bottom of white matter range to 81.5
+setting top of gray matter range to 91.4
+doing initial intensity segmentation...
+using local statistics to label ambiguous voxels...
+using local geometry to label remaining ambiguous voxels...
+
+reclassifying voxels using Gaussian border classifier...
+
+removing voxels with positive offset direction...
+smoothing T1 volume with sigma = 0.250
+removing 1-dimensional structures...
+2313 sparsely connected voxels removed...
+thickening thin strands....
+20 segments, 3648 filled
+228 bright non-wm voxels segmented.
+1465 diagonally connected voxels added...
+white matter segmentation took 0.5 minutes
+writing output to wm.seg.mgz...
+assuming input volume is MGH (Van der Kouwe) MP-RAGE
+
+ mri_edit_wm_with_aseg -keep-in wm.seg.mgz brain.mgz aseg.presurf.mgz wm.asegedit.mgz 
+
+preserving editing changes in input volume...
+auto filling took 0.21 minutes
+reading wm segmentation from wm.seg.mgz...
+212 voxels added to wm to prevent paths from MTL structures to cortex
+338 additional wm voxels added
+0 additional wm voxels added
+SEG EDIT: 33377 voxels turned on, 20684 voxels turned off.
+propagating editing to output volume from wm.seg.mgz
+115,126,128 old 110   new 110
+115,126,128 old 110   new 110
+writing edited volume to wm.asegedit.mgz....
+
+ mri_pretess wm.asegedit.mgz wm norm.mgz wm.mgz 
+
+
+Iteration Number : 1
+pass   1 (xy+):  36 found -  36 modified     |    TOTAL:  36
+pass   2 (xy+):   0 found -  36 modified     |    TOTAL:  36
+pass   1 (xy-):  26 found -  26 modified     |    TOTAL:  62
+pass   2 (xy-):   0 found -  26 modified     |    TOTAL:  62
+pass   1 (yz+):  31 found -  31 modified     |    TOTAL:  93
+pass   2 (yz+):   0 found -  31 modified     |    TOTAL:  93
+pass   1 (yz-):  43 found -  43 modified     |    TOTAL: 136
+pass   2 (yz-):   0 found -  43 modified     |    TOTAL: 136
+pass   1 (xz+):  11 found -  11 modified     |    TOTAL: 147
+pass   2 (xz+):   0 found -  11 modified     |    TOTAL: 147
+pass   1 (xz-):  17 found -  17 modified     |    TOTAL: 164
+pass   2 (xz-):   0 found -  17 modified     |    TOTAL: 164
+Iteration Number : 1
+pass   1 (+++):  11 found -  11 modified     |    TOTAL:  11
+pass   2 (+++):   0 found -  11 modified     |    TOTAL:  11
+pass   1 (+++):   6 found -   6 modified     |    TOTAL:  17
+pass   2 (+++):   0 found -   6 modified     |    TOTAL:  17
+pass   1 (+++):  14 found -  14 modified     |    TOTAL:  31
+pass   2 (+++):   0 found -  14 modified     |    TOTAL:  31
+pass   1 (+++):   6 found -   6 modified     |    TOTAL:  37
+pass   2 (+++):   0 found -   6 modified     |    TOTAL:  37
+Iteration Number : 1
+pass   1 (++): 131 found - 131 modified     |    TOTAL: 131
+pass   2 (++):   0 found - 131 modified     |    TOTAL: 131
+pass   1 (+-):  39 found -  39 modified     |    TOTAL: 170
+pass   2 (+-):   0 found -  39 modified     |    TOTAL: 170
+pass   1 (--): 127 found - 127 modified     |    TOTAL: 297
+pass   2 (--):   0 found - 127 modified     |    TOTAL: 297
+pass   1 (-+):  50 found -  50 modified     |    TOTAL: 347
+pass   2 (-+):   0 found -  50 modified     |    TOTAL: 347
+Iteration Number : 2
+pass   1 (xy+):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (xy-):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (yz+):   5 found -   5 modified     |    TOTAL:   5
+pass   2 (yz+):   0 found -   5 modified     |    TOTAL:   5
+pass   1 (yz-):   2 found -   2 modified     |    TOTAL:   7
+pass   2 (yz-):   0 found -   2 modified     |    TOTAL:   7
+pass   1 (xz+):   2 found -   2 modified     |    TOTAL:   9
+pass   2 (xz+):   0 found -   2 modified     |    TOTAL:   9
+pass   1 (xz-):   4 found -   4 modified     |    TOTAL:  13
+pass   2 (xz-):   0 found -   4 modified     |    TOTAL:  13
+Iteration Number : 2
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+Iteration Number : 2
+pass   1 (++):   3 found -   3 modified     |    TOTAL:   3
+pass   2 (++):   0 found -   3 modified     |    TOTAL:   3
+pass   1 (+-):   2 found -   2 modified     |    TOTAL:   5
+pass   2 (+-):   0 found -   2 modified     |    TOTAL:   5
+pass   1 (--):   1 found -   1 modified     |    TOTAL:   6
+pass   2 (--):   0 found -   1 modified     |    TOTAL:   6
+pass   1 (-+):   1 found -   1 modified     |    TOTAL:   7
+pass   2 (-+):   0 found -   1 modified     |    TOTAL:   7
+Iteration Number : 3
+pass   1 (xy+):   2 found -   2 modified     |    TOTAL:   2
+pass   2 (xy+):   0 found -   2 modified     |    TOTAL:   2
+pass   1 (xy-):   0 found -   0 modified     |    TOTAL:   2
+pass   1 (yz+):   0 found -   0 modified     |    TOTAL:   2
+pass   1 (yz-):   0 found -   0 modified     |    TOTAL:   2
+pass   1 (xz+):   0 found -   0 modified     |    TOTAL:   2
+pass   1 (xz-):   1 found -   1 modified     |    TOTAL:   3
+pass   2 (xz-):   0 found -   1 modified     |    TOTAL:   3
+Iteration Number : 3
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+Iteration Number : 3
+pass   1 (++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+-):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (--):   1 found -   1 modified     |    TOTAL:   1
+pass   2 (--):   0 found -   1 modified     |    TOTAL:   1
+pass   1 (-+):   1 found -   1 modified     |    TOTAL:   2
+pass   2 (-+):   0 found -   1 modified     |    TOTAL:   2
+Iteration Number : 4
+pass   1 (xy+):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (xy-):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (yz+):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (yz-):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (xz+):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (xz-):   0 found -   0 modified     |    TOTAL:   0
+Iteration Number : 4
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+Iteration Number : 4
+pass   1 (++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+-):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (--):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (-+):   0 found -   0 modified     |    TOTAL:   0
+
+Total Number of Modified Voxels = 573 (out of 239084: 0.239665)
+binarizing input wm segmentation...
+Ambiguous edge configurations... 
+
+mri_pretess done
+
+
+Started at 2023年 04月 11日 星期二 12:02:30 CST 
+Ended   at 2023年 04月 11日 星期二 12:03:17 CST
+#@#%# recon-all-run-time-hours 0.013
+recon-all -s 2021_NMT.T1 finished without error at 2023年 04月 11日 星期二 12:03:17 CST
+
+
+
+New invocation of recon-all 
+
+
+
+2023年 04月 11日 星期二 12:14:00 CST
+/media/nhp/data2/KIZ_data/NMT/free_data/subjects/2021_NMT.T1
+/media/nhp/data/freesurfer/freesurfer/bin/recon-all
+-subjid 2021_NMT.T1 -sd /media/nhp/data2/KIZ_data/NMT/free_data/subjects/ -smooth2 -inflate2 -sphere
+subjid 2021_NMT.T1
+setenv SUBJECTS_DIR /media/nhp/data2/KIZ_data/NMT/free_data/subjects
+FREESURFER_HOME /media/nhp/data/freesurfer/freesurfer
+Actual FREESURFER_HOME /media/nhp/data/freesurfer/freesurfer
+build-stamp.txt: freesurfer-Linux-centos6_x86_64-stable-pub-v6.0.0-2beb96c
+Linux nhp-XPS-8940-3 4.15.0-142-generic #146~16.04.1-Ubuntu SMP Tue Apr 13 09:27:15 UTC 2021 x86_64 x86_64 x86_64 GNU/Linux
+cputime      unlimited
+filesize     unlimited
+datasize     unlimited
+stacksize    8192 kbytes
+coredumpsize 0 kbytes
+memoryuse    unlimited
+vmemoryuse   unlimited
+descriptors  1024 
+memorylocked 64 kbytes
+maxproc      126555 
+maxlocks     unlimited
+maxsignal    126555 
+maxmessage   819200 
+maxnice      0 
+maxrtprio    0 
+maxrttime    unlimited
+
+              total        used        free      shared  buff/cache   available
+Mem:       32602996     6654608     2067700      463424    23880688    24927600
+Swap:       1000444       60672      939772
+
+########################################
+program versions used
+$Id: recon-all,v 1.580.2.16 2017/01/18 14:11:24 zkaufman Exp $
+$Id: mri_motion_correct.fsl,v 1.15 2016/02/16 17:17:20 zkaufman Exp $
+mri_convert.bin -all-info 
+ProgramName: mri_convert.bin  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:14:00-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_convert.c,v 1.226 2016/02/26 16:15:24 mreuter Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+FLIRT version 5.5
+$Id: talairach_avi,v 1.13 2015/12/23 04:25:17 greve Exp $
+mri_convert.bin --version 
+stable6
+ProgramName: tkregister2_cmdl  ProgramArguments: --all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:14:00-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: tkregister2.c,v 1.132.2.1 2016/08/02 21:17:29 greve Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+Program nu_correct, built from:
+Package MNI N3, version 1.12.0, compiled by nicks@terrier (x86_64-unknown-linux-gnu) on 2015-06-19 at 01:25:34
+ProgramName: mri_make_uchar  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:14:00-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_make_uchar.c,v 1.4 2011/03/02 00:04:14 nicks Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_normalize  ProgramArguments: -all-info  ProgramVersion: $Name:  $  TimeStamp: 2023/04/11-04:14:00-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_normalize.c,v 1.88.2.3 2016/12/27 16:47:13 zkaufman Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_watershed  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:14:00-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_watershed.cpp,v 1.103 2016/06/17 18:00:49 zkaufman Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_gcut  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:14:00-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_gcut.cpp,v 1.14 2011/03/02 00:04:16 nicks Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_segment  ProgramArguments: -all-info  ProgramVersion: $Name:  $  TimeStamp: 2023/04/11-04:14:00-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_segment.c,v 1.43.2.1 2016/10/27 22:24:52 zkaufman Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_label2label.bin  ProgramArguments: -all-info  ProgramVersion: $Name:  $  TimeStamp: 2023/04/11-04:14:00-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_label2label.c,v 1.48.2.2 2016/12/12 14:15:26 zkaufman Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_em_register  ProgramArguments: -all-info  ProgramVersion: $Name:  $  TimeStamp: 2023/04/11-04:14:00-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_em_register.c,v 1.105.2.1 2016/10/27 22:25:10 zkaufman Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_ca_normalize  ProgramArguments: -all-info  ProgramVersion: $Name:  $  TimeStamp: 2023/04/11-04:14:00-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_ca_normalize.c,v 1.67.2.2 2016/10/27 22:25:09 zkaufman Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_ca_register  ProgramArguments: -all-info  ProgramVersion: $Name:  $  TimeStamp: 2023/04/11-04:14:00-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_ca_register.c,v 1.96.2.3 2016/10/27 22:25:10 zkaufman Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_ca_label  ProgramArguments: -all-info  ProgramVersion: $Name:  $  TimeStamp: 2023/04/11-04:14:00-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_ca_label.c,v 1.113.2.2 2016/10/27 22:25:10 zkaufman Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_pretess  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:14:00-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_pretess.c,v 1.22 2013/08/30 18:12:25 mreuter Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_fill  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:14:00-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_fill.c,v 1.119 2011/10/25 14:09:58 fischl Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_tessellate  ProgramArguments: -all-info  ProgramVersion: $Name:  $  TimeStamp: 2023/04/11-04:14:00-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_tessellate.c,v 1.38.2.1 2016/07/26 18:46:38 zkaufman Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_concatenate_lta.bin  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:14:00-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_concatenate_lta.c,v 1.16 2015/11/21 00:06:20 greve Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_normalize_tp2  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:14:00-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_normalize_tp2.c,v 1.8 2011/03/02 00:04:23 nicks Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mris_smooth  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:14:00-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mris_smooth.c,v 1.30 2014/01/21 18:48:21 fischl Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mris_inflate  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:14:00-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mris_inflate.c,v 1.45 2016/01/20 23:42:15 greve Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mris_curvature  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:14:00-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mris_curvature.c,v 1.31 2011/03/02 00:04:30 nicks Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mris_sphere  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:14:00-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mris_sphere.c,v 1.61 2016/01/20 23:42:15 greve Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mris_fix_topology  ProgramArguments: -all-info  ProgramVersion: $Name:  $  TimeStamp: 2023/04/11-04:14:00-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mris_fix_topology.c,v 1.50.2.1 2016/10/27 22:25:58 zkaufman Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mris_topo_fixer  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:14:00-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mris_topo_fixer.cpp,v 1.29 2011/03/02 00:04:34 nicks Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mris_ca_label  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:14:00-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mris_ca_label.c,v 1.37 2014/02/04 17:46:42 fischl Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mris_euler_number  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:14:00-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mris_euler_number.c,v 1.10 2013/01/14 22:39:14 greve Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mris_make_surfaces  ProgramArguments: -all-info  ProgramVersion: $Name:  $  TimeStamp: 2023/04/11-04:14:00-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mris_make_surfaces.c,v 1.164.2.4 2016/12/13 22:26:32 zkaufman Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mris_register  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:14:00-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mris_register.c,v 1.63 2016/01/20 23:43:04 greve Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mris_volmask  ProgramArguments: --all-info  ProgramVersion: $Name:  $  TimeStamp: 2023/04/11-04:14:00-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mris_volmask.cpp,v 1.26.2.2 2016/11/18 20:05:18 zkaufman Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mris_anatomical_stats  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:14:00-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mris_anatomical_stats.c,v 1.79 2016/03/14 15:15:34 greve Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mrisp_paint  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:14:00-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mrisp_paint.c,v 1.12 2016/03/22 14:47:57 fischl Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mris_curvature_stats  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:14:00-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mris_curvature_stats.c,v 1.65 2015/06/04 20:50:51 nicks Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mris_calc  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:14:00-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mris_calc.c,v 1.54.2.1 2016/09/27 18:51:28 greve Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+$Id: mri_robust_register.cpp,v 1.77 2016/01/20 23:36:17 greve Exp $
+
+ProgramName: mri_robust_register.bin  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:14:00-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_robust_register.cpp,v 1.77 2016/01/20 23:36:17 greve Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+$Id: mri_robust_template.cpp,v 1.54 2016/05/05 21:17:08 mreuter Exp $
+
+ProgramName: mri_robust_template  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:14:00-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_robust_template.cpp,v 1.54 2016/05/05 21:17:08 mreuter Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_and  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:14:00-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_and.c,v 1.4 2011/03/02 00:04:13 nicks Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_or  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:14:00-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_or.c,v 1.5 2013/03/20 15:03:29 lzollei Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_fuse_segmentations  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:14:00-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_fuse_segmentations.c,v 1.8 2011/03/02 00:04:15 nicks Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_segstats  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:14:00-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_segstats.c,v 1.121 2016/05/31 17:27:11 greve Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_relabel_hypointensities  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:14:00-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_relabel_hypointensities.c,v 1.13 2015/05/15 18:44:10 nicks Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+#######################################
+GCADIR /media/nhp/data/freesurfer/freesurfer/average
+GCA RB_all_2016-05-10.vc700.gca
+GCASkull RB_all_withskull_2016-05-10.vc700.gca
+AvgCurvTif folding.atlas.acfb40.noaparc.i12.2016-08-02.tif
+GCSDIR /media/nhp/data/freesurfer/freesurfer/average
+GCS DKaparc.atlas.acfb40.noaparc.i12.2016-08-02.gcs
+#######################################
+#--------------------------------------------
+#@# Smooth2 lh 2023年 04月 11日 星期二 12:14:00 CST
+/media/nhp/data2/KIZ_data/NMT/free_data/subjects/2021_NMT.T1/scripts
+
+ mris_smooth -n 3 -nw -seed 1234 ../surf/lh.white.preaparc ../surf/lh.smoothwm 
+
+smoothing for 3 iterations
+setting seed for random number generator to 1234
+smoothing surface tessellation for 3 iterations...
+smoothing complete - recomputing first and second fundamental forms...
+#--------------------------------------------
+#@# Smooth2 rh 2023年 04月 11日 星期二 12:14:01 CST
+/media/nhp/data2/KIZ_data/NMT/free_data/subjects/2021_NMT.T1/scripts
+
+ mris_smooth -n 3 -nw -seed 1234 ../surf/rh.white.preaparc ../surf/rh.smoothwm 
+
+smoothing for 3 iterations
+setting seed for random number generator to 1234
+smoothing surface tessellation for 3 iterations...
+smoothing complete - recomputing first and second fundamental forms...
+#--------------------------------------------
+#@# Inflation2 lh 2023年 04月 11日 星期二 12:14:02 CST
+/media/nhp/data2/KIZ_data/NMT/free_data/subjects/2021_NMT.T1/scripts
+
+ mris_inflate -rusage /media/nhp/data2/KIZ_data/NMT/free_data/subjects/2021_NMT.T1/touch/rusage.mris_inflate.lh.dat ../surf/lh.smoothwm ../surf/lh.inflated 
+
+Reading ../surf/lh.smoothwm
+avg radius = 37.8 mm, total surface area = 36817 mm^2
+writing inflated surface to ../surf/lh.inflated
+writing sulcal depths to ../surf/lh.sulc
+step 000: RMS=0.140 (target=0.015)   step 005: RMS=0.102 (target=0.015)   step 010: RMS=0.076 (target=0.015)   step 015: RMS=0.065 (target=0.015)   step 020: RMS=0.056 (target=0.015)   step 025: RMS=0.049 (target=0.015)   step 030: RMS=0.043 (target=0.015)   step 035: RMS=0.038 (target=0.015)   step 040: RMS=0.035 (target=0.015)   step 045: RMS=0.032 (target=0.015)   step 050: RMS=0.029 (target=0.015)   step 055: RMS=0.028 (target=0.015)   step 060: RMS=0.027 (target=0.015)   
+inflation complete.
+inflation took 0.1 minutes
+mris_inflate utimesec    6.383283
+mris_inflate stimesec    0.012006
+mris_inflate ru_maxrss   83068
+mris_inflate ru_ixrss    0
+mris_inflate ru_idrss    0
+mris_inflate ru_isrss    0
+mris_inflate ru_minflt   19192
+mris_inflate ru_majflt   1
+mris_inflate ru_nswap    0
+mris_inflate ru_inblock  232
+mris_inflate ru_oublock  0
+mris_inflate ru_msgsnd   0
+mris_inflate ru_msgrcv   0
+mris_inflate ru_nsignals 0
+mris_inflate ru_nvcsw    1420
+mris_inflate ru_nivcsw   6
+#--------------------------------------------
+#@# Inflation2 rh 2023年 04月 11日 星期二 12:14:09 CST
+/media/nhp/data2/KIZ_data/NMT/free_data/subjects/2021_NMT.T1/scripts
+
+ mris_inflate -rusage /media/nhp/data2/KIZ_data/NMT/free_data/subjects/2021_NMT.T1/touch/rusage.mris_inflate.rh.dat ../surf/rh.smoothwm ../surf/rh.inflated 
+
+Reading ../surf/rh.smoothwm
+avg radius = 37.8 mm, total surface area = 36756 mm^2
+writing inflated surface to ../surf/rh.inflated
+writing sulcal depths to ../surf/rh.sulc
+step 000: RMS=0.141 (target=0.015)   step 005: RMS=0.103 (target=0.015)   step 010: RMS=0.076 (target=0.015)   step 015: RMS=0.066 (target=0.015)   step 020: RMS=0.058 (target=0.015)   step 025: RMS=0.050 (target=0.015)   step 030: RMS=0.044 (target=0.015)   step 035: RMS=0.039 (target=0.015)   step 040: RMS=0.035 (target=0.015)   step 045: RMS=0.032 (target=0.015)   step 050: RMS=0.030 (target=0.015)   step 055: RMS=0.028 (target=0.015)   step 060: RMS=0.027 (target=0.015)   
+inflation complete.
+inflation took 0.1 minutes
+mris_inflate utimesec    6.396413
+mris_inflate stimesec    0.027984
+mris_inflate ru_maxrss   83088
+mris_inflate ru_ixrss    0
+mris_inflate ru_idrss    0
+mris_inflate ru_isrss    0
+mris_inflate ru_minflt   19183
+mris_inflate ru_majflt   0
+mris_inflate ru_nswap    0
+mris_inflate ru_inblock  0
+mris_inflate ru_oublock  0
+mris_inflate ru_msgsnd   0
+mris_inflate ru_msgrcv   0
+mris_inflate ru_nsignals 0
+mris_inflate ru_nvcsw    1413
+mris_inflate ru_nivcsw   5
+#--------------------------------------------
+#@# Sphere lh 2023年 04月 11日 星期二 12:14:15 CST
+/media/nhp/data2/KIZ_data/NMT/free_data/subjects/2021_NMT.T1/scripts
+
+ mris_sphere -rusage /media/nhp/data2/KIZ_data/NMT/free_data/subjects/2021_NMT.T1/touch/rusage.mris_sphere.lh.dat -seed 1234 ../surf/lh.inflated ../surf/lh.sphere 
+
+setting seed for random number genererator to 1234
+$Id: mris_sphere.c,v 1.61 2016/01/20 23:42:15 greve Exp $
+  $Id: mrisurf.c,v 1.781.2.6 2016/12/27 16:47:14 zkaufman Exp $
+reading original vertex positions...
+unfolding cortex into spherical form...
+surface projected - minimizing metric distortion...
+
+== Number of threads available to mris_sphere for OpenMP = 1 == 
+scaling brain by 0.408...
+MRISunfold() max_passes = 1 -------
+tol=5.0e-01, sigma=0.0, host=nhp-X, nav=1024, nbrs=2, l_area=1.000, l_dist=1.000
+using quadratic fit line minimization
+complete_dist_mat 0
+rms 0
+smooth_averages 0
+remove_neg 0
+ico_order 0
+which_surface 0
+target_radius 0.000000
+nfields 0
+scale 1.000000
+desired_rms_height -1.000000
+momentum 0.900000
+nbhd_size 7
+max_nbrs 8
+niterations 25
+nsurfaces 0
+SURFACES 3
+flags 0 (0)
+use curv 0
+no sulc 0
+no rigid align 0
+mris->nsize 2
+mris->hemisphere 0
+randomSeed 1234
+
+--------------------
+  mrisRemoveNegativeArea()
+pass 1: epoch 1 of 3 starting distance error %18.37
+pass 1: epoch 2 of 3 starting distance error %18.31
+unfolding complete - removing small folds...
+starting distance error %18.22
+removing remaining folds...
+final distance error %18.24
+MRISunfold() return, current seed 1234
+-01: dt=0.0000, 63 negative triangles
+188: dt=0.9900, 63 negative triangles
+189: dt=0.9900, 33 negative triangles
+190: dt=0.9900, 35 negative triangles
+191: dt=0.9900, 18 negative triangles
+192: dt=0.9900, 16 negative triangles
+193: dt=0.9900, 14 negative triangles
+194: dt=0.9900, 10 negative triangles
+195: dt=0.9900, 7 negative triangles
+196: dt=0.9900, 7 negative triangles
+197: dt=0.9900, 3 negative triangles
+198: dt=0.9900, 3 negative triangles
+199: dt=0.9900, 2 negative triangles
+200: dt=0.9900, 3 negative triangles
+201: dt=0.9900, 1 negative triangles
+202: dt=0.9900, 2 negative triangles
+203: dt=0.9900, 1 negative triangles
+writing spherical brain to ../surf/lh.sphere
+spherical transformation took 0.13 hours
+mris_sphere utimesec    474.082054
+mris_sphere stimesec    0.088001
+mris_sphere ru_maxrss   112120
+mris_sphere ru_ixrss    0
+mris_sphere ru_idrss    0
+mris_sphere ru_isrss    0
+mris_sphere ru_minflt   26350
+mris_sphere ru_majflt   0
+mris_sphere ru_nswap    0
+mris_sphere ru_inblock  0
+mris_sphere ru_oublock  0
+mris_sphere ru_msgsnd   0
+mris_sphere ru_msgrcv   0
+mris_sphere ru_nsignals 0
+mris_sphere ru_nvcsw    1244
+mris_sphere ru_nivcsw   125
+FSRUNTIME@ mris_sphere  0.1317 hours 1 threads
+#--------------------------------------------
+#@# Sphere rh 2023年 04月 11日 星期二 12:22:09 CST
+/media/nhp/data2/KIZ_data/NMT/free_data/subjects/2021_NMT.T1/scripts
+
+ mris_sphere -rusage /media/nhp/data2/KIZ_data/NMT/free_data/subjects/2021_NMT.T1/touch/rusage.mris_sphere.rh.dat -seed 1234 ../surf/rh.inflated ../surf/rh.sphere 
+
+setting seed for random number genererator to 1234
+$Id: mris_sphere.c,v 1.61 2016/01/20 23:42:15 greve Exp $
+  $Id: mrisurf.c,v 1.781.2.6 2016/12/27 16:47:14 zkaufman Exp $
+reading original vertex positions...
+unfolding cortex into spherical form...
+surface projected - minimizing metric distortion...
+
+== Number of threads available to mris_sphere for OpenMP = 1 == 
+scaling brain by 0.408...
+MRISunfold() max_passes = 1 -------
+tol=5.0e-01, sigma=0.0, host=nhp-X, nav=1024, nbrs=2, l_area=1.000, l_dist=1.000
+using quadratic fit line minimization
+complete_dist_mat 0
+rms 0
+smooth_averages 0
+remove_neg 0
+ico_order 0
+which_surface 0
+target_radius 0.000000
+nfields 0
+scale 1.000000
+desired_rms_height -1.000000
+momentum 0.900000
+nbhd_size 7
+max_nbrs 8
+niterations 25
+nsurfaces 0
+SURFACES 3
+flags 0 (0)
+use curv 0
+no sulc 0
+no rigid align 0
+mris->nsize 2
+mris->hemisphere 1
+randomSeed 1234
+
+--------------------
+  mrisRemoveNegativeArea()
+pass 1: epoch 1 of 3 starting distance error %18.22
+pass 1: epoch 2 of 3 starting distance error %18.23
+unfolding complete - removing small folds...
+starting distance error %18.13
+removing remaining folds...
+final distance error %18.14
+MRISunfold() return, current seed 1234
+-01: dt=0.0000, 113 negative triangles
+194: dt=0.9900, 113 negative triangles
+195: dt=0.9900, 59 negative triangles
+196: dt=0.9900, 67 negative triangles
+197: dt=0.9900, 60 negative triangles
+198: dt=0.9900, 61 negative triangles
+199: dt=0.9900, 53 negative triangles
+200: dt=0.9900, 52 negative triangles
+201: dt=0.9900, 51 negative triangles
+202: dt=0.9900, 39 negative triangles
+203: dt=0.9900, 31 negative triangles
+204: dt=0.9900, 33 negative triangles
+205: dt=0.9900, 34 negative triangles
+206: dt=0.9900, 26 negative triangles
+207: dt=0.9900, 21 negative triangles
+208: dt=0.9900, 21 negative triangles
+209: dt=0.9900, 24 negative triangles
+210: dt=0.9900, 19 negative triangles
+211: dt=0.9900, 18 negative triangles
+212: dt=0.9900, 14 negative triangles
+213: dt=0.9900, 14 negative triangles
+214: dt=0.9900, 10 negative triangles
+215: dt=0.9900, 10 negative triangles
+216: dt=0.9900, 12 negative triangles
+217: dt=0.9900, 11 negative triangles
+218: dt=0.9900, 10 negative triangles
+219: dt=0.9900, 11 negative triangles
+220: dt=0.9900, 9 negative triangles
+221: dt=0.9900, 6 negative triangles
+222: dt=0.9900, 10 negative triangles
+223: dt=0.9900, 6 negative triangles
+224: dt=0.9900, 9 negative triangles
+225: dt=0.9900, 11 negative triangles
+226: dt=0.9900, 8 negative triangles
+227: dt=0.9900, 4 negative triangles
+228: dt=0.9900, 8 negative triangles
+229: dt=0.9900, 3 negative triangles
+230: dt=0.9900, 3 negative triangles
+231: dt=0.9900, 4 negative triangles
+232: dt=0.9900, 2 negative triangles
+233: dt=0.9900, 2 negative triangles
+234: dt=0.9900, 2 negative triangles
+235: dt=0.9900, 1 negative triangles
+236: dt=0.9900, 1 negative triangles
+writing spherical brain to ../surf/rh.sphere
+spherical transformation took 0.13 hours
+mris_sphere utimesec    484.169277
+mris_sphere stimesec    0.091996
+mris_sphere ru_maxrss   112240
+mris_sphere ru_ixrss    0
+mris_sphere ru_idrss    0
+mris_sphere ru_isrss    0
+mris_sphere ru_minflt   26346
+mris_sphere ru_majflt   0
+mris_sphere ru_nswap    0
+mris_sphere ru_inblock  0
+mris_sphere ru_oublock  0
+mris_sphere ru_msgsnd   0
+mris_sphere ru_msgrcv   0
+mris_sphere ru_nsignals 0
+mris_sphere ru_nvcsw    1245
+mris_sphere ru_nivcsw   7411
+FSRUNTIME@ mris_sphere  0.1346 hours 1 threads
+
+Started at 2023年 04月 11日 星期二 12:14:00 CST 
+Ended   at 2023年 04月 11日 星期二 12:30:14 CST
+#@#%# recon-all-run-time-hours 0.271
+recon-all -s 2021_NMT.T1 finished without error at 2023年 04月 11日 星期二 12:30:14 CST
+
+
+
+New invocation of recon-all 
+
+
+
+2023年 04月 11日 星期二 12:46:09 CST
+/media/nhp/data2/KIZ_data/NMT/free_data/subjects/2021_NMT.T1
+/media/nhp/data/freesurfer/freesurfer/bin/recon-all
+-subjid 2021_NMT.T1 -sd /media/nhp/data2/KIZ_data/NMT/free_data/subjects/ -jacobian_white
+subjid 2021_NMT.T1
+setenv SUBJECTS_DIR /media/nhp/data2/KIZ_data/NMT/free_data/subjects
+FREESURFER_HOME /media/nhp/data/freesurfer/freesurfer
+Actual FREESURFER_HOME /media/nhp/data/freesurfer/freesurfer
+build-stamp.txt: freesurfer-Linux-centos6_x86_64-stable-pub-v6.0.0-2beb96c
+Linux nhp-XPS-8940-3 4.15.0-142-generic #146~16.04.1-Ubuntu SMP Tue Apr 13 09:27:15 UTC 2021 x86_64 x86_64 x86_64 GNU/Linux
+cputime      unlimited
+filesize     unlimited
+datasize     unlimited
+stacksize    8192 kbytes
+coredumpsize 0 kbytes
+memoryuse    unlimited
+vmemoryuse   unlimited
+descriptors  1024 
+memorylocked 64 kbytes
+maxproc      126555 
+maxlocks     unlimited
+maxsignal    126555 
+maxmessage   819200 
+maxnice      0 
+maxrtprio    0 
+maxrttime    unlimited
+
+              total        used        free      shared  buff/cache   available
+Mem:       32602996     6687712     1972892      463424    23942392    24894288
+Swap:       1000444       60672      939772
+
+########################################
+program versions used
+$Id: recon-all,v 1.580.2.16 2017/01/18 14:11:24 zkaufman Exp $
+$Id: mri_motion_correct.fsl,v 1.15 2016/02/16 17:17:20 zkaufman Exp $
+mri_convert.bin -all-info 
+ProgramName: mri_convert.bin  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:46:09-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_convert.c,v 1.226 2016/02/26 16:15:24 mreuter Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+FLIRT version 5.5
+$Id: talairach_avi,v 1.13 2015/12/23 04:25:17 greve Exp $
+mri_convert.bin --version 
+stable6
+ProgramName: tkregister2_cmdl  ProgramArguments: --all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:46:09-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: tkregister2.c,v 1.132.2.1 2016/08/02 21:17:29 greve Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+Program nu_correct, built from:
+Package MNI N3, version 1.12.0, compiled by nicks@terrier (x86_64-unknown-linux-gnu) on 2015-06-19 at 01:25:34
+ProgramName: mri_make_uchar  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:46:09-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_make_uchar.c,v 1.4 2011/03/02 00:04:14 nicks Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_normalize  ProgramArguments: -all-info  ProgramVersion: $Name:  $  TimeStamp: 2023/04/11-04:46:09-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_normalize.c,v 1.88.2.3 2016/12/27 16:47:13 zkaufman Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_watershed  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:46:09-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_watershed.cpp,v 1.103 2016/06/17 18:00:49 zkaufman Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_gcut  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:46:09-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_gcut.cpp,v 1.14 2011/03/02 00:04:16 nicks Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_segment  ProgramArguments: -all-info  ProgramVersion: $Name:  $  TimeStamp: 2023/04/11-04:46:09-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_segment.c,v 1.43.2.1 2016/10/27 22:24:52 zkaufman Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_label2label.bin  ProgramArguments: -all-info  ProgramVersion: $Name:  $  TimeStamp: 2023/04/11-04:46:09-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_label2label.c,v 1.48.2.2 2016/12/12 14:15:26 zkaufman Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_em_register  ProgramArguments: -all-info  ProgramVersion: $Name:  $  TimeStamp: 2023/04/11-04:46:09-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_em_register.c,v 1.105.2.1 2016/10/27 22:25:10 zkaufman Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_ca_normalize  ProgramArguments: -all-info  ProgramVersion: $Name:  $  TimeStamp: 2023/04/11-04:46:09-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_ca_normalize.c,v 1.67.2.2 2016/10/27 22:25:09 zkaufman Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_ca_register  ProgramArguments: -all-info  ProgramVersion: $Name:  $  TimeStamp: 2023/04/11-04:46:09-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_ca_register.c,v 1.96.2.3 2016/10/27 22:25:10 zkaufman Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_ca_label  ProgramArguments: -all-info  ProgramVersion: $Name:  $  TimeStamp: 2023/04/11-04:46:09-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_ca_label.c,v 1.113.2.2 2016/10/27 22:25:10 zkaufman Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_pretess  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:46:09-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_pretess.c,v 1.22 2013/08/30 18:12:25 mreuter Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_fill  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:46:09-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_fill.c,v 1.119 2011/10/25 14:09:58 fischl Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_tessellate  ProgramArguments: -all-info  ProgramVersion: $Name:  $  TimeStamp: 2023/04/11-04:46:09-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_tessellate.c,v 1.38.2.1 2016/07/26 18:46:38 zkaufman Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_concatenate_lta.bin  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:46:09-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_concatenate_lta.c,v 1.16 2015/11/21 00:06:20 greve Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_normalize_tp2  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:46:09-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_normalize_tp2.c,v 1.8 2011/03/02 00:04:23 nicks Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mris_smooth  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:46:09-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mris_smooth.c,v 1.30 2014/01/21 18:48:21 fischl Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mris_inflate  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:46:09-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mris_inflate.c,v 1.45 2016/01/20 23:42:15 greve Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mris_curvature  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:46:09-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mris_curvature.c,v 1.31 2011/03/02 00:04:30 nicks Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mris_sphere  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:46:09-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mris_sphere.c,v 1.61 2016/01/20 23:42:15 greve Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mris_fix_topology  ProgramArguments: -all-info  ProgramVersion: $Name:  $  TimeStamp: 2023/04/11-04:46:09-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mris_fix_topology.c,v 1.50.2.1 2016/10/27 22:25:58 zkaufman Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mris_topo_fixer  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:46:09-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mris_topo_fixer.cpp,v 1.29 2011/03/02 00:04:34 nicks Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mris_ca_label  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:46:09-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mris_ca_label.c,v 1.37 2014/02/04 17:46:42 fischl Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mris_euler_number  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:46:09-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mris_euler_number.c,v 1.10 2013/01/14 22:39:14 greve Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mris_make_surfaces  ProgramArguments: -all-info  ProgramVersion: $Name:  $  TimeStamp: 2023/04/11-04:46:09-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mris_make_surfaces.c,v 1.164.2.4 2016/12/13 22:26:32 zkaufman Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mris_register  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:46:09-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mris_register.c,v 1.63 2016/01/20 23:43:04 greve Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mris_volmask  ProgramArguments: --all-info  ProgramVersion: $Name:  $  TimeStamp: 2023/04/11-04:46:09-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mris_volmask.cpp,v 1.26.2.2 2016/11/18 20:05:18 zkaufman Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mris_anatomical_stats  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:46:09-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mris_anatomical_stats.c,v 1.79 2016/03/14 15:15:34 greve Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mrisp_paint  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:46:09-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mrisp_paint.c,v 1.12 2016/03/22 14:47:57 fischl Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mris_curvature_stats  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:46:09-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mris_curvature_stats.c,v 1.65 2015/06/04 20:50:51 nicks Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mris_calc  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:46:09-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mris_calc.c,v 1.54.2.1 2016/09/27 18:51:28 greve Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+$Id: mri_robust_register.cpp,v 1.77 2016/01/20 23:36:17 greve Exp $
+
+ProgramName: mri_robust_register.bin  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:46:09-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_robust_register.cpp,v 1.77 2016/01/20 23:36:17 greve Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+$Id: mri_robust_template.cpp,v 1.54 2016/05/05 21:17:08 mreuter Exp $
+
+ProgramName: mri_robust_template  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:46:09-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_robust_template.cpp,v 1.54 2016/05/05 21:17:08 mreuter Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_and  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:46:09-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_and.c,v 1.4 2011/03/02 00:04:13 nicks Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_or  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:46:09-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_or.c,v 1.5 2013/03/20 15:03:29 lzollei Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_fuse_segmentations  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:46:09-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_fuse_segmentations.c,v 1.8 2011/03/02 00:04:15 nicks Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_segstats  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:46:09-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_segstats.c,v 1.121 2016/05/31 17:27:11 greve Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+ProgramName: mri_relabel_hypointensities  ProgramArguments: -all-info  ProgramVersion: $Name: stable6 $  TimeStamp: 2023/04/11-04:46:09-GMT  BuildTimeStamp: Jan 18 2017 16:38:58  CVS: $Id: mri_relabel_hypointensities.c,v 1.13 2015/05/15 18:44:10 nicks Exp $  User: nhp  Machine: nhp-XPS-8940-3  Platform: Linux  PlatformVersion: 4.15.0-142-generic  CompilerName: GCC  CompilerVersion: 40400 
+#######################################
+GCADIR /media/nhp/data/freesurfer/freesurfer/average
+GCA RB_all_2016-05-10.vc700.gca
+GCASkull RB_all_withskull_2016-05-10.vc700.gca
+AvgCurvTif folding.atlas.acfb40.noaparc.i12.2016-08-02.tif
+GCSDIR /media/nhp/data/freesurfer/freesurfer/average
+GCS DKaparc.atlas.acfb40.noaparc.i12.2016-08-02.gcs
+#######################################
+#--------------------------------------------
+#@# Jacobian white lh 2023年 04月 11日 星期二 12:46:09 CST
+/media/nhp/data2/KIZ_data/NMT/free_data/subjects/2021_NMT.T1/scripts
+
+ mris_jacobian ../surf/lh.white.preaparc ../surf/lh.sphere.reg ../surf/lh.jacobian_white 
+
+reading surface from ../surf/lh.white.preaparc...
+writing curvature file ../surf/lh.jacobian_white
+#--------------------------------------------
+#@# Jacobian white rh 2023年 04月 11日 星期二 12:46:10 CST
+/media/nhp/data2/KIZ_data/NMT/free_data/subjects/2021_NMT.T1/scripts
+
+ mris_jacobian ../surf/rh.white.preaparc ../surf/rh.sphere.reg ../surf/rh.jacobian_white 
+
+reading surface from ../surf/rh.white.preaparc...
+writing curvature file ../surf/rh.jacobian_white
+
+Started at 2023年 04月 11日 星期二 12:46:09 CST 
+Ended   at 2023年 04月 11日 星期二 12:46:10 CST
+#@#%# recon-all-run-time-hours 0.000
+recon-all -s 2021_NMT.T1 finished without error at 2023年 04月 11日 星期二 12:46:10 CST

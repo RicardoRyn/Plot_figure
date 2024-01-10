@@ -1,0 +1,1 @@
+mri_em_register -rusage /media/nhp/data2/KIZ_data/NMT/free_data/subjects/2021_NMT.T1/touch/rusage.mri_em_register.dat -uns 3 -mask brainmask.mgz nu.mgz /media/nhp/data2/template/RB_all_2016-05-10.vc700.gca transforms/talairach.lta

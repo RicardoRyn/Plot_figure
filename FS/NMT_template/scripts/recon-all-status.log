@@ -1,0 +1,58 @@
+status file for recon-all
+2023年 04月 11日 星期二 11:11:35 CST
+#@# EM Registration 2023年 04月 11日 星期二 11:11:35 CST
+#@# CA Normalize 2023年 04月 11日 星期二 11:14:44 CST
+#@# CA Reg 2023年 04月 11日 星期二 11:15:26 CST
+#@# CA Reg Inv 2023年 04月 11日 星期二 11:54:27 CST
+recon-all -s 2021_NMT.T1 finished without error at 2023年 04月 11日 星期二 11:54:51 CST
+
+
+
+New invocation of recon-all 
+
+
+
+status file for recon-all
+2023年 04月 11日 星期二 12:01:13 CST
+#@# Intensity Normalization2 2023年 04月 11日 星期二 12:01:13 CST
+recon-all -s 2021_NMT.T1 finished without error at 2023年 04月 11日 星期二 12:02:30 CST
+
+
+
+New invocation of recon-all 
+
+
+
+status file for recon-all
+2023年 04月 11日 星期二 12:02:30 CST
+#@# Mask BFS 2023年 04月 11日 星期二 12:02:30 CST
+#@# WM Segmentation 2023年 04月 11日 星期二 12:02:32 CST
+recon-all -s 2021_NMT.T1 finished without error at 2023年 04月 11日 星期二 12:03:17 CST
+
+
+
+New invocation of recon-all 
+
+
+
+status file for recon-all
+2023年 04月 11日 星期二 12:14:00 CST
+#@# Smooth2 lh 2023年 04月 11日 星期二 12:14:00 CST
+#@# Smooth2 rh 2023年 04月 11日 星期二 12:14:01 CST
+#@# Inflation2 lh 2023年 04月 11日 星期二 12:14:02 CST
+#@# Inflation2 rh 2023年 04月 11日 星期二 12:14:09 CST
+#@# Sphere lh 2023年 04月 11日 星期二 12:14:15 CST
+#@# Sphere rh 2023年 04月 11日 星期二 12:22:09 CST
+recon-all -s 2021_NMT.T1 finished without error at 2023年 04月 11日 星期二 12:30:14 CST
+
+
+
+New invocation of recon-all 
+
+
+
+status file for recon-all
+2023年 04月 11日 星期二 12:46:09 CST
+#@# Jacobian white lh 2023年 04月 11日 星期二 12:46:09 CST
+#@# Jacobian white rh 2023年 04月 11日 星期二 12:46:10 CST
+recon-all -s 2021_NMT.T1 finished without error at 2023年 04月 11日 星期二 12:46:10 CST
