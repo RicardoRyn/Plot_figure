@@ -82,3 +82,24 @@ plot_multi_group_bar_figure(data, test_method='ttest_ind', legend_name=legend_na
 fig.savefig(r"D:\Desktop\rm_rjx.svg",dpi=250, bbox_inches='tight')
 ```
 
+# 3. 矩阵图
+
+使用例：
+
+```python
+# 数据
+data = np.random.random((88,88))
+labels = ['area_32','area_25','area_24a/b','area_24c','area_24a/b_prime','area_24c_prime','area_10','area_14','area_11','area_13','area_12m/o','Iam/Iapm','lat_Ia','OLF','G','PrCO','area_8A','area_8B','area_9','area_46d','area_46v/f','area_12r/l','area_45','area_44','M1','PMd','PMv','preSMA','SMA','area_3a/b','areas_1-2','SII','V6','V6A','area_5d','PEa','MIP','fundus_IPS','AIP','LIP','LOP','MST','area_7a/b','area_7op','area_7m','area_31','area_23','area_v23','area_29','area_30','TF/TFO','TH','caudal_ERh','mid_ERh','rostral_ERh','area_35','area_36','TGa','TGd','TGg','TEO','post_TE','ant_TE','TE_in_STSv','ant_STSf','FST','TPO','TAa','STGr','Tpt','parabelt','CL/ML','AL/RTL','CM','RM/RTM','RTp','R/RT','AI','Pi','Ins','Ri','MT','V4d','V4v','V3d/V3A','V3v','V2','V1']
+
+# figure的参数额外设置
+fig = plt.figure(figsize=(20,10))
+# axes的参数额外设置
+ax1 = fig.add_subplot(121)
+ax2 = fig.add_subplot(122)
+# 调用函数
+plot_matrix_figure(data, row_labels_name=labels, col_labels_name=labels, ax=ax1, cmap='Reds', cbarlabel_name='BBB', title_name='AAA', vmin=0, vmax=0.1)
+plot_matrix_figure(data, ax=ax2)
+# 保存图片
+fig.savefig("D:\\Desktop\\rm_rjx.svg", dpi=250, bbox_inches='tight')
+```
+
