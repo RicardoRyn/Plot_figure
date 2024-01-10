@@ -7,6 +7,9 @@ from scipy import stats
 import statsmodels.api as sm
 
 
+# 从Github上pull下来之后，第一次修改。
+
+
 def plot_one_group_bar_figure(data, test_method, labels_name=None, ax=None, width=0.5, colors=None, title_name='', title_fontsize=15, title_pad=20, x_label_name='', x_label_fontsize=10, x_tick_fontsize=10, x_tick_rotation=0, x_label_ha='center', y_label_name='', y_label_fontsize=10, y_tick_fontsize=10, y_tick_rotation=0, y_max_tick_to_one=False, y_max_tick_to_value=1, math_text=True, one_decimal_place=False, percentage=False, ax_min_is_0=False, asterisk_fontsize=10, multicorrect=False, **kwargs):
     """
     ## 说明:
