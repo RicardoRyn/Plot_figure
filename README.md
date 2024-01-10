@@ -44,8 +44,10 @@ plot_one_group_bar_figure(data, test_method='ttest_rel', labels_name=labels_name
 plot_one_group_bar_figure(data, test_method='ttest_rel', labels_name=labels_name, ax=ax3, colors=colors, percentage=True, math_text=False)
 plot_one_group_bar_figure(data, test_method='ttest_rel', labels_name=labels_name, ax=ax4, colors=colors, ax_min_is_0=True)
 # 保存图片
-fig.savefig("D:\\Desktop\\rm_rjx.svg", dpi=250, bbox_inches='tight')
+fig.savefig("./figures/single_bar.png", dpi=250, bbox_inches='tight')
 ```
+
+<img src="./figures/single_bar.png" alt="single_bar" style="zoom:25%;" />
 
 # 2. 多组bar图
 
@@ -77,8 +79,10 @@ ax = fig.add_subplot(111)
 # 调用函数
 plot_multi_group_bar_figure(data, test_method='ttest_ind', legend_name=legend_name, labels_name=labels_name, colors=colors, legend_location='lower left')
 # 保存图片
-fig.savefig(r"D:\Desktop\rm_rjx.svg",dpi=250, bbox_inches='tight')
+fig.savefig(r"./figures/multi_bars.png",dpi=250, bbox_inches='tight')
 ```
+
+<img src="./figures/multi_bars.png" alt="multi_bars" style="zoom:25%;" />
 
 # 3. 矩阵图
 
@@ -97,8 +101,10 @@ ax2 = fig.add_subplot(122)
 plot_matrix_figure(data, row_labels_name=labels, col_labels_name=labels, ax=ax1, cmap='Reds', cbarlabel_name='BBB', title_name='AAA', vmin=0, vmax=0.1)
 plot_matrix_figure(data, ax=ax2)
 # 保存图片
-fig.savefig("D:\\Desktop\\rm_rjx.svg", dpi=250, bbox_inches='tight')
+fig.savefig("./figures/matrix.png", dpi=250, bbox_inches='tight')
 ```
+
+<img src="./figures/matrix.png" alt="matrix" style="zoom: 25%;" />
 
 # 4. 单组小提琴图
 
@@ -127,8 +133,10 @@ plot_one_group_violin_figure(data, test_method='ttest_rel', labels_name=labels_n
 plot_one_group_violin_figure(data, test_method='ttest_rel', labels_name=labels_name, ax=ax3, colors=colors, percentage=True, math_text=False)
 plot_one_group_violin_figure(data, test_method='ttest_rel', labels_name=labels_name, ax=ax4, colors=colors, ax_min_is_0=True)
 # 保存图片
-fig.savefig("D:\\Desktop\\rm_rjx.svg", dpi=250, bbox_inches='tight')
+fig.savefig("./figures/single_violin.png", dpi=250, bbox_inches='tight')
 ```
+
+<img src="./figures/single_violin.png" alt="single_violin" style="zoom:25%;" />
 
 # 5. 多组小提琴图
 
@@ -160,8 +168,10 @@ ax = fig.add_subplot(111)
 # 调用函数
 plot_multi_group_violin_figure(data, test_method='ttest_ind', legend_name=legend_name, labels_name=labels_name, colors=colors, legend_location='lower left')
 # 保存图片
-fig.savefig(r"D:\Desktop\rm_rjx.svg",dpi=250, bbox_inches='tight')
+fig.savefig(r"./figures/multi_violin.png",dpi=250, bbox_inches='tight')
 ```
+
+<img src="./figures/multi_violin.png" alt="multi_violin" style="zoom:25%;" />
 
 # 6. 点线相关图
 
@@ -181,6 +191,7 @@ ax = fig.add_subplot(111)
 # 调用函数
 plot_correlation_figure(data)
 # 保存图片
-fig.savefig(r"D:\Desktop\rm_rjx.svg",dpi=250, bbox_inches='tight')
+fig.savefig(r"./figures/correlation.png",dpi=250, bbox_inches='tight')
 ```
 
+<img src="./figures/correlation.png" alt="correlation" style="zoom:25%;" />

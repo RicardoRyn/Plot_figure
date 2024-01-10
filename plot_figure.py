@@ -879,9 +879,9 @@ def plot_correlation_figure(data, ax=None, dots_color=None, line_color=None, tit
             ax.yaxis.set_major_formatter(FuncFormatter(percentage_formatter))# 设置y轴为百分数的显示效果
     ######################################## 标注r值和p值/星号 ########################################
     s, p = stats.spearmanr(data1, data2)
-    print('斯皮尔曼相关性，r={}，p={}'.format(s, p))
+    print('斯皮尔曼相关性，r={}，p={}'.format(round(s, 3), round(p, 3)))
     s, p = stats.pearsonr(data1, data2)
-    print('皮尔逊相关性，r={}，p={}'.format(s, p))
+    print('皮尔逊相关性，r={}，p={}'.format(round(s, 3), round(p, 3)))
     x_start, x_end = ax.get_xlim()
     x_width = x_end - x_start
     y_start, y_end = ax.get_ylim()
