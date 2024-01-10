@@ -1,6 +1,6 @@
-# Plot_figure
+<hr><center><h1>Plot_figure</h1></center><hr>
 
-这是一个用来画统计图的python脚本。
+这是一个用来画统计图的python脚本。目前已经可以绘制以下图片：
 
 1. 单组bar图
 2. 多组bar图
@@ -9,7 +9,7 @@
 5. 多组小提琴图
 6. 点线相关图
 
-## 1. 单组bar图
+# 1. 单组bar图
 
 使用例：
 
@@ -99,6 +99,37 @@ ax2 = fig.add_subplot(122)
 # 调用函数
 plot_matrix_figure(data, row_labels_name=labels, col_labels_name=labels, ax=ax1, cmap='Reds', cbarlabel_name='BBB', title_name='AAA', vmin=0, vmax=0.1)
 plot_matrix_figure(data, ax=ax2)
+# 保存图片
+fig.savefig("D:\\Desktop\\rm_rjx.svg", dpi=250, bbox_inches='tight')
+```
+
+# 4. 单组小提琴图
+
+使用例：
+
+```python
+# 原始数据
+Human = np.random.normal(1000,100,100)
+Random = np.random.normal(1500,100,100)
+Macaque = np.random.normal(2000,100,100)
+# 导入数据
+data=[Human, Random, Macaque]
+labels_name = ['Human', 'Random', 'Macaque']
+colors=['#c44e52','#bcbbc0', '#1a1a1a']
+
+# 设置figure
+fig = plt.figure(figsize=(10,10))
+plt.subplots_adjust(wspace=0.5, hspace=0.5)
+# 设置axes
+ax1 = fig.add_subplot(221)
+ax2 = fig.add_subplot(222)
+ax3 = fig.add_subplot(223)
+ax4 = fig.add_subplot(224)
+# 调用函数
+plot_one_group_violin_figure(data, test_method='ttest_rel', ax=ax1, colors=colors, y_max_tick_to_one=True, y_max_tick_to_value=1000)
+plot_one_group_violin_figure(data, test_method='ttest_rel', labels_name=labels_name, ax=ax2, colors=colors, math_text=False, one_decimal_place=True, x_tick_rotation=30, x_label_ha='right')
+plot_one_group_violin_figure(data, test_method='ttest_rel', labels_name=labels_name, ax=ax3, colors=colors, percentage=True, math_text=False)
+plot_one_group_violin_figure(data, test_method='ttest_rel', labels_name=labels_name, ax=ax4, colors=colors, ax_min_is_0=True)
 # 保存图片
 fig.savefig("D:\\Desktop\\rm_rjx.svg", dpi=250, bbox_inches='tight')
 ```
