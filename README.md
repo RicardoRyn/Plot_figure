@@ -9,6 +9,13 @@
 5. 多组小提琴图
 6. 点线相关图
 
+python依赖：
+
+- numpy
+- matplotlib
+- statsmodels
+- scipy
+
 使用前需导入：
 
 ```python
@@ -195,3 +202,21 @@ fig.savefig(r"./figures/correlation.png",dpi=250, bbox_inches='tight')
 ```
 
 <img src="./figures/correlation.png" alt="correlation" style="zoom:25%;" />
+
+# 7. 脑图
+
+使用例：
+
+```python
+# 原始数据，写在./ROIs.csv文件里面
+# 设置figure
+fig = plt.figure(figsize=(10, 10))
+# 设置axes
+ax = fig.add_subplot(111)
+# 调用函数
+plot_brain_figure(ax=ax, title_name='Diff or High-Low', cbarlabel_name='Volume diff')
+# 保存图片
+fig.savefig(r"./figures/brain.png",dpi=250, bbox_inches='tight')
+```
+
+<img src="./figures/brain.png" alt="brain" style="zoom:25%;" />

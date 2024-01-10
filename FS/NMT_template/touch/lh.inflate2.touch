@@ -1,0 +1,1 @@
+mris_inflate -rusage /media/nhp/data2/KIZ_data/NMT/free_data/subjects/2021_NMT.T1/touch/rusage.mris_inflate.lh.dat ../surf/lh.smoothwm ../surf/lh.inflated
