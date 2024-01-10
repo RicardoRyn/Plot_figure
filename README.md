@@ -19,6 +19,13 @@ python依赖：
 - scipy
 - mne
 
+python依赖：
+
+- numpy
+- matplotlib
+- statsmodels
+- scipy
+
 使用前需导入：
 
 ```python
@@ -225,4 +232,3 @@ fig.savefig(r"./figures/brain.png",dpi=250, bbox_inches='tight')
 <img src="./figures/brain.png" alt="brain" style="zoom:25%;" />
 
 > 注意：猕猴脑区图集为[猕猴NMT2 CHARM5图集](https://doi.org/10.1016/j.neuroimage.2021.117997)，结果由Joker贡献。原本CHARM5图集左右脑各有88个脑区，但由于技术限制，本画图函数中只能展示左脑85个脑区，右脑86个脑区 (= =+)，具体脑区名称见`./ROIs.csv`文件。
-
