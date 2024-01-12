@@ -19,13 +19,6 @@ python依赖：
 - scipy
 - mne
 
-python依赖：
-
-- numpy
-- matplotlib
-- statsmodels
-- scipy
-
 使用前需导入：
 
 ```python

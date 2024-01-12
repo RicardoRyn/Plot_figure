@@ -899,13 +899,13 @@ def plot_correlation_figure(data, ax=None, dots_color=None, line_color=None, tit
         ax.text(x_start + x_width / 10, y_start + 8 * y_width / 10, 'p = '+str(round(p,3)), va='center', fontsize=asterisk_fontsize)  # 参数保留小数点后3位
     return
 
-def plot_brain_figure(file_path=None, ax=None, cmap=None, title_name='', title_fontsize=20, title_pad=0, cbarlabel_name='', cbarlabel_fontsize=10, cbartick_fontsize=10, cbartick_rotation=60, vmin=None, vmax=None):
+def plot_brain_figure(data=None, ax=None, cmap=None, title_name='', title_fontsize=20, title_pad=0, cbarlabel_name='', cbarlabel_fontsize=10, cbartick_fontsize=10, cbartick_rotation=60, vmin=None, vmax=None):
     """
     ## 说明:
     该函数用于绘制一个单组带点bar图。
 
     ## 参数:
-    - file_path: 指定.csv文件路径。
+    - data: dict，或者指定.csv文件路径。
     - ax: ax，事先创建的Axes。
     - cmap: str，colorbar颜色.
     - title_name: str，图像标题。
@@ -926,26 +926,40 @@ def plot_brain_figure(file_path=None, ax=None, cmap=None, title_name='', title_f
 
     ## 例子:
     输入最多参数调用:
-    >>> plot_brain_figure(file_path="./ROIs.csv", title_name='Diff or High-Low', cbarlabel_name='Volume diff')
+    >>> plot_brain_figure(data="./ROIs.csv", title_name='Diff or High-Low', cbarlabel_name='Volume diff')
     """
     subj_dir = "./FS/"
     subj = "NMT_template"
     if ax is None:
         ax = plt.gca()
-    if file_path == None:
-        df = pd.read_csv("./ROIs.csv", header=0, index_col=0)
+    if isinstance(data, dict):
+        df_data = {}
+        list1, list2 = [], []
+        for i in data:
+            list1.append(i)
+            list2.append(data[i])
+        df_data["ROIs_name"] = list1
+        df_data["Values"] = list2
+        df = pd.DataFrame(df_data)
+        df.set_index('ROIs_name', inplace=True)
     else:
-        df = pd.read_csv(file_path, header=0, index_col=0)
-    if cmap == None:
+        df = pd.read_csv(data, header=0, index_col=0)
+    if cmap is None:
         cmap = 'bwr'
     for hemi in ['lh', 'rh']:
         globals()[hemi + '_rr_mm'], globals()[hemi + '_tris'] = mne.read_surface(subj_dir + subj + '/surf/' + hemi + '.inflated')
         globals()[hemi + '_data'] = np.zeros(len(eval(hemi + '_rr_mm')))
         labels = mne.read_labels_from_annot(subj, parc='charm5_atlas', hemi=hemi, subjects_dir=subj_dir, sort=False)
-        for label in labels:
-            if label.name == 'unknown-lh' or label.name == 'unknown-rh':
-                continue
-            eval(hemi + '_data')[label.vertices] = df.loc[label.name, 'Values']
+        for roi in df.index:
+            globals()[hemi + '_flag1'] = True
+            for label in labels:
+                if roi == label.name:
+                    globals()[hemi + "_flag1"] = False
+                    eval(hemi + '_data')[label.vertices] = df.loc[label.name, 'Values']
+                    break
+    if lh_flag1 and rh_flag1 :
+        print(f"没有找到脑区：{roi} 的位置，请检查脑区名字拼写！")
+        return
     if np.all(lh_data == 0) and np.all(rh_data == 0):  # 如果 lh_data 和 rh_data 数组全是0值
         print("所有顶点值为0，请检查结果。")
         flag = False
@@ -953,18 +967,18 @@ def plot_brain_figure(file_path=None, ax=None, cmap=None, title_name='', title_f
         vmin = -1
     else:
         abs_max_value = np.max(np.abs([np.max(lh_data), np.min(lh_data), np.max(rh_data), np.min(rh_data)]))
-        if vmin == None and vmax == None:
+        if vmin is None and vmax is None:
             flag = True
             vmax = abs_max_value
             vmin = -vmax
-        elif vmin == None and vmax != None:
+        elif vmin is None and vmax is not None:
             if vmax <= -abs_max_value:
                 print(f"指定的vmax过小，小于自动计算的最小值{-abs_max_value}，请重新指定vmax值！")
                 return
             else:
                 flag = True
                 vmin = -abs_max_value
-        elif vmin != None and vmax == None:
+        elif vmin is not None and vmax is None:
             if vmin >= abs_max_value:
                 print(f"指定的vmin过大，大于自动计算的最大值{abs_max_value}，请重新指定vmmin值！")
                 return
