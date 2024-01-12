@@ -190,10 +190,10 @@ fig.savefig(r"./figures/multi_violin.png",dpi=250, bbox_inches='tight')
 ```python
 # 原始数据
 np.random.seed(1998)
-rm_rjx1 = np.random.randint(1,100,1000).reshape(-1, 1)
-rm_rjx2 = np.random.randint(1,100,1000).reshape(-1, 1)
+data1 = np.random.randint(1,100,1000).reshape(-1, 1)
+data2 = np.random.randint(1,100,1000).reshape(-1, 1)
 # 导入数据
-data = np.concatenate([rm_rjx1, rm_rjx2], axis=1)  # (10, 2)
+data = np.concatenate([data1, data2], axis=1)  # (10, 2)
 # 设置figure
 fig = plt.figure(figsize=(3, 3))
 # 设置axes
