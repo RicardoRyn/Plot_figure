@@ -223,9 +223,9 @@ ax2 = fig.add_subplot(122)
 plot_brain_figure(data=data1, ax=ax1, title_name='AAA', cbarlabel_name='BBB')
 plot_brain_figure(data=data2, ax=ax2, title_name='CCC', cbarlabel_name='DDD')
 # # 保存图片
-fig.savefig(r"./figures/brain1.png",dpi=250, bbox_inches='tight')
+fig.savefig(r"./figures/brain.png",dpi=250, bbox_inches='tight')
 ```
 
-![brain1](F:\Typora_images\brain1.png)
+<img src="./figures/brain.png" alt="correlation" style="zoom:25%;" />
 
 > 注意：猕猴脑区图集为[猕猴NMT2 CHARM5图集](https://doi.org/10.1016/j.neuroimage.2021.117997)，结果由Joker贡献。原本CHARM5图集左右脑各有88个脑区，但由于技术限制，本画图函数中只能展示左脑85个脑区，右脑86个脑区 (= =+)，具体脑区名称见`./ROIs.csv`文件。
