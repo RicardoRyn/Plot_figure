@@ -190,10 +190,10 @@ fig.savefig(r"./figures/multi_violin.png",dpi=250, bbox_inches='tight')
 ```python
 # 原始数据
 np.random.seed(1998)
-rm_rjx1 = np.random.randint(1,100,1000).reshape(-1, 1)
-rm_rjx2 = np.random.randint(1,100,1000).reshape(-1, 1)
+data1 = np.random.randint(1,100,1000).reshape(-1, 1)
+data2 = np.random.randint(1,100,1000).reshape(-1, 1)
 # 导入数据
-data = np.concatenate([rm_rjx1, rm_rjx2], axis=1)  # (10, 2)
+data = np.concatenate([data1, data2], axis=1)  # (10, 2)
 # 设置figure
 fig = plt.figure(figsize=(3, 3))
 # 设置axes
@@ -211,17 +211,21 @@ fig.savefig(r"./figures/correlation.png",dpi=250, bbox_inches='tight')
 使用例：
 
 ```python
-# 原始数据，写在./ROIs.csv文件里面
+# 原始数据
+data1 = './ROIs.csv'
+data2 = {'V1-lh':1, 'M1-lh':-1}  # 请多检查脑区名字拼写
 # 设置figure
-fig = plt.figure(figsize=(10, 10))
+fig = plt.figure(figsize=(20, 10))
 # 设置axes
-ax = fig.add_subplot(111)
+ax1 = fig.add_subplot(121)
+ax2 = fig.add_subplot(122)
 # 调用函数
-plot_brain_figure(ax=ax, title_name='Diff or High-Low', cbarlabel_name='Volume diff')
-# 保存图片
+plot_brain_figure(data=data1, ax=ax1, title_name='AAA', cbarlabel_name='BBB')
+plot_brain_figure(data=data2, ax=ax2, title_name='CCC', cbarlabel_name='DDD')
+# # 保存图片
 fig.savefig(r"./figures/brain.png",dpi=250, bbox_inches='tight')
 ```
 
-<img src="./figures/brain.png" alt="brain" style="zoom:25%;" />
+<img src="./figures/brain.png" alt="correlation" style="zoom:25%;" />
 
 > 注意：猕猴脑区图集为[猕猴NMT2 CHARM5图集](https://doi.org/10.1016/j.neuroimage.2021.117997)，结果由Joker贡献。原本CHARM5图集左右脑各有88个脑区，但由于技术限制，本画图函数中只能展示左脑85个脑区，右脑86个脑区 (= =+)，具体脑区名称见`./ROIs.csv`文件。
