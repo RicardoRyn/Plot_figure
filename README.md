@@ -106,7 +106,7 @@ plot_one_group_bar_figure(data, ax=ax4, labels_name=labels_name, colors=colors, 
 fig.savefig("./figures/single_bar.png", dpi=250, bbox_inches='tight')  # 保存到指定位置，以及设置图片清晰度（越清晰，图片越大），矢量图保存可以换成.svg格式
 ```
 
-<img src="F:\Typora_images\single_bar-1723977937783-3.png" alt="single_bar" style="zoom:25%;" />
+<img src="./example_figures/single_bar.png" alt="single_bar" style="zoom:25%;" />
 
 ### 1.2 函数介绍
 
@@ -278,7 +278,7 @@ plot_one_group_violin_figure(data, ax=ax4, labels_name=labels_name, colors=color
 fig.savefig("./figures/single_violin.png", dpi=250, bbox_inches='tight')
 ```
 
-<img src="F:\Typora_images\single_violin-1723978014689-5.png" alt="single_violin" style="zoom:25%;" />
+<img src="./example_figures/single_violin.png" alt="single_violin" style="zoom:25%;" />
 
 ### 2.2 函数介绍
 
@@ -313,7 +313,7 @@ plot_correlation_figure(rm_rjx1, rm_rjx2, stats_method='spearman', summary=True)
 fig.savefig(r"./figures/correlation.png",dpi=250, bbox_inches='tight')  # 保存到指定位置，以及设置图片清晰度（越清晰，图片越大），矢量图保存可以换成.svg格式
 ```
 
-<img src="F:\Typora_images\correlation-1723980391955-7.png" alt="correlation" style="zoom:25%;" />
+<img src="./example_figures/correlation.png" alt="correlation" style="zoom:33%;" />
 
 ### 3.2 函数介绍
 
@@ -473,7 +473,7 @@ plot_matrix_figure(data2, ax=ax2, row_labels_name=labels, col_labels_name=labels
 fig.savefig("./figures/matrix.png", dpi=250, bbox_inches='tight')
 ```
 
-<img src="F:\Typora_images\matrix-1723982403434-11.png" alt="matrix" style="zoom:25%;" />
+<img src="./example_figures/matrix.png" alt="matrix" style="zoom:25%;" />
 
 ### 4.2 函数介绍
 
@@ -589,19 +589,19 @@ fig = plot_human_hemi_brain_figure(data, hemi='rh', surf='midthickness', cmap='b
 fig.savefig(r"./figures/human_brain4.png", dpi=250, bbox_inches='tight')
 ```
 
-<img src="F:\Typora_images\human_brain1.png" alt="human_brain1" style="zoom:25%;" />
+<img src="./example_figures/human_brain1.png" alt="human_brain1" style="zoom:25%;" />
 
 ---
 
-<img src="F:\Typora_images\human_brain2.png" alt="human_brain2" style="zoom:25%;" />
+<img src="./example_figures/human_brain2.png" alt="human_brain2" style="zoom:25%;" />
 
 ---
 
-<img src="F:\Typora_images\human_brain3.png" alt="human_brain3" style="zoom:25%;" />
+<img src="./example_figures/human_brain3.png" alt="human_brain3" style="zoom:25%;" />
 
 ---
 
-<img src="F:\Typora_images\human_brain4-1724031003938-5.png" alt="human_brain4" style="zoom:25%;" />
+<img src="./example_figures/human_brain4.png" alt="human_brain4" style="zoom:25%;" />
 
 ### 5.2 函数介绍
 
@@ -712,19 +712,19 @@ fig = plot_macaque_hemi_brain_figure(data, hemi='rh', surf='white', colorbar_dir
 fig.savefig(r"./figures/macaque_brain4.png", dpi=250, bbox_inches='tight')
 ```
 
-<img src="F:\Typora_images\macaque_brain1.png" alt="macaque_brain1" style="zoom:25%;" />
+<img src="./example_figures/macaque_brain1.png" alt="macaque_brain1" style="zoom:25%;" />
 
 ---
 
-<img src="F:\Typora_images\macaque_brain2.png" alt="macaque_brain2" style="zoom:25%;" />
+<img src="./example_figures/macaque_brain2.png" alt="macaque_brain2" style="zoom:25%;" />
 
 ---
 
-<img src="F:\Typora_images\macaque_brain3.png" alt="macaque_brain3" style="zoom:25%;" />
+<img src="./example_figures/macaque_brain3.png" alt="macaque_brain3" style="zoom:25%;" />
 
 ---
 
-<img src="F:\Typora_images\macaque_brain4.png" alt="macaque_brain4" style="zoom:25%;" />
+<img src="./example_figures/macaque_brain4.png" alt="macaque_brain4" style="zoom:25%;" />
 
 ### 6.2 函数介绍
 
