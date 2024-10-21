@@ -21,7 +21,7 @@ from surfplot import Plot
 
 
 
-def plot_one_group_bar_figure(data, ax=None, labels_name=None, x_tick_fontsize=10, x_tick_rotation=0, x_label_ha='center', width=0.5, colors=None, title_name='', title_fontsize=10, title_pad=20, x_label_name='', x_label_fontsize=10, y_label_name='', y_label_fontsize=10, y_tick_fontsize=10, y_tick_rotation=0, y_max_tick_to_one=False, y_max_tick_to_value=1, y_lim_range=None, math_text=True, one_decimal_place=False, percentage=False, ax_min_is_0=False, statistic=False, test_method='ttest_ind', asterisk_fontsize=10, multicorrect=False, **kwargs):
+def plot_one_group_bar_figure(data, ax=None, labels_name=None, x_tick_fontsize=10, x_tick_rotation=0, x_label_ha='center', width=0.5, colors=None, title_name='', title_fontsize=10, title_pad=20, x_label_name='', x_label_fontsize=10, y_label_name='', y_label_fontsize=10, y_tick_fontsize=10, y_tick_rotation=0, y_max_tick_to_one=False, y_max_tick_to_value=1, y_lim_range=None, math_text=True, one_decimal_place=False, percentage=False, ax_min_is_0=False, statistic=False, p_list=None, test_method='ttest_ind', asterisk_fontsize=10, multicorrect=False, **kwargs):
     # # 设置部分默认值
     if ax is None:
         ax = plt.gca()
@@ -106,9 +106,13 @@ def plot_one_group_bar_figure(data, ax=None, labels_name=None, x_tick_fontsize=1
     ############################################## 标星号 ############################################
     if statistic:
         t_count = 0
+        p_list_index = 0
         for i1 in range(len(labels_name)):
             for i2 in range(i1+1, len(labels_name)):
-                if test_method == 'ttest_ind':
+                if test_method == 'external':  #############################################
+                    globals()['t_' + str(i1) + '_' + str(i2)] = p_list[p_list_index]  #############################################
+                    p_list_index += 1
+                elif test_method == 'ttest_ind':
                     globals()['s_' + str(i1) + '_' + str(i2)], globals()['t_' + str(i1) + '_' + str(i2)] = stats.ttest_ind(data[i1], data[i2])
                 elif test_method == 'ttest_rel':
                     globals()['s_' + str(i1) + '_' + str(i2)], globals()['t_' + str(i1) + '_' + str(i2)] = stats.ttest_rel(data[i1], data[i2])
@@ -130,7 +134,8 @@ def plot_one_group_bar_figure(data, ax=None, labels_name=None, x_tick_fontsize=1
                     globals()['t_' + str(i1) + '_' + str(i2)] = eval('t_' + str(i1) + '_' + str(i2)) * (len(labels_name) * (len(labels_name) - 1)) / 2  # 多重比较校正，直接将p值乘以比较次数bonferroni校正
                 if eval('t_' + str(i1) + '_' + str(i2)) <= 0.05:
                     t_count +=1
-                    print('{} 方法，{} 和 {} 之间显著，s = {:.4f}，p = {:.4f}'.format(test_method, labels_name[i1], labels_name[i2], eval('s_' + str(i1) + '_' + str(i2)), eval('t_' + str(i1) + '_' + str(i2))))
+                    # print('{} 方法，{} 和 {} 之间显著，s = {:.4f}，p = {:.4f}'.format(test_method, labels_name[i1], labels_name[i2], eval('s_' + str(i1) + '_' + str(i2)), eval('t_' + str(i1) + '_' + str(i2))))
+
         lines_interval = ax_max_y_max_value / (t_count + 1)
         star_line_interval = lines_interval / 5
         count = 1
@@ -152,7 +157,7 @@ def plot_one_group_bar_figure(data, ax=None, labels_name=None, x_tick_fontsize=1
                     count += 1
     return y_max_value, ax_max_y_max_value
 
-def plot_one_group_violin_figure(data, ax=None, labels_name=None, x_tick_fontsize=10, x_tick_rotation=0, x_label_ha='center', width=0.5, colors=None, title_name='', title_fontsize=10, title_pad=20, x_label_name='', x_label_fontsize=10, y_label_name='', y_label_fontsize=10, y_tick_fontsize=10, y_tick_rotation=0, y_max_tick_to_one=False, y_max_tick_to_value=1, y_lim_range=None, math_text=True, one_decimal_place=False, percentage=False, ax_min_is_0=False, statistic=False, test_method='ttest_ind', asterisk_fontsize=10, multicorrect=False, **kwargs):
+def plot_one_group_violin_figure(data, ax=None, labels_name=None, x_tick_fontsize=10, x_tick_rotation=0, x_label_ha='center', width=0.5, colors=None, title_name='', title_fontsize=10, title_pad=20, x_label_name='', x_label_fontsize=10, y_label_name='', y_label_fontsize=10, y_tick_fontsize=10, y_tick_rotation=0, y_max_tick_to_one=False, y_max_tick_to_value=1, y_lim_range=None, math_text=True, one_decimal_place=False, percentage=False, ax_min_is_0=False, statistic=False, p_list=None, test_method='ttest_ind', asterisk_fontsize=10, multicorrect=False, **kwargs):
     # 设置部分默认值
     if ax is None:
         ax = plt.gca()
@@ -244,9 +249,13 @@ def plot_one_group_violin_figure(data, ax=None, labels_name=None, x_tick_fontsiz
     ############################################## 标星号 ############################################
     if statistic:
         t_count = 0
+        p_list_index = 0
         for i1 in range(len(labels_name)):
             for i2 in range(i1+1, len(labels_name)):
-                if test_method == 'ttest_ind':
+                if  test_method == 'external':  #############################################
+                    globals()['t_' + str(i1) + '_' + str(i2)] = p_list[p_list_index]  #############################################
+                    p_list_index += 1
+                elif test_method == 'ttest_ind':
                     globals()['s_' + str(i1) + '_' + str(i2)], globals()['t_' + str(i1) + '_' + str(i2)] = stats.ttest_ind(data[i1], data[i2])
                 elif test_method == 'ttest_rel':
                     globals()['s_' + str(i1) + '_' + str(i2)], globals()['t_' + str(i1) + '_' + str(i2)] = stats.ttest_rel(data[i1], data[i2])
@@ -268,7 +277,7 @@ def plot_one_group_violin_figure(data, ax=None, labels_name=None, x_tick_fontsiz
                     globals()['t_' + str(i1) + '_' + str(i2)] = eval('t_' + str(i1) + '_' + str(i2)) * (len(labels_name) * (len(labels_name) - 1)) / 2  # 多重比较校正，直接将p值乘以比较次数的bonferroni校正
                 if eval('t_' + str(i1) + '_' + str(i2)) <= 0.05:
                     t_count +=1
-                    print('{} 方法，{} 和 {} 之间显著，s = {:.4f}，p = {:.4f}'.format(test_method, labels_name[i1], labels_name[i2], eval('s_' + str(i1) + '_' + str(i2)), eval('t_' + str(i1) + '_' + str(i2))))
+                    # print('{} 方法，{} 和 {} 之间显著，s = {:.4f}，p = {:.4f}'.format(test_method, labels_name[i1], labels_name[i2], eval('s_' + str(i1) + '_' + str(i2)), eval('t_' + str(i1) + '_' + str(i2))))
         ax_max_y_max_value = ax_max - y_max_value
         lines_interval = ax_max_y_max_value / (t_count + 1)
         star_line_interval = lines_interval / 5
@@ -291,7 +300,7 @@ def plot_one_group_violin_figure(data, ax=None, labels_name=None, x_tick_fontsiz
                     count += 1
     return y_max_value, ax_max_y_max_value
 
-def plot_correlation_figure(data1, data2, ax=None, stats_method='pearson', dots_color=None, line_color=None, title_name='', title_fontsize=10, title_pad=20, x_label_name='', x_label_fontsize=10, x_tick_fontsize=10, x_tick_rotation=0, x_major_locator=None, x_max_tick_to_one=False, x_max_tick_to_value=1, x_math_text=True, x_one_decimal_place=False, x_percentage=False, y_label_name='', y_label_fontsize=10, y_tick_fontsize=10, y_tick_rotation=0, y_major_locator=None, y_max_tick_to_one=False, y_max_tick_to_value=1, y_math_text=True, y_one_decimal_place=False, y_percentage=False, asterisk_fontsize=10, summary=False):
+def plot_correlation_figure(data1, data2, ax=None, stats_method='pearson', dots_color=None, line_color=None, title_name='', title_fontsize=10, title_pad=10, x_label_name='', x_label_fontsize=10, x_tick_fontsize=10, x_tick_rotation=0, x_major_locator=None, x_max_tick_to_one=False, x_max_tick_to_value=1, x_math_text=True, x_one_decimal_place=False, x_percentage=False, y_label_name='', y_label_fontsize=10, y_tick_fontsize=10, y_tick_rotation=0, y_major_locator=None, y_max_tick_to_one=False, y_max_tick_to_value=1, y_math_text=True, y_one_decimal_place=False, y_percentage=False, asterisk_fontsize=10, summary=False):
     # 设置部分默认值
     if ax is None:
         ax = plt.gca()
