@@ -1,5 +1,7 @@
 # Plot Figure
 
+使用示例见`example.ipynb`（更新比较勤）
+
 # 一. 简介
 
 一个用于认知神经领域科研绘图的python包，并且可以完成简单的统计检验并自动标星号。
@@ -13,6 +15,10 @@
 5. 脑图
    1. 人类Glasser脑区图
    2. 猕猴CHARM5脑区图
+6. 圈状图（circos图）
+   1. 对称
+   2. 不对称
+
 
 
 前5种图基于`matplotlib`进行绘图，`scipy`进行统计检验。人上的脑图基于`neuromaps`、`surfplot`完成，猴上的脑图基于`mne`完成。
@@ -36,6 +42,7 @@
 - `matplotlib`  # 绘图
 - `statsmodels`  # 统计分析
 - `scipy`  # 统计分析
+- `mne-connectivity`  # 圈状图（circos图）绘制
 - `mne`  # 脑图绘制**（这个包的安装比较麻烦，见下文）**
 - `neuromaps`  # 脑图绘制
 - `surfplot`  # 脑图绘制
