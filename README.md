@@ -1,6 +1,6 @@
 # Plot Figure
 
-使用示例见`example.ipynb`（更新比较勤）
+使用示例见`example.ipynb`，示例图见文件夹`example_figures`（更新比较勤）
 
 # 一. 简介
 
