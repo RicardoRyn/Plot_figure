@@ -17,13 +17,14 @@ from mne_connectivity.viz import plot_connectivity_circle
 
 from scipy import stats
 import statsmodels.api as sm
+from statsmodels.stats import multitest
 
 from neuromaps.datasets import fetch_fslr
 from surfplot import Plot
 
 
 
-def plot_one_group_bar_figure(data, ax=None, labels_name=None, x_tick_fontsize=10, x_tick_rotation=0, x_label_ha='center', width=0.5, colors=None, title_name='', title_fontsize=10, title_pad=20, x_label_name='', x_label_fontsize=10, y_label_name='', y_label_fontsize=10, y_tick_fontsize=10, y_tick_rotation=0, y_max_tick_to_one=False, y_max_tick_to_value=1, y_lim_range=None, math_text=True, one_decimal_place=False, percentage=False, ax_min_is_0=False, statistic=False, p_list=None, test_method='ttest_ind', asterisk_fontsize=10, multicorrect=False, **kwargs):
+def plot_one_group_bar_figure(data, ax=None, labels_name=None, x_tick_fontsize=10, x_tick_rotation=0, x_label_ha='center', width=0.5, colors=None, title_name='', title_fontsize=10, title_pad=20, x_label_name='', x_label_fontsize=10, y_label_name='', y_label_fontsize=10, y_tick_fontsize=10, y_tick_rotation=0, y_max_tick_to_one=False, y_max_tick_to_value=1, y_lim_range=None, math_text=True, one_decimal_place=False, percentage=False, ax_min_is_0=False, statistic=False, p_list=None, test_method='ttest_ind', asterisk_fontsize=10, multicorrect_bonferroni=False, multicorrect_fdr=False, **kwargs):
     # # 设置部分默认值
     if ax is None:
         ax = plt.gca()
@@ -106,6 +107,7 @@ def plot_one_group_bar_figure(data, ax=None, labels_name=None, x_tick_fontsize=1
         else:
             ax.set_ylim(ax_min, ax_max)
     ############################################## 标星号 ############################################
+    p_list_fdr = []
     if statistic:
         t_count = 0
         p_list_index = 0
@@ -132,12 +134,20 @@ def plot_one_group_bar_figure(data, ax=None, labels_name=None, x_tick_fontsize=1
                     globals()['s_' + str(i1) + '_' + str(i2)], globals()['t_' + str(i1) + '_' + str(i2)] = res.statistic, res.pvalue
                 else:
                     print('没有该统计方法，请重新输入！！！')
-                if multicorrect == True:
+                if multicorrect_bonferroni == True:
                     globals()['t_' + str(i1) + '_' + str(i2)] = eval('t_' + str(i1) + '_' + str(i2)) * (len(labels_name) * (len(labels_name) - 1)) / 2  # 多重比较校正，直接将p值乘以比较次数bonferroni校正
+                if multicorrect_fdr == True:
+                    p_list_fdr.append(eval('t_' + str(i1) + '_' + str(i2)))
                 if eval('t_' + str(i1) + '_' + str(i2)) <= 0.05:
                     t_count +=1
                     # print('{} 方法，{} 和 {} 之间显著，s = {:.4f}，p = {:.4f}'.format(test_method, labels_name[i1], labels_name[i2], eval('s_' + str(i1) + '_' + str(i2)), eval('t_' + str(i1) + '_' + str(i2))))
-
+        if multicorrect_fdr == True:
+            _, p_list_fdr_corr = multitest.fdrcorrection(p_list_fdr, alpha=0.05, method='i', is_sorted=False)
+            p_list_fdr_corr_index = 0
+            for i1 in range(len(labels_name)):
+                for i2 in range(i1+1, len(labels_name)):
+                    globals()['t_' + str(i1) + '_' + str(i2)] = p_list_fdr_corr[p_list_fdr_corr_index]
+                    p_list_fdr_corr_index += 1
         lines_interval = ax_max_y_max_value / (t_count + 1)
         star_line_interval = lines_interval / 5
         count = 1
@@ -809,10 +819,12 @@ def plot_macaque_hemi_brain_figure(data, ax_direction='horizontal', hemi='lh', c
         cbar.set_ticks([vmin, vmax])
     return fig
 
-def plot_symmetric_circle_figure(connectome, labels=None, node_colors=None, figsize=(10, 10), labes_fontsize=15, face_color='w', nodeedge_color='w', text_color='k', cmap='bwr', linewidth=1, title_name='', title_fontsize=20, colorbar=False, colorbar_size=0.2, colorbar_fontsize=10, colorbar_pos=(0, 0), manual_colorbar=False, manual_colorbar_pos=[1, 0.4, 0.01, 0.2], manual_cmap='bwr', manual_colorbar_name='', manual_colorbar_label_fontsize=10, manual_colorbar_fontsize=10, manual_colorbar_rotation=-90, manual_colorbar_pad=20):
+def plot_symmetric_circle_figure(connectome, labels=None, node_colors=None, vmin=None, vmax=None, figsize=(10, 10), labes_fontsize=15, face_color='w', nodeedge_color='w', text_color='k', cmap='bwr', linewidth=1, title_name='', title_fontsize=20, colorbar=False, colorbar_size=0.2, colorbar_fontsize=10, colorbar_pos=(0, 0), manual_colorbar=False, manual_colorbar_pos=[1, 0.4, 0.01, 0.2], manual_cmap='bwr', manual_colorbar_name='', manual_colorbar_label_fontsize=10, manual_colorbar_fontsize=10, manual_colorbar_rotation=-90, manual_colorbar_pad=20):
     # 设置默认值
-    vmax = np.max((np.max(connectome), -np.min(connectome)))
-    vmin = -vmax
+    if vmax is None:
+        vmax = np.max((np.max(connectome), -np.min(connectome)))
+    if vmin is None:
+        vmin = np.min((np.min(connectome), -np.max(connectome)))
     count = connectome.shape[0]
     count_half = int(count/2)
     if labels is None:
@@ -836,6 +848,7 @@ def plot_symmetric_circle_figure(connectome, labels=None, node_colors=None, figs
     # 画图
     fig, ax = plt.subplots(figsize=figsize, subplot_kw=dict(polar=True))
     fig.subplots_adjust(left=0.1, right=0.9, top=0.9, bottom=0.1)
+    print(vmin, vmax)
     a = plot_connectivity_circle(connectome, labels, node_angles=node_angles, node_colors=node_colors,fontsize_names=labes_fontsize, facecolor=face_color, node_edgecolor=nodeedge_color, textcolor=text_color, colormap=cmap, vmin=vmin, vmax=vmax, linewidth=linewidth, title=title_name, fontsize_title=title_fontsize, colorbar=colorbar, colorbar_size=colorbar_size, colorbar_pos=colorbar_pos, fontsize_colorbar=colorbar_fontsize, fig=fig, ax=ax, interactive=False, show=False)
     # 如有需要，禁用自动colorbar，手动生成colorbar
     if manual_colorbar:
@@ -850,10 +863,12 @@ def plot_symmetric_circle_figure(connectome, labels=None, node_colors=None, figs
         cbar.ax.tick_params(labelsize=manual_colorbar_fontsize)
     return fig
 
-def plot_asymmetric_circle_figure(connectome, labels=None, node_colors=None, figsize=(10, 10), labes_fontsize=15, face_color='w', nodeedge_color='w', text_color='k', cmap='bwr', linewidth=1, title_name='', title_fontsize=20, colorbar=False, colorbar_size=0.2, colorbar_fontsize=10, colorbar_pos=(0, 0), manual_colorbar=False, manual_colorbar_pos=[1, 0.4, 0.01, 0.2], manual_cmap='bwr', manual_colorbar_name='', manual_colorbar_label_fontsize=10, manual_colorbar_fontsize=10, manual_colorbar_rotation=-90, manual_colorbar_pad=20):
+def plot_asymmetric_circle_figure(connectome, labels=None, node_colors=None, vmin=None, vmax=None, figsize=(10, 10), labes_fontsize=15, face_color='w', nodeedge_color='w', text_color='k', cmap='bwr', linewidth=1, title_name='', title_fontsize=20, colorbar=False, colorbar_size=0.2, colorbar_fontsize=10, colorbar_pos=(0, 0), manual_colorbar=False, manual_colorbar_pos=[1, 0.4, 0.01, 0.2], manual_cmap='bwr', manual_colorbar_name='', manual_colorbar_label_fontsize=10, manual_colorbar_fontsize=10, manual_colorbar_rotation=-90, manual_colorbar_pad=20):
     # 设置默认值
-    vmax = np.max((np.max(connectome), -np.min(connectome)))
-    vmin = -vmax
+    if vmax is None:
+        vmax = np.max((np.max(connectome), -np.min(connectome)))
+    if vmin is None:
+        vmin = np.min((np.min(connectome), -np.max(connectome)))
     count = connectome.shape[0]
     if labels is None:
         labels = [str(i) for i in range(count)]
