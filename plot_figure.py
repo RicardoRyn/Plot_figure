@@ -652,7 +652,7 @@ def plot_macaque_brain_figure(data, cmap='Reds', surf='inflated', vmin=None, vma
                 break
         screenshot = screenshot[row1:row2, col1:col2, :]
         brain.close()
-        im = ax.imshow(screenshot)
+        ax.imshow(screenshot)
         ax.spines[['top', 'bottom', 'left', 'right']].set_visible(False)
         ax.set_xticks([])
         ax.set_yticks([])
@@ -819,7 +819,7 @@ def plot_macaque_hemi_brain_figure(data, ax_direction='horizontal', hemi='lh', c
         cbar.set_ticks([vmin, vmax])
     return fig
 
-def plot_symmetric_circle_figure(connectome, labels=None, node_colors=None, vmin=None, vmax=None, figsize=(10, 10), labes_fontsize=15, face_color='w', nodeedge_color='w', text_color='k', cmap='bwr', linewidth=1, title_name='', title_fontsize=20, colorbar=False, colorbar_size=0.2, colorbar_fontsize=10, colorbar_pos=(0, 0), manual_colorbar=False, manual_colorbar_pos=[1, 0.4, 0.01, 0.2], manual_cmap='bwr', manual_colorbar_name='', manual_colorbar_label_fontsize=10, manual_colorbar_fontsize=10, manual_colorbar_rotation=-90, manual_colorbar_pad=20):
+def plot_symmetric_circle_figure(connectome, labels=None, node_colors=None, vmin=None, vmax=None, figsize=(10, 10), labes_fontsize=15, face_color='w', nodeedge_color='w', text_color='k', cmap='bwr', linewidth=1, title_name='', title_fontsize=20, colorbar=False, colorbar_size=0.2, colorbar_fontsize=10, colorbar_pos=(0, 0), manual_colorbar=False, manual_colorbar_pos=[1, 0.4, 0.01, 0.2], manual_cmap='bwr', manual_colorbar_name='', manual_colorbar_label_fontsize=10, manual_colorbar_fontsize=10, manual_colorbar_rotation=-90, manual_colorbar_pad=20, manual_colorbar_draw_border=True, manual_colorbar_tickline=False, manual_colorbar_tick_count=False):
     # 设置默认值
     if vmax is None:
         vmax = np.max((np.max(connectome), -np.min(connectome)))
@@ -858,12 +858,18 @@ def plot_symmetric_circle_figure(connectome, labels=None, node_colors=None, vmin
         sm = plt.cm.ScalarMappable(cmap=manual_cmap, norm=norm)
         sm.set_array([])
         cbar = fig.colorbar(sm, cax=cax)
-        cbar.ax.yaxis.set_ticks_position('left')
+        cbar.outline.set_visible(manual_colorbar_draw_border)
         cbar.ax.set_ylabel(manual_colorbar_name, fontsize=manual_colorbar_label_fontsize, rotation=manual_colorbar_rotation, labelpad=manual_colorbar_pad)
+        if not manual_colorbar_tickline:
+            cbar.ax.tick_params(length=0)  # 不显示竖线
+        cbar.ax.yaxis.set_ticks_position('left')
         cbar.ax.tick_params(labelsize=manual_colorbar_fontsize)
+        if manual_colorbar_tick_count:
+            ticks = np.linspace(vmin, vmax, manual_colorbar_tick_count)
+            cbar.set_ticks(ticks)
     return fig
 
-def plot_asymmetric_circle_figure(connectome, labels=None, node_colors=None, vmin=None, vmax=None, figsize=(10, 10), labes_fontsize=15, face_color='w', nodeedge_color='w', text_color='k', cmap='bwr', linewidth=1, title_name='', title_fontsize=20, colorbar=False, colorbar_size=0.2, colorbar_fontsize=10, colorbar_pos=(0, 0), manual_colorbar=False, manual_colorbar_pos=[1, 0.4, 0.01, 0.2], manual_cmap='bwr', manual_colorbar_name='', manual_colorbar_label_fontsize=10, manual_colorbar_fontsize=10, manual_colorbar_rotation=-90, manual_colorbar_pad=20):
+def plot_asymmetric_circle_figure(connectome, labels=None, node_colors=None, vmin=None, vmax=None, figsize=(10, 10), labes_fontsize=15, face_color='w', nodeedge_color='w', text_color='k', cmap='bwr', linewidth=1, title_name='', title_fontsize=20, colorbar=False, colorbar_size=0.2, colorbar_fontsize=10, colorbar_pos=(0, 0), manual_colorbar=False, manual_colorbar_pos=[1, 0.4, 0.01, 0.2], manual_cmap='bwr', manual_colorbar_name='', manual_colorbar_label_fontsize=10, manual_colorbar_fontsize=10, manual_colorbar_rotation=-90, manual_colorbar_pad=20, manual_colorbar_draw_border=True, manual_colorbar_tickline=False, manual_colorbar_tick_count=False):
     # 设置默认值
     if vmax is None:
         vmax = np.max((np.max(connectome), -np.min(connectome)))
@@ -887,9 +893,15 @@ def plot_asymmetric_circle_figure(connectome, labels=None, node_colors=None, vmi
         sm = plt.cm.ScalarMappable(cmap=manual_cmap, norm=norm)
         sm.set_array([])
         cbar = fig.colorbar(sm, cax=cax)
-        cbar.ax.yaxis.set_ticks_position('left')
+        cbar.outline.set_visible(manual_colorbar_draw_border)
         cbar.ax.set_ylabel(manual_colorbar_name, fontsize=manual_colorbar_label_fontsize, rotation=manual_colorbar_rotation, labelpad=manual_colorbar_pad)
+        if not manual_colorbar_tickline:
+            cbar.ax.tick_params(length=0)  # 不显示竖线
+        cbar.ax.yaxis.set_ticks_position('left')
         cbar.ax.tick_params(labelsize=manual_colorbar_fontsize)
+        if manual_colorbar_tick_count:
+            ticks = np.linspace(vmin, vmax, manual_colorbar_tick_count)
+            cbar.set_ticks(ticks)
     return fig
 
 def plot_multi_group_bar_figure(data, test_method, legend_name=None, labels_name=None, ax=None, width=0.2, colors=None, title_name='', title_fontsize=15, title_pad=20, x_label_name='', x_label_fontsize=10, x_tick_fontsize=10, x_tick_rotation=30, y_label_name='', y_label_fontsize=10, y_tick_fontsize=10, y_tick_rotation=0, math_text=True, y_max_tick_to_one=False, y_max_tick_to_value=1, one_decimal_place=False, percentage=False, legend_fontsize=10, legend_location='best', legend_bbox_location=None, ax_min_is_0=False, asterisk_size=10, multicorrect=False, tails='two-sided', **kwargs):
