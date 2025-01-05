@@ -20,11 +20,15 @@ import statsmodels.api as sm
 from statsmodels.stats import multitest
 
 from neuromaps.datasets import fetch_fslr
+from neuromaps.datasets import fetch_rjx_hcpmacaque
 from surfplot import Plot
 
+# 1. 改了"python_package_path\neuromaps\datasets\atlases.py"文件
+# 2. 改了"python_package_path\neuromaps\datasets\__init__.py"文件
+# 3. 改了"python_package_path\neuromaps\datasets\data\osf.json"文件
 
 
-def plot_one_group_bar_figure(data, ax=None, labels_name=None, x_tick_fontsize=10, x_tick_rotation=0, x_label_ha='center', width=0.5, colors=None, title_name='', title_fontsize=10, title_pad=20, x_label_name='', x_label_fontsize=10, y_label_name='', y_label_fontsize=10, y_tick_fontsize=10, y_tick_rotation=0, y_max_tick_to_one=False, y_max_tick_to_value=1, y_lim_range=None, math_text=True, one_decimal_place=False, percentage=False, ax_min_is_0=False, statistic=False, p_list=None, test_method='ttest_ind', asterisk_fontsize=10, multicorrect_bonferroni=False, multicorrect_fdr=False, **kwargs):
+def plot_one_group_bar_figure(data, ax=None, labels_name=None, x_tick_fontsize=10, x_tick_rotation=0, x_label_ha='center', width=0.5, colors=None, title_name='', title_fontsize=10, title_pad=20, x_label_name='', x_label_fontsize=10, y_label_name='', y_label_fontsize=10, y_tick_fontsize=10, y_tick_rotation=0, y_max_tick_to_one=False, y_max_tick_to_value=1, y_lim_range=None, math_text=True, one_decimal_place=False, percentage=False, ax_min_is_0=False, statistic=False, p_list=None, test_method='ttest_ind', asterisk_fontsize=10, asterisk_color='k', line_color='0.5', multicorrect_bonferroni=False, multicorrect_fdr=False, **kwargs):
     # # 设置部分默认值
     if ax is None:
         ax = plt.gca()
@@ -67,9 +71,9 @@ def plot_one_group_bar_figure(data, ax=None, labels_name=None, x_tick_fontsize=1
         ax.set_yticks([i for i in ax.get_yticks() if i <= y_max_tick_to_value])
     # y轴设置科学计数法
     if math_text:
-        if np.min(data[i]) < 1 or np.max(data[i]) > 10:  # y轴设置科学计数法
+        if np.min(data[i]) < 0.1 or np.max(data[i]) > 100:  # y轴设置科学计数法
             formatter = ScalarFormatter(useMathText=True)
-            formatter.set_powerlimits((-1, 1))  # <=-2也就是小于等于0.01，>=2，也就是大于等于100，会写成科学计数法
+            formatter.set_powerlimits((-2, 2))  # <=-2也就是小于等于0.01，>=2，也就是大于等于100，会写成科学计数法
             ax.yaxis.set_major_formatter(formatter)
     # 设置y轴tick保留1位小数，会与“y轴设置科学计数法”冲突
     if one_decimal_place:
@@ -101,6 +105,8 @@ def plot_one_group_bar_figure(data, ax=None, labels_name=None, x_tick_fontsize=1
     # 如果y轴最小值不需要设置成0，则设置为黄金比例
     if y_lim_range is not None:
         ax.set_ylim(y_lim_range[0], y_lim_range[1])
+        ax_max = y_lim_range[1]
+        ax_max_y_max_value = ax_max - y_max_value
     else:
         if ax_min_is_0:
             ax.set_ylim(0, ax_max)
@@ -156,16 +162,16 @@ def plot_one_group_bar_figure(data, ax=None, labels_name=None, x_tick_fontsize=1
                 if eval('t_' + str(i1) + '_' + str(i2)) <= 0.05:
                     ax.annotate('', xy=(i1 + 0.05, y_max_value + count * lines_interval), \
                                 xytext=(i2 - 0.05, y_max_value + count * lines_interval), \
-                                arrowprops=dict(edgecolor='0.5', width=0.5, headwidth=0.1, headlength=0.1))
+                                arrowprops=dict(edgecolor=line_color, width=0.5, headwidth=0.1, headlength=0.1))
                     if 0.01 < eval('t_' + str(i1) + '_' + str(i2)) <= 0.05:
                         ax.text((i1 + i2) / 2, y_max_value + count * lines_interval + star_line_interval, \
-                                '*', c='k', fontsize=asterisk_fontsize, horizontalalignment='center', verticalalignment='center')
+                                '*', c=asterisk_color, fontsize=asterisk_fontsize, horizontalalignment='center', verticalalignment='center')
                     elif 0.001 < eval('t_' + str(i1) + '_' + str(i2)) <= 0.01:
                         ax.text((i1 + i2) / 2, y_max_value + count * lines_interval + star_line_interval, \
-                                '**', c='k', fontsize=asterisk_fontsize, horizontalalignment='center', verticalalignment='center')
+                                '**', c=asterisk_color, fontsize=asterisk_fontsize, horizontalalignment='center', verticalalignment='center')
                     elif eval('t_' + str(i1) + '_' + str(i2)) <= 0.001:
                         ax.text((i1 + i2) / 2, y_max_value + count * lines_interval + star_line_interval, \
-                                '***', c='k', fontsize=asterisk_fontsize, horizontalalignment='center', verticalalignment='center')
+                                '***', c=asterisk_color, fontsize=asterisk_fontsize, horizontalalignment='center', verticalalignment='center')
                     count += 1
     return y_max_value, ax_max_y_max_value
 
@@ -418,7 +424,7 @@ def plot_correlation_figure(data1, data2, ax=None, stats_method='pearson', dots_
     ax.text(x_start + x_width/ 10, y_start + 9 * y_width / 10, f'{r_or_rho}={str(round(s, 3))} {asterisk_text}', va='center', fontsize=asterisk_fontsize)  # 参数保留小数点后3位
     return
 
-def plot_matrix_figure(data, ax=None, row_labels_name=[], col_labels_name=[], cmap='bwr', colorbar_label_name='', colorbar_label_pad=0.1, colorbar_tick_fontsize=10, colorbar_tick_rotation=0, x_rotation=60, row_labels_fontsize=5, col_labels_fontsize=5, colorbar=True,  colorbar_label_fontsize=10, title_name='', title_fontsize=15, title_pad=20, vmax=None, vmin=None, aspect='equal', **kwargs):
+def plot_matrix_figure(data, ax=None, row_labels_name=[], col_labels_name=[], cmap='bwr', colorbar_label_name='', colorbar_label_pad=0.1, colorbar_tick_fontsize=10, colorbar_tick_rotation=0, x_rotation=60, row_labels_fontsize=10, col_labels_fontsize=10, colorbar=True,  colorbar_label_fontsize=10, title_name='', title_fontsize=15, title_pad=20, vmax=None, vmin=None, aspect='equal', **kwargs):
     # 设置部分默认值
     if ax is None:
         ax = plt.gca()
@@ -450,7 +456,10 @@ def plot_matrix_figure(data, ax=None, row_labels_name=[], col_labels_name=[], cm
     plt.setp(ax.get_xticklabels(), rotation=x_rotation, ha="right", rotation_mode="anchor")  # 其中“right”表示label最右边字母对齐到每个cell的中线
     return
 
-def plot_human_brain_figure(data, surf='veryinflated', vmin=None, vmax=None, cmap='Reds', colorbar=True, colorbar_location='right', colorbar_label_name='', colorbar_label_rotation=0, colorbar_decimals=1, colorbar_fontsize=8, colorbar_nticks=2, colorbar_shrink=0.15, colorbar_aspect=8, colorbar_draw_border=False):
+def plot_human_brain_figure(data, surf='veryinflated', vmin=None, vmax=None, cmap='Reds', colorbar=True, colorbar_location='right', colorbar_label_name='', colorbar_label_rotation=0, colorbar_decimals=1, colorbar_fontsize=8, colorbar_nticks=2, colorbar_shrink=0.15, colorbar_aspect=8, colorbar_draw_border=False, title_name='', title_fontsize=15, title_y=0.9):
+    '''
+    surf的种类有：veryinflated, inflated, midthickness, sphere
+    '''
     # 设置必要文件路径
     current_dir = os.path.dirname(__file__)
     neuromaps_data_dir = op.join(current_dir, 'neuromaps-data')
@@ -501,9 +510,13 @@ def plot_human_brain_figure(data, surf='veryinflated', vmin=None, vmax=None, cma
     colorbar_kws = {'location': colorbar_location, 'label_direction': colorbar_label_rotation, 'decimals': colorbar_decimals, 'fontsize': colorbar_fontsize, 'n_ticks': colorbar_nticks, 'shrink': colorbar_shrink, 'aspect': colorbar_aspect, 'draw_border': colorbar_draw_border}
     p.add_layer({'left': lh_parc, 'right': rh_parc}, cbar=colorbar, cmap=cmap, color_range=(vmin, vmax), cbar_label=colorbar_label_name)
     fig = p.build(cbar_kws=colorbar_kws)
+    fig.suptitle(title_name, fontsize=title_fontsize, y=title_y)
     return fig
 
-def plot_human_hemi_brain_figure(data, hemi='lh', surf='veryinflated', vmin=None, vmax=None, cmap='Reds', colorbar=True, colorbar_location='right', colorbar_label_name= '', colorbar_label_rotation=0, colorbar_decimals=1, colorbar_fontsize=8, colorbar_nticks=2, colorbar_shrink=0.15, colorbar_aspect=8, colorbar_draw_border=False):
+def plot_human_hemi_brain_figure(data, hemi='lh', surf='veryinflated', vmin=None, vmax=None, cmap='Reds', colorbar=True, colorbar_location='right', colorbar_label_name= '', colorbar_label_rotation=0, colorbar_decimals=1, colorbar_fontsize=8, colorbar_nticks=2, colorbar_shrink=0.15, colorbar_aspect=8, colorbar_draw_border=False, title_name='', title_fontsize=15, title_y=0.9):
+    '''
+    surf的种类有：veryinflated, inflated, midthickness, sphere
+    '''
     # 设置必要文件路径
     current_dir = os.path.dirname(__file__)
     neuromaps_data_dir = op.join(current_dir, 'neuromaps-data')
@@ -560,14 +573,152 @@ def plot_human_hemi_brain_figure(data, hemi='lh', surf='veryinflated', vmin=None
     else:
         p.add_layer({'left': rh_parc}, cbar=colorbar, cmap=cmap, color_range=(vmin, vmax), cbar_label=colorbar_label_name)  # 很怪，但是这里就是写“{'left': rh_parc}”
     fig = p.build(cbar_kws=colorbar_kws)
+    fig.suptitle(title_name, fontsize=title_fontsize, y=title_y)
     return fig
 
-def plot_macaque_brain_figure(data, cmap='Reds', surf='inflated', vmin=None, vmax=None, colorbar=True, colorbar_direction='vertical', colorbar_label_name='', colorbar_label_fontsize=10, colorbar_tick_fontsize=10, colorbar_tick_rotation=0, colorbar_outline=False):
+def plot_macaque_brain_figure(data, surf='veryinflated', vmin=None, vmax=None, cmap='Reds', colorbar=True, colorbar_location='right', colorbar_label_name='', colorbar_label_rotation=0, colorbar_decimals=1, colorbar_fontsize=8, colorbar_nticks=2, colorbar_shrink=0.15, colorbar_aspect=8, colorbar_draw_border=False, title_name='', title_fontsize=15, title_y=0.9):
+    '''
+    surf的种类有：veryinflated, inflated, midthickness, sphere, pial
+    '''
+    # 设置必要文件路径
+    current_dir = os.path.dirname(__file__)
+    neuromaps_data_dir = op.join(current_dir, 'neuromaps-data')
+    lh_CHARM5_atlas_dir = op.join(current_dir, 'neuromaps-data', 'atlases', 'rjx_CHARM5_atlas', 'L.charm5.label.gii')
+    rh_CHARM5_atlas_dir = op.join(current_dir, 'neuromaps-data', 'atlases', 'rjx_CHARM5_atlas', 'R.charm5.label.gii')
+    # 获取文件Underlay
+    surfaces = fetch_rjx_hcpmacaque(data_dir=neuromaps_data_dir)
+    lh, rh = surfaces[surf]
+    p = Plot(lh, rh)
+    # 将原始数据拆分成左右脑数据
+    lh_data, rh_data = {}, {}
+    for hemi_data in data:
+        if 'lh_' in hemi_data:
+            lh_data[hemi_data] = data[hemi_data]
+        else:
+            rh_data[hemi_data] = data[hemi_data]
+    # 加载CHARM5分区数据
+    df = pd.read_csv(op.join(current_dir, 'macaque_CHARM5.csv'))
+    lh_roi_list, rh_roi_list = list(df['ROIs_name'])[0: int(len(df['ROIs_name'])/2)], list(df['ROIs_name'])[int(len(df['ROIs_name'])/2): len(df['ROIs_name'])]
+    rh_parc = nib.load(rh_CHARM5_atlas_dir).darrays[0].data
+    roi_vertics = {roi:[] for roi in rh_roi_list}
+    for index, roi_index in enumerate(rh_parc):
+        if roi_index-89 >= 0:
+            roi_vertics[rh_roi_list[roi_index-89]].append(index)
+    rh_parc = np.zeros_like(rh_parc)
+    for roi_data in rh_data:
+        rh_parc[roi_vertics[roi_data]] = rh_data[roi_data]
+    lh_parc = nib.load(lh_CHARM5_atlas_dir).darrays[0].data
+    roi_vertics = {roi:[] for roi in lh_roi_list}
+    for index, roi_index in enumerate(lh_parc):
+        if roi_index-1 >= 0:
+            roi_vertics[lh_roi_list[roi_index-1]].append(index)
+    lh_parc = np.zeros_like(lh_parc)
+    for roi_data in lh_data:
+        lh_parc[roi_vertics[roi_data]] = lh_data[roi_data]
+    rh_parc = nib.load(rh_CHARM5_atlas_dir).darrays[0].data
+    roi_vertics = {roi:[] for roi in rh_roi_list}
+    for index, roi_index in enumerate(rh_parc):
+        if roi_index-89 >= 0:
+            roi_vertics[rh_roi_list[roi_index-89]].append(index)
+    rh_parc = np.zeros_like(rh_parc)
+    for roi_data in rh_data:
+        rh_parc[roi_vertics[roi_data]] = rh_data[roi_data]
+    # 画图元素参数设置
+    if vmin is None:
+        vmin = min(data.values())
+    if vmax is None:
+        vmax = max(data.values())
+    if vmin > vmax:
+        print('vmin必须小于等于vmax')
+        return
+    if vmin == vmax:
+        vmin = min(0, vmin)
+        vmax = max(0, vmax)
+    # colorbar参数设置
+    colorbar_kws = {'location': colorbar_location, 'label_direction': colorbar_label_rotation, 'decimals': colorbar_decimals, 'fontsize': colorbar_fontsize, 'n_ticks': colorbar_nticks, 'shrink': colorbar_shrink, 'aspect': colorbar_aspect, 'draw_border': colorbar_draw_border}
+    p.add_layer({'left': lh_parc, 'right': rh_parc}, cbar=colorbar, cmap=cmap, color_range=(vmin, vmax), cbar_label=colorbar_label_name)
+    fig = p.build(cbar_kws=colorbar_kws)
+    fig.suptitle(title_name, fontsize=title_fontsize, y=title_y)
+    return fig
+
+def plot_macaque_hemi_brain_figure(data, hemi='lh', surf='veryinflated', vmin=None, vmax=None, cmap='Reds', colorbar=True, colorbar_location='right', colorbar_label_name= '', colorbar_label_rotation=0, colorbar_decimals=1, colorbar_fontsize=8, colorbar_nticks=2, colorbar_shrink=0.15, colorbar_aspect=8, colorbar_draw_border=False, title_name='', title_fontsize=15, title_y=0.9):
+    '''
+    surf的种类有：veryinflated, inflated, midthickness, sphere
+    '''
+    # 设置必要文件路径
+    current_dir = os.path.dirname(__file__)
+    neuromaps_data_dir = op.join(current_dir, 'neuromaps-data')
+    lh_CHARM5_atlas_dir = op.join(current_dir, 'neuromaps-data', 'atlases', 'rjx_CHARM5_atlas', 'L.charm5.label.gii')
+    rh_CHARM5_atlas_dir = op.join(current_dir, 'neuromaps-data', 'atlases', 'rjx_CHARM5_atlas', 'R.charm5.label.gii')
+    # 获取文件Underlay
+    surfaces = fetch_rjx_hcpmacaque(data_dir=neuromaps_data_dir)
+    lh, rh = surfaces[surf]
+    if hemi == 'lh':
+        p = Plot(lh, size=(800, 400), zoom=1.2)
+    else:
+        p = Plot(rh, size=(800, 400), zoom=1.2)
+    # 将原始数据拆分成左右脑数据
+    lh_data, rh_data = {}, {}
+    for hemi_data in data:
+        if 'lh_' in hemi_data:
+            lh_data[hemi_data] = data[hemi_data]
+        else:
+            rh_data[hemi_data] = data[hemi_data]
+    # 加载CHARM5分区数据
+    df = pd.read_csv(op.join(current_dir, 'macaque_CHARM5.csv'))
+    lh_roi_list, rh_roi_list = list(df['ROIs_name'])[0: int(len(df['ROIs_name'])/2)], list(df['ROIs_name'])[int(len(df['ROIs_name'])/2): len(df['ROIs_name'])]
+    lh_parc = nib.load(lh_CHARM5_atlas_dir).darrays[0].data
+    roi_vertics = {roi:[] for roi in lh_roi_list}
+    for index, roi_index in enumerate(lh_parc):
+        if roi_index-1 >= 0:
+            roi_vertics[lh_roi_list[roi_index-1]].append(index)
+    lh_parc = np.zeros_like(lh_parc)
+    for roi_data in lh_data:
+        lh_parc[roi_vertics[roi_data]] = lh_data[roi_data]
+    rh_parc = nib.load(rh_CHARM5_atlas_dir).darrays[0].data
+    roi_vertics = {roi:[] for roi in rh_roi_list}
+    for index, roi_index in enumerate(rh_parc):
+        if roi_index-89 >= 0:
+            roi_vertics[rh_roi_list[roi_index-89]].append(index)
+    rh_parc = np.zeros_like(rh_parc)
+    for roi_data in rh_data:
+        rh_parc[roi_vertics[roi_data]] = rh_data[roi_data]
+    # 画图元素参数设置
+    if vmin is None:
+        vmin = min(data.values())
+    if vmax is None:
+        vmax = max(data.values())
+    if vmin > vmax:
+        print('vmin必须小于等于vmax')
+        return
+    if vmin == vmax:
+        vmin = min(0, vmin)
+        vmax = max(0, vmax)
+    # colorbar参数设置
+    colorbar_kws = {'location': colorbar_location, 'label_direction': colorbar_label_rotation, 'decimals': colorbar_decimals, 'fontsize': colorbar_fontsize, 'n_ticks': colorbar_nticks, 'shrink': colorbar_shrink, 'aspect': colorbar_aspect, 'draw_border': colorbar_draw_border}
+    if hemi == 'lh':
+        p.add_layer({'left': lh_parc}, cbar=colorbar, cmap=cmap, color_range=(vmin, vmax), cbar_label=colorbar_label_name)
+    else:
+        p.add_layer({'left': rh_parc}, cbar=colorbar, cmap=cmap, color_range=(vmin, vmax), cbar_label=colorbar_label_name)  # 很怪，但是这里就是写“{'left': rh_parc}”
+    fig = p.build(cbar_kws=colorbar_kws)
+    fig.suptitle(title_name, fontsize=title_fontsize, y=title_y)
+    return fig
+
+def plot_v1_macaque_brain_figure(data, cmap='Reds', atlas='macaque_CHARM5', surf='inflated', vmin=None, vmax=None, colorbar=True, colorbar_direction='vertical', colorbar_label_name='', colorbar_label_fontsize=10, colorbar_tick_fontsize=10, colorbar_tick_rotation=0, colorbar_outline=False, colorbar_nticks=2, title_name='', title_fontsize=15, title_y=0.95):
+    '''
+    surf的种类有：inflated, midthickness, pial, white
+    '''
     # 定义路径
     current_dir = os.path.dirname(os.path.abspath(__file__))
     subj_dir = op.join(current_dir, 'FS')
-    subj = "NMT"
-    lh_atlas_path, rh_atlas_path = op.join(subj_dir, subj, 'label', 'L.charm5.label.gii'), op.join(subj_dir, subj, 'label', 'L.charm5.label.gii')  # 对称图集，两边最大label都是88
+    if atlas == 'macaque_CHARM5':
+        lh_atlas_file = 'L.charm5.label.gii'
+        csv_file = 'macaque_CHARM5.csv'
+    elif atlas == 'macaque_CHARM6':
+        lh_atlas_file = 'L.charm6.label.gii'
+        csv_file = 'macaque_CHARM6.csv'
+    subj = atlas
+    lh_atlas_path, rh_atlas_path = op.join(subj_dir, subj, 'label', lh_atlas_file), op.join(subj_dir, subj, 'label', lh_atlas_file)
     # 默认参数
     if not isinstance(data, dict):
         df = pd.read_csv(data)
@@ -580,12 +731,14 @@ def plot_macaque_brain_figure(data, cmap='Reds', surf='inflated', vmin=None, vma
         vmin = 0
     elif vmin == vmax and vmax < 0:
         vmax = 0
-
     # 读取图集数据
     lh_atlas, rh_atlas = nib.load(lh_atlas_path), nib.load(rh_atlas_path)
     lh_atlas_data, rh_atlas_data = lh_atlas.darrays[0].data, rh_atlas.darrays[0].data
-    df = pd.read_csv(op.join(current_dir, 'macaque_charm5.csv'))
+    df = pd.read_csv(op.join(current_dir, csv_file))
     lh_rois_name, rh_rois_name = list(df['ROIs_name'])[0: int(len(df['ROIs_name'])/2)], list(df['ROIs_name'])[int(len(df['ROIs_name'])/2): len(df['ROIs_name'])]
+    for roi in data:
+        if roi not in (lh_rois_name + rh_rois_name):
+            print(f"没有这个脑区：{roi}")
     lh_label_roi, rh_label_roi = {index+1:roi for index, roi in enumerate(lh_rois_name)}, {index+1:roi for index, roi in enumerate(rh_rois_name)}  # {1: 'lh_area_32', 2: 'lh_area_25', ...}
     # 转换Overlay数据
     lh_index_label = {}
@@ -630,7 +783,7 @@ def plot_macaque_brain_figure(data, cmap='Reds', surf='inflated', vmin=None, vma
         else:
             fmin, fmax = vmin, vmax
         plot_data = plot_data.astype(float)
-        plot_data[plot_data == 0] =np.nan  # 将0值成nan值，可以保证没有值的脑区不被分配任何颜色
+        plot_data[plot_data == 0] = np.nan  # 将0值成nan值，可以保证没有值的脑区不被分配任何颜色
         brain.add_data(plot_data, colormap=cmap, colorbar=False, fmin=fmin, fmax=fmax)
         screenshot = brain.screenshot()
         # 把sreenshot截到最小
@@ -653,9 +806,7 @@ def plot_macaque_brain_figure(data, cmap='Reds', surf='inflated', vmin=None, vma
         screenshot = screenshot[row1:row2, col1:col2, :]
         brain.close()
         ax.imshow(screenshot)
-        ax.spines[['top', 'bottom', 'left', 'right']].set_visible(False)
-        ax.set_xticks([])
-        ax.set_yticks([])
+        ax.axis('off')
     ############################################### colorbar ###############################################
     sm = ScalarMappable(cmap=cmap)
     sm.set_array((vmin, vmax))  # 设置值范围
@@ -666,8 +817,15 @@ def plot_macaque_brain_figure(data, cmap='Reds', surf='inflated', vmin=None, vma
             cax = fig.add_axes([1, 0.425, 0.01, 0.15])  # [left, bottom, width, height]
             cbar = fig.colorbar(sm, cax=cax, orientation='vertical', cmap=cmap)  # "vertical", "horizontal"
             cbar.ax.set_ylabel(colorbar_label_name, fontsize=10)
-            cbar.ax.yaxis.set_label_position("left")  # 原本设置y轴label默认在右边，现在换到左边
+            # cbar.ax.yaxis.set_label_position("left")  # 原本设置y轴label默认在右边，现在换到左边
             cbar.ax.tick_params(axis='y', which='major', labelsize=colorbar_tick_fontsize, rotation=colorbar_tick_rotation, length=0)
+            cbar.outline.set_visible(False)
+            cbar.ax.set_ylabel(colorbar_label_name, fontsize=colorbar_label_fontsize, rotation=270, labelpad=15)
+            cbar.ax.yaxis.set_ticks_position('left')
+            cbar.ax.tick_params(labelsize=colorbar_tick_fontsize)
+            cbar.ax.tick_params(length=0)
+            ticks = np.linspace(vmin, vmax, colorbar_nticks)
+            cbar.set_ticks(ticks)
             if vmax < 0.1 or vmax > 100:  # y轴设置科学计数法
                 cbar.ax.yaxis.set_major_formatter(formatter)
                 cbar.ax.yaxis.set_offset_position('left')
@@ -683,14 +841,24 @@ def plot_macaque_brain_figure(data, cmap='Reds', surf='inflated', vmin=None, vma
         if not colorbar_outline:
             cbar.outline.set_visible(False)  # 去除colorbar的边框
         cbar.set_ticks([vmin, vmax])
+    fig.suptitle(title_name, fontsize=title_fontsize, y=title_y)
     return fig
 
-def plot_macaque_hemi_brain_figure(data, ax_direction='horizontal', hemi='lh', cmap='Reds', surf='inflated', vmin=None, vmax=None, colorbar=True, colorbar_direction='vertical', colorbar_label_name='', colorbar_label_fontsize=10, colorbar_tick_fontsize=10, colorbar_tick_rotation=0, colorbar_outline=False):
+def plot_v1_macaque_hemi_brain_figure(data, ax_direction='horizontal', hemi='lh', cmap='Reds', atlas='macaque_CHARM5', surf='inflated', vmin=None, vmax=None, colorbar=True, colorbar_direction='vertical', colorbar_label_name='', colorbar_label_fontsize=10, colorbar_tick_fontsize=10, colorbar_tick_rotation=0, colorbar_outline=False, colorbar_nticks=2, title_name='', title_fontsize=15, title_y=0.77):
+    '''
+    surf的种类有：inflated, midthickness, pial, white
+    '''
     # 定义路径
     current_dir = os.path.dirname(os.path.abspath(__file__))
     subj_dir = op.join(current_dir, 'FS')
-    subj = "NMT"
-    lh_atlas_path, rh_atlas_path = op.join(subj_dir, subj, 'label', 'L.charm5.label.gii'), op.join(subj_dir, subj, 'label', 'L.charm5.label.gii')  # 对称图集，两边最大label都是88
+    if atlas == 'macaque_CHARM5':
+        lh_atlas_file = 'L.charm5.label.gii'
+        csv_file = 'macaque_CHARM5.csv'
+    elif atlas == 'macaque_CHARM6':
+        lh_atlas_file = 'L.charm6.label.gii'
+        csv_file = 'macaque_CHARM6.csv'
+    subj = atlas
+    lh_atlas_path, rh_atlas_path = op.join(subj_dir, subj, 'label', lh_atlas_file), op.join(subj_dir, subj, 'label', lh_atlas_file)
     # 默认参数
     if not isinstance(data, dict):
         df = pd.read_csv(data)
@@ -706,8 +874,11 @@ def plot_macaque_hemi_brain_figure(data, ax_direction='horizontal', hemi='lh', c
     # 读取图集数据
     lh_atlas, rh_atlas = nib.load(lh_atlas_path), nib.load(rh_atlas_path)
     lh_atlas_data, rh_atlas_data = lh_atlas.darrays[0].data, rh_atlas.darrays[0].data
-    df = pd.read_csv(op.join(current_dir, 'macaque_charm5.csv'))
+    df = pd.read_csv(op.join(current_dir, csv_file))
     lh_rois_name, rh_rois_name = list(df['ROIs_name'])[0: int(len(df['ROIs_name'])/2)], list(df['ROIs_name'])[int(len(df['ROIs_name'])/2): len(df['ROIs_name'])]
+    for roi in data:
+        if roi not in (lh_rois_name + rh_rois_name):
+            print(f"没有这个脑区：{roi}")
     lh_label_roi, rh_label_roi = {index+1:roi for index, roi in enumerate(lh_rois_name)}, {index+1:roi for index, roi in enumerate(rh_rois_name)}  # {1: 'lh_area_32', 2: 'lh_area_25', ...}
     # 转换Overlay数据
     if hemi == 'lh':
@@ -782,8 +953,7 @@ def plot_macaque_hemi_brain_figure(data, ax_direction='horizontal', hemi='lh', c
         brain.close()
         im = ax.imshow(screenshot)
         ax.spines[['top', 'bottom', 'left', 'right']].set_visible(False)
-        ax.set_xticks([])
-        ax.set_yticks([])
+        ax.axis('off')
     ############################################### colorbar ###############################################
     sm = ScalarMappable(cmap=cmap)
     sm.set_array((vmin, vmax))  # 设置值范围
@@ -796,9 +966,25 @@ def plot_macaque_hemi_brain_figure(data, ax_direction='horizontal', hemi='lh', c
             elif ax_direction == 'vertical':
                 cax = fig.add_axes([0.8, 0.425, 0.01, 0.15])  # [left, bottom, width, height]
             cbar = fig.colorbar(sm, cax=cax, orientation='vertical', cmap=cmap)  # "vertical", "horizontal"
-            cbar.ax.set_ylabel(colorbar_label_name, fontsize=colorbar_label_fontsize)
-            cbar.ax.yaxis.set_label_position("left")  # 原本设置y轴label默认在右边，现在换到左边
-            cbar.ax.tick_params(axis='y', which='major', labelsize=colorbar_tick_fontsize, rotation=colorbar_tick_rotation, length=0)
+
+
+
+
+            # cbar.ax.set_ylabel(colorbar_label_name, fontsize=colorbar_label_fontsize)
+            # # cbar.ax.yaxis.set_label_position("left")  # 原本设置y轴label默认在右边，现在换到左边
+            # cbar.ax.tick_params(axis='y', which='major', labelsize=colorbar_tick_fontsize, rotation=colorbar_tick_rotation, length=0, labelleft=True)
+            # cbar.ax.tick_params(labelleft=True)
+            cbar.outline.set_visible(False)
+            cbar.ax.set_ylabel(colorbar_label_name, fontsize=colorbar_label_fontsize, rotation=270, labelpad=15)
+            cbar.ax.yaxis.set_ticks_position('left')
+            cbar.ax.tick_params(labelsize=colorbar_tick_fontsize)
+            cbar.ax.tick_params(length=0)
+            ticks = np.linspace(vmin, vmax, colorbar_nticks)
+            cbar.set_ticks(ticks)
+
+
+
+
             if vmax < 0.1 or vmax > 100:  # y轴设置科学计数法
                 cbar.ax.yaxis.set_major_formatter(formatter)
                 cbar.ax.yaxis.set_offset_position('left')
@@ -816,10 +1002,11 @@ def plot_macaque_hemi_brain_figure(data, ax_direction='horizontal', hemi='lh', c
                     cbar.ax.xaxis.set_major_formatter(formatter)
         if not colorbar_outline:
             cbar.outline.set_visible(False)  # 去除colorbar的边框
-        cbar.set_ticks([vmin, vmax])
+        
+    fig.suptitle(title_name, fontsize=title_fontsize, y=title_y)
     return fig
 
-def plot_symmetric_circle_figure(connectome, labels=None, node_colors=None, vmin=None, vmax=None, figsize=(10, 10), labes_fontsize=15, face_color='w', nodeedge_color='w', text_color='k', cmap='bwr', linewidth=1, title_name='', title_fontsize=20, colorbar=False, colorbar_size=0.2, colorbar_fontsize=10, colorbar_pos=(0, 0), manual_colorbar=False, manual_colorbar_pos=[1, 0.4, 0.01, 0.2], manual_cmap='bwr', manual_colorbar_name='', manual_colorbar_label_fontsize=10, manual_colorbar_fontsize=10, manual_colorbar_rotation=-90, manual_colorbar_pad=20, manual_colorbar_draw_border=True, manual_colorbar_tickline=False, manual_colorbar_tick_count=False):
+def plot_symmetric_circle_figure(connectome, labels=None, node_colors=None, vmin=None, vmax=None, figsize=(10, 10), labes_fontsize=15, face_color='w', nodeedge_color='w', text_color='k', cmap='bwr', linewidth=1, title_name='', title_fontsize=20, colorbar=False, colorbar_size=0.2, colorbar_fontsize=10, colorbar_pos=(0, 0), manual_colorbar=False, manual_colorbar_pos=[1, 0.4, 0.01, 0.2], manual_cmap='bwr', manual_colorbar_name='', manual_colorbar_label_fontsize=10, manual_colorbar_fontsize=10, manual_colorbar_rotation=-90, manual_colorbar_pad=20, manual_colorbar_draw_border=True, manual_colorbar_tickline=False, manual_colorbar_nticks=False):
     # 设置默认值
     if vmax is None:
         vmax = np.max((np.max(connectome), -np.min(connectome)))
@@ -864,12 +1051,12 @@ def plot_symmetric_circle_figure(connectome, labels=None, node_colors=None, vmin
             cbar.ax.tick_params(length=0)  # 不显示竖线
         cbar.ax.yaxis.set_ticks_position('left')
         cbar.ax.tick_params(labelsize=manual_colorbar_fontsize)
-        if manual_colorbar_tick_count:
-            ticks = np.linspace(vmin, vmax, manual_colorbar_tick_count)
+        if manual_colorbar_nticks:
+            ticks = np.linspace(vmin, vmax, manual_colorbar_nticks)
             cbar.set_ticks(ticks)
     return fig
 
-def plot_asymmetric_circle_figure(connectome, labels=None, node_colors=None, vmin=None, vmax=None, figsize=(10, 10), labes_fontsize=15, face_color='w', nodeedge_color='w', text_color='k', cmap='bwr', linewidth=1, title_name='', title_fontsize=20, colorbar=False, colorbar_size=0.2, colorbar_fontsize=10, colorbar_pos=(0, 0), manual_colorbar=False, manual_colorbar_pos=[1, 0.4, 0.01, 0.2], manual_cmap='bwr', manual_colorbar_name='', manual_colorbar_label_fontsize=10, manual_colorbar_fontsize=10, manual_colorbar_rotation=-90, manual_colorbar_pad=20, manual_colorbar_draw_border=True, manual_colorbar_tickline=False, manual_colorbar_tick_count=False):
+def plot_asymmetric_circle_figure(connectome, labels=None, node_colors=None, vmin=None, vmax=None, figsize=(10, 10), labes_fontsize=15, face_color='w', nodeedge_color='w', text_color='k', cmap='bwr', linewidth=1, title_name='', title_fontsize=20, colorbar=False, colorbar_size=0.2, colorbar_fontsize=10, colorbar_pos=(0, 0), manual_colorbar=False, manual_colorbar_pos=[1, 0.4, 0.01, 0.2], manual_cmap='bwr', manual_colorbar_name='', manual_colorbar_label_fontsize=10, manual_colorbar_fontsize=10, manual_colorbar_rotation=-90, manual_colorbar_pad=20, manual_colorbar_draw_border=True, manual_colorbar_tickline=False, manual_colorbar_nticks=False):
     # 设置默认值
     if vmax is None:
         vmax = np.max((np.max(connectome), -np.min(connectome)))
@@ -899,8 +1086,8 @@ def plot_asymmetric_circle_figure(connectome, labels=None, node_colors=None, vmi
             cbar.ax.tick_params(length=0)  # 不显示竖线
         cbar.ax.yaxis.set_ticks_position('left')
         cbar.ax.tick_params(labelsize=manual_colorbar_fontsize)
-        if manual_colorbar_tick_count:
-            ticks = np.linspace(vmin, vmax, manual_colorbar_tick_count)
+        if manual_colorbar_nticks:
+            ticks = np.linspace(vmin, vmax, manual_colorbar_nticks)
             cbar.set_ticks(ticks)
     return fig
 
