@@ -23,10 +23,6 @@ from neuromaps.datasets import fetch_fslr
 from neuromaps.datasets import fetch_rjx_hcpmacaque
 from surfplot import Plot
 
-# 1. 改了"python_package_path\neuromaps\datasets\atlases.py"文件
-# 2. 改了"python_package_path\neuromaps\datasets\__init__.py"文件
-# 3. 改了"python_package_path\neuromaps\datasets\data\osf.json"文件
-
 
 def plot_one_group_bar_figure(data, ax=None, labels_name=None, x_tick_fontsize=10, x_tick_rotation=0, x_label_ha='center', width=0.5, colors=None, title_name='', title_fontsize=10, title_pad=20, x_label_name='', x_label_fontsize=10, y_label_name='', y_label_fontsize=10, y_tick_fontsize=10, y_tick_rotation=0, y_max_tick_to_one=False, y_max_tick_to_value=1, y_lim_range=None, math_text=True, one_decimal_place=False, percentage=False, ax_min_is_0=False, statistic=False, p_list=None, test_method='ttest_ind', asterisk_fontsize=10, asterisk_color='k', line_color='0.5', multicorrect_bonferroni=False, multicorrect_fdr=False, **kwargs):
     # # 设置部分默认值
@@ -704,308 +700,6 @@ def plot_macaque_hemi_brain_figure(data, hemi='lh', surf='veryinflated', vmin=No
     fig.suptitle(title_name, fontsize=title_fontsize, y=title_y)
     return fig
 
-def plot_v1_macaque_brain_figure(data, cmap='Reds', atlas='macaque_CHARM5', surf='inflated', vmin=None, vmax=None, colorbar=True, colorbar_direction='vertical', colorbar_label_name='', colorbar_label_fontsize=10, colorbar_tick_fontsize=10, colorbar_tick_rotation=0, colorbar_outline=False, colorbar_nticks=2, title_name='', title_fontsize=15, title_y=0.95):
-    '''
-    surf的种类有：inflated, midthickness, pial, white
-    '''
-    # 定义路径
-    current_dir = os.path.dirname(os.path.abspath(__file__))
-    subj_dir = op.join(current_dir, 'FS')
-    if atlas == 'macaque_CHARM5':
-        lh_atlas_file = 'L.charm5.label.gii'
-        csv_file = 'macaque_CHARM5.csv'
-    elif atlas == 'macaque_CHARM6':
-        lh_atlas_file = 'L.charm6.label.gii'
-        csv_file = 'macaque_CHARM6.csv'
-    subj = atlas
-    lh_atlas_path, rh_atlas_path = op.join(subj_dir, subj, 'label', lh_atlas_file), op.join(subj_dir, subj, 'label', lh_atlas_file)
-    # 默认参数
-    if not isinstance(data, dict):
-        df = pd.read_csv(data)
-        data = {key:value for key,value in zip(df["ROIs_name"], df["Values"])}
-    if not vmin:
-        vmin = np.min(list(data.values()))
-    if not vmax:
-        vmax = np.max(list(data.values()))
-    if vmin == vmax and vmin > 0:
-        vmin = 0
-    elif vmin == vmax and vmax < 0:
-        vmax = 0
-    # 读取图集数据
-    lh_atlas, rh_atlas = nib.load(lh_atlas_path), nib.load(rh_atlas_path)
-    lh_atlas_data, rh_atlas_data = lh_atlas.darrays[0].data, rh_atlas.darrays[0].data
-    df = pd.read_csv(op.join(current_dir, csv_file))
-    lh_rois_name, rh_rois_name = list(df['ROIs_name'])[0: int(len(df['ROIs_name'])/2)], list(df['ROIs_name'])[int(len(df['ROIs_name'])/2): len(df['ROIs_name'])]
-    for roi in data:
-        if roi not in (lh_rois_name + rh_rois_name):
-            print(f"没有这个脑区：{roi}")
-    lh_label_roi, rh_label_roi = {index+1:roi for index, roi in enumerate(lh_rois_name)}, {index+1:roi for index, roi in enumerate(rh_rois_name)}  # {1: 'lh_area_32', 2: 'lh_area_25', ...}
-    # 转换Overlay数据
-    lh_index_label = {}
-    for index, label in enumerate(lh_atlas_data):
-        lh_index_label[index] = label
-    lh_plot_data = np.zeros(lh_atlas_data.shape)
-    for index in range(lh_plot_data.shape[0]):
-        label = lh_index_label[index]
-        if label == 0:  # 如果label为0，跳过。因为没有为0分配脑区名字
-            continue
-        roi = lh_label_roi[label]
-        if roi in data:  # 如果roi不在data中，则默认值为0
-            value = data[roi]
-        else:
-            value = 0
-        lh_plot_data[index] = value
-    rh_index_label = {}
-    for index, label in enumerate(rh_atlas_data):
-        rh_index_label[index] = label
-    rh_plot_data = np.zeros(rh_atlas_data.shape)
-    for index in range(rh_plot_data.shape[0]):
-        label = rh_index_label[index]
-        if label == 0:  # 如果label为0，跳过。因为没有为0分配脑区名字
-            continue
-        roi = rh_label_roi[label]
-        if roi in data:  # 如果roi不在data中，则默认值为0
-            value = data[roi]
-        else:
-            value = 0
-        rh_plot_data[index] = value
-    # 画图
-    ax_args = {'hemi':['lh', 'rh', 'lh', 'rh'], 'view':['lateral', 'lateral', 'medial', 'medial'], 'plot_data':[lh_plot_data, rh_plot_data, lh_plot_data, rh_plot_data]}  # 'rostral', 'caudal', 'dorsal', 'ventral', 'lateral', 'medial', 'frontal', 'parietal'
-    fig, axes = plt.subplots(2, 2, figsize=(9, 5))
-    fig.subplots_adjust(wspace=0.1, hspace=0.1)
-    for index, ax in enumerate(axes.flat):
-        # 画Underlay
-        brain = mne.viz.Brain(subj, hemi=ax_args['hemi'][index], surf=surf, subjects_dir=subj_dir, cortex="low_contrast", background="white", views=ax_args['view'][index], size=[1800,1000])
-        # 画Overlay
-        plot_data = ax_args['plot_data'][index]
-        if np.all(plot_data == 0) or np.all(np.isnan(plot_data)):
-            fmin, fmax = -1, 1  # 当数据全部为0时，需要设置fmin和fmax，否则会报错
-        else:
-            fmin, fmax = vmin, vmax
-        plot_data = plot_data.astype(float)
-        plot_data[plot_data == 0] = np.nan  # 将0值成nan值，可以保证没有值的脑区不被分配任何颜色
-        brain.add_data(plot_data, colormap=cmap, colorbar=False, fmin=fmin, fmax=fmax)
-        screenshot = brain.screenshot()
-        # 把sreenshot截到最小
-        for row in range(screenshot.shape[0]):
-            if np.mean(screenshot[row,:,:]) != 255:
-                row1 = row - 1
-                break
-        for row in range(0,-screenshot.shape[0], -1):
-            if np.mean(screenshot[row,:,:]) != 255:
-                row2 = screenshot.shape[0] + row
-                break
-        for col in range(screenshot.shape[1]):
-            if np.mean(screenshot[:,col,:]) != 255:
-                col1 = col - 1
-                break
-        for col in range(0,-screenshot.shape[1], -1):
-            if np.mean(screenshot[:,col,:]) != 255:
-                col2 = screenshot.shape[1] + col
-                break
-        screenshot = screenshot[row1:row2, col1:col2, :]
-        brain.close()
-        ax.imshow(screenshot)
-        ax.axis('off')
-    ############################################### colorbar ###############################################
-    sm = ScalarMappable(cmap=cmap)
-    sm.set_array((vmin, vmax))  # 设置值范围
-    if colorbar:
-        formatter = ScalarFormatter(useMathText=True)  # 科学计数法相关
-        formatter.set_powerlimits((-1, 2))  # <=-1也就是小于等于0.1，>=2，也就是大于等于100，会写成科学计数法
-        if colorbar_direction == 'vertical':
-            cax = fig.add_axes([1, 0.425, 0.01, 0.15])  # [left, bottom, width, height]
-            cbar = fig.colorbar(sm, cax=cax, orientation='vertical', cmap=cmap)  # "vertical", "horizontal"
-            cbar.ax.set_ylabel(colorbar_label_name, fontsize=10)
-            # cbar.ax.yaxis.set_label_position("left")  # 原本设置y轴label默认在右边，现在换到左边
-            cbar.ax.tick_params(axis='y', which='major', labelsize=colorbar_tick_fontsize, rotation=colorbar_tick_rotation, length=0)
-            cbar.outline.set_visible(False)
-            cbar.ax.set_ylabel(colorbar_label_name, fontsize=colorbar_label_fontsize, rotation=270, labelpad=15)
-            cbar.ax.yaxis.set_ticks_position('left')
-            cbar.ax.tick_params(labelsize=colorbar_tick_fontsize)
-            cbar.ax.tick_params(length=0)
-            ticks = np.linspace(vmin, vmax, colorbar_nticks)
-            cbar.set_ticks(ticks)
-            if vmax < 0.1 or vmax > 100:  # y轴设置科学计数法
-                cbar.ax.yaxis.set_major_formatter(formatter)
-                cbar.ax.yaxis.set_offset_position('left')
-                cbar.ax.yaxis.get_offset_text().set_y(2)
-                cbar.ax.yaxis.get_offset_text().set_position((5, 0))  # 貌似set_y不起作用，只能靠set_x来排版
-        elif colorbar_direction == 'horizontal':
-            cax = fig.add_axes([0.44, 0.53, 0.15, 0.01])  # [left, bottom, width, height]
-            cbar = fig.colorbar(sm, cax=cax, orientation='horizontal', cmap=cmap)  # "vertical", "horizontal"
-            cbar.ax.set_title(colorbar_label_name, fontsize=colorbar_label_fontsize)
-            cbar.ax.tick_params(axis='x', which='major', labelsize=colorbar_tick_fontsize, rotation=colorbar_tick_rotation, length=0)
-            if vmax < 0.1 or vmax > 100:  # y轴设置科学计数法
-                cbar.ax.xaxis.set_major_formatter(formatter)
-        if not colorbar_outline:
-            cbar.outline.set_visible(False)  # 去除colorbar的边框
-        cbar.set_ticks([vmin, vmax])
-    fig.suptitle(title_name, fontsize=title_fontsize, y=title_y)
-    return fig
-
-def plot_v1_macaque_hemi_brain_figure(data, ax_direction='horizontal', hemi='lh', cmap='Reds', atlas='macaque_CHARM5', surf='inflated', vmin=None, vmax=None, colorbar=True, colorbar_direction='vertical', colorbar_label_name='', colorbar_label_fontsize=10, colorbar_tick_fontsize=10, colorbar_tick_rotation=0, colorbar_outline=False, colorbar_nticks=2, title_name='', title_fontsize=15, title_y=0.77):
-    '''
-    surf的种类有：inflated, midthickness, pial, white
-    '''
-    # 定义路径
-    current_dir = os.path.dirname(os.path.abspath(__file__))
-    subj_dir = op.join(current_dir, 'FS')
-    if atlas == 'macaque_CHARM5':
-        lh_atlas_file = 'L.charm5.label.gii'
-        csv_file = 'macaque_CHARM5.csv'
-    elif atlas == 'macaque_CHARM6':
-        lh_atlas_file = 'L.charm6.label.gii'
-        csv_file = 'macaque_CHARM6.csv'
-    subj = atlas
-    lh_atlas_path, rh_atlas_path = op.join(subj_dir, subj, 'label', lh_atlas_file), op.join(subj_dir, subj, 'label', lh_atlas_file)
-    # 默认参数
-    if not isinstance(data, dict):
-        df = pd.read_csv(data)
-        data = {key:value for key,value in zip(df["ROIs_name"], df["Values"])}
-    if not vmin:
-        vmin = np.min(list(data.values()))
-    if not vmax:
-        vmax = np.max(list(data.values()))
-    if vmin == vmax and vmin > 0:
-        vmin = 0
-    elif vmin == vmax and vmax < 0:
-        vmax = 0
-    # 读取图集数据
-    lh_atlas, rh_atlas = nib.load(lh_atlas_path), nib.load(rh_atlas_path)
-    lh_atlas_data, rh_atlas_data = lh_atlas.darrays[0].data, rh_atlas.darrays[0].data
-    df = pd.read_csv(op.join(current_dir, csv_file))
-    lh_rois_name, rh_rois_name = list(df['ROIs_name'])[0: int(len(df['ROIs_name'])/2)], list(df['ROIs_name'])[int(len(df['ROIs_name'])/2): len(df['ROIs_name'])]
-    for roi in data:
-        if roi not in (lh_rois_name + rh_rois_name):
-            print(f"没有这个脑区：{roi}")
-    lh_label_roi, rh_label_roi = {index+1:roi for index, roi in enumerate(lh_rois_name)}, {index+1:roi for index, roi in enumerate(rh_rois_name)}  # {1: 'lh_area_32', 2: 'lh_area_25', ...}
-    # 转换Overlay数据
-    if hemi == 'lh':
-        lh_index_label = {}
-        for index, label in enumerate(lh_atlas_data):
-            lh_index_label[index] = label
-        lh_plot_data = np.zeros(lh_atlas_data.shape)
-        for index in range(lh_plot_data.shape[0]):
-            label = lh_index_label[index]
-            if label == 0:  # 如果label为0，跳过。因为没有为0分配脑区名字
-                continue
-            roi = lh_label_roi[label]
-            if roi in data:  # 如果roi不在data中，则默认值为0
-                value = data[roi]
-            else:
-                value = 0
-            lh_plot_data[index] = value
-            plot_data = lh_plot_data
-    elif hemi == 'rh':
-        rh_index_label = {}
-        for index, label in enumerate(rh_atlas_data):
-            rh_index_label[index] = label
-        rh_plot_data = np.zeros(rh_atlas_data.shape)
-        for index in range(rh_plot_data.shape[0]):
-            label = rh_index_label[index]
-            if label == 0:  # 如果label为0，跳过。因为没有为0分配脑区名字
-                continue
-            roi = rh_label_roi[label]
-            if roi in data:  # 如果roi不在data中，则默认值为0
-                value = data[roi]
-            else:
-                value = 0
-            rh_plot_data[index] = value
-            plot_data = rh_plot_data
-    # 画图
-    ax_args = {'view':['lateral','medial']}  # 'rostral', 'caudal', 'dorsal', 'ventral', 'lateral', 'medial', 'frontal', 'parietal'
-    if ax_direction == 'horizontal':
-        fig, axes = plt.subplots(1, 2, figsize=(9, 5))
-    elif ax_direction == 'vertical':
-        fig, axes = plt.subplots(2, 1, figsize=(9, 5))
-    fig.subplots_adjust(wspace=0.1, hspace=0.1)
-    for index, ax in enumerate(axes.flat):
-        # 画Underlay
-        brain = mne.viz.Brain(subj, hemi=hemi, surf=surf, subjects_dir=subj_dir, cortex="low_contrast", background="white", views=ax_args['view'][index], size=[1800,1000])
-        # 画Overlay
-        if np.all(plot_data == 0) or np.all(np.isnan(plot_data)):
-            fmin, fmax = -1, 1  # 当数据全部为0时，需要设置fmin和fmax，否则会报错
-        else:
-            fmin, fmax = vmin, vmax
-        plot_data = plot_data.astype(float)
-        plot_data[plot_data == 0] = np.nan  # 将0值成nan值，可以保证没有值的脑区不被分配任何颜色
-        brain.add_data(plot_data, colormap=cmap, colorbar=False, fmin=fmin, fmax=fmax)
-        screenshot = brain.screenshot()
-        # 把sreenshot截到最小
-        for row in range(screenshot.shape[0]):
-            if np.mean(screenshot[row,:,:]) != 255:
-                row1 = row - 1
-                break
-        for row in range(0,-screenshot.shape[0], -1):
-            if np.mean(screenshot[row,:,:]) != 255:
-                row2 = screenshot.shape[0] + row
-                break
-        for col in range(screenshot.shape[1]):
-            if np.mean(screenshot[:,col,:]) != 255:
-                col1 = col - 1
-                break
-        for col in range(0,-screenshot.shape[1], -1):
-            if np.mean(screenshot[:,col,:]) != 255:
-                col2 = screenshot.shape[1] + col
-                break
-        screenshot = screenshot[row1:row2, col1:col2, :]
-        brain.close()
-        im = ax.imshow(screenshot)
-        ax.spines[['top', 'bottom', 'left', 'right']].set_visible(False)
-        ax.axis('off')
-    ############################################### colorbar ###############################################
-    sm = ScalarMappable(cmap=cmap)
-    sm.set_array((vmin, vmax))  # 设置值范围
-    if colorbar:
-        formatter = ScalarFormatter(useMathText=True)  # 科学计数法相关
-        formatter.set_powerlimits((-1, 2))  # <=-1也就是小于等于0.1，>=2，也就是大于等于100，会写成科学计数法
-        if colorbar_direction == 'vertical':
-            if ax_direction == 'horizontal':
-                cax = fig.add_axes([1, 0.425, 0.01, 0.15])  # [left, bottom, width, height]
-            elif ax_direction == 'vertical':
-                cax = fig.add_axes([0.8, 0.425, 0.01, 0.15])  # [left, bottom, width, height]
-            cbar = fig.colorbar(sm, cax=cax, orientation='vertical', cmap=cmap)  # "vertical", "horizontal"
-
-
-
-
-            # cbar.ax.set_ylabel(colorbar_label_name, fontsize=colorbar_label_fontsize)
-            # # cbar.ax.yaxis.set_label_position("left")  # 原本设置y轴label默认在右边，现在换到左边
-            # cbar.ax.tick_params(axis='y', which='major', labelsize=colorbar_tick_fontsize, rotation=colorbar_tick_rotation, length=0, labelleft=True)
-            # cbar.ax.tick_params(labelleft=True)
-            cbar.outline.set_visible(False)
-            cbar.ax.set_ylabel(colorbar_label_name, fontsize=colorbar_label_fontsize, rotation=270, labelpad=15)
-            cbar.ax.yaxis.set_ticks_position('left')
-            cbar.ax.tick_params(labelsize=colorbar_tick_fontsize)
-            cbar.ax.tick_params(length=0)
-            ticks = np.linspace(vmin, vmax, colorbar_nticks)
-            cbar.set_ticks(ticks)
-
-
-
-
-            if vmax < 0.1 or vmax > 100:  # y轴设置科学计数法
-                cbar.ax.yaxis.set_major_formatter(formatter)
-                cbar.ax.yaxis.set_offset_position('left')
-                cbar.ax.yaxis.get_offset_text().set_y(2)
-                cbar.ax.yaxis.get_offset_text().set_position((5, 0))  # 貌似set_y不起作用，只能靠set_x来排版
-        elif colorbar_direction == 'horizontal':
-            if ax_direction == 'horizontal':
-                cax = fig.add_axes([0.44, 0.3, 0.15, 0.01])  # [left, bottom, width, height]
-            elif ax_direction == 'vertical':
-                cax = fig.add_axes([0.44, 0, 0.15, 0.01])  # [left, bottom, width, height]
-            cbar = fig.colorbar(sm, cax=cax, orientation='horizontal', cmap=cmap)  # "vertical", "horizontal"
-            cbar.ax.set_title(colorbar_label_name, fontsize=colorbar_label_fontsize)
-            cbar.ax.tick_params(axis='x', which='major', labelsize=colorbar_tick_fontsize, rotation=colorbar_tick_rotation, length=0)
-            if vmax < 0.1 or vmax > 100:  # y轴设置科学计数法
-                    cbar.ax.xaxis.set_major_formatter(formatter)
-        if not colorbar_outline:
-            cbar.outline.set_visible(False)  # 去除colorbar的边框
-        
-    fig.suptitle(title_name, fontsize=title_fontsize, y=title_y)
-    return fig
-
 def plot_symmetric_circle_figure(connectome, labels=None, node_colors=None, vmin=None, vmax=None, figsize=(10, 10), labes_fontsize=15, face_color='w', nodeedge_color='w', text_color='k', cmap='bwr', linewidth=1, title_name='', title_fontsize=20, colorbar=False, colorbar_size=0.2, colorbar_fontsize=10, colorbar_pos=(0, 0), manual_colorbar=False, manual_colorbar_pos=[1, 0.4, 0.01, 0.2], manual_cmap='bwr', manual_colorbar_name='', manual_colorbar_label_fontsize=10, manual_colorbar_fontsize=10, manual_colorbar_rotation=-90, manual_colorbar_pad=20, manual_colorbar_draw_border=True, manual_colorbar_tickline=False, manual_colorbar_nticks=False):
     # 设置默认值
     if vmax is None:
@@ -1396,3 +1090,306 @@ def plot_multi_group_violin_figure(data, test_method, legend_name=None, labels_n
                                 '***', c='k', fontsize=asterisk_size, horizontalalignment='center', verticalalignment='center')
                         count += 1
     return
+
+# 以下函数将在下个版本中废弃
+def plot_v1_macaque_brain_figure(data, cmap='Reds', atlas='macaque_CHARM5', surf='inflated', vmin=None, vmax=None, colorbar=True, colorbar_direction='vertical', colorbar_label_name='', colorbar_label_fontsize=10, colorbar_tick_fontsize=10, colorbar_tick_rotation=0, colorbar_outline=False, colorbar_nticks=2, title_name='', title_fontsize=15, title_y=0.95):
+    '''
+    surf的种类有：inflated, midthickness, pial, white
+    '''
+    # 定义路径
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    subj_dir = op.join(current_dir, 'FS')
+    if atlas == 'macaque_CHARM5':
+        lh_atlas_file = 'L.charm5.label.gii'
+        csv_file = 'macaque_CHARM5.csv'
+    elif atlas == 'macaque_CHARM6':
+        lh_atlas_file = 'L.charm6.label.gii'
+        csv_file = 'macaque_CHARM6.csv'
+    subj = atlas
+    lh_atlas_path, rh_atlas_path = op.join(subj_dir, subj, 'label', lh_atlas_file), op.join(subj_dir, subj, 'label', lh_atlas_file)
+    # 默认参数
+    if not isinstance(data, dict):
+        df = pd.read_csv(data)
+        data = {key:value for key,value in zip(df["ROIs_name"], df["Values"])}
+    if not vmin:
+        vmin = np.min(list(data.values()))
+    if not vmax:
+        vmax = np.max(list(data.values()))
+    if vmin == vmax and vmin > 0:
+        vmin = 0
+    elif vmin == vmax and vmax < 0:
+        vmax = 0
+    # 读取图集数据
+    lh_atlas, rh_atlas = nib.load(lh_atlas_path), nib.load(rh_atlas_path)
+    lh_atlas_data, rh_atlas_data = lh_atlas.darrays[0].data, rh_atlas.darrays[0].data
+    df = pd.read_csv(op.join(current_dir, csv_file))
+    lh_rois_name, rh_rois_name = list(df['ROIs_name'])[0: int(len(df['ROIs_name'])/2)], list(df['ROIs_name'])[int(len(df['ROIs_name'])/2): len(df['ROIs_name'])]
+    for roi in data:
+        if roi not in (lh_rois_name + rh_rois_name):
+            print(f"没有这个脑区：{roi}")
+    lh_label_roi, rh_label_roi = {index+1:roi for index, roi in enumerate(lh_rois_name)}, {index+1:roi for index, roi in enumerate(rh_rois_name)}  # {1: 'lh_area_32', 2: 'lh_area_25', ...}
+    # 转换Overlay数据
+    lh_index_label = {}
+    for index, label in enumerate(lh_atlas_data):
+        lh_index_label[index] = label
+    lh_plot_data = np.zeros(lh_atlas_data.shape)
+    for index in range(lh_plot_data.shape[0]):
+        label = lh_index_label[index]
+        if label == 0:  # 如果label为0，跳过。因为没有为0分配脑区名字
+            continue
+        roi = lh_label_roi[label]
+        if roi in data:  # 如果roi不在data中，则默认值为0
+            value = data[roi]
+        else:
+            value = 0
+        lh_plot_data[index] = value
+    rh_index_label = {}
+    for index, label in enumerate(rh_atlas_data):
+        rh_index_label[index] = label
+    rh_plot_data = np.zeros(rh_atlas_data.shape)
+    for index in range(rh_plot_data.shape[0]):
+        label = rh_index_label[index]
+        if label == 0:  # 如果label为0，跳过。因为没有为0分配脑区名字
+            continue
+        roi = rh_label_roi[label]
+        if roi in data:  # 如果roi不在data中，则默认值为0
+            value = data[roi]
+        else:
+            value = 0
+        rh_plot_data[index] = value
+    # 画图
+    ax_args = {'hemi':['lh', 'rh', 'lh', 'rh'], 'view':['lateral', 'lateral', 'medial', 'medial'], 'plot_data':[lh_plot_data, rh_plot_data, lh_plot_data, rh_plot_data]}  # 'rostral', 'caudal', 'dorsal', 'ventral', 'lateral', 'medial', 'frontal', 'parietal'
+    fig, axes = plt.subplots(2, 2, figsize=(9, 5))
+    fig.subplots_adjust(wspace=0.1, hspace=0.1)
+    for index, ax in enumerate(axes.flat):
+        # 画Underlay
+        brain = mne.viz.Brain(subj, hemi=ax_args['hemi'][index], surf=surf, subjects_dir=subj_dir, cortex="low_contrast", background="white", views=ax_args['view'][index], size=[1800,1000])
+        # 画Overlay
+        plot_data = ax_args['plot_data'][index]
+        if np.all(plot_data == 0) or np.all(np.isnan(plot_data)):
+            fmin, fmax = -1, 1  # 当数据全部为0时，需要设置fmin和fmax，否则会报错
+        else:
+            fmin, fmax = vmin, vmax
+        plot_data = plot_data.astype(float)
+        plot_data[plot_data == 0] = np.nan  # 将0值成nan值，可以保证没有值的脑区不被分配任何颜色
+        brain.add_data(plot_data, colormap=cmap, colorbar=False, fmin=fmin, fmax=fmax)
+        screenshot = brain.screenshot()
+        # 把sreenshot截到最小
+        for row in range(screenshot.shape[0]):
+            if np.mean(screenshot[row,:,:]) != 255:
+                row1 = row - 1
+                break
+        for row in range(0,-screenshot.shape[0], -1):
+            if np.mean(screenshot[row,:,:]) != 255:
+                row2 = screenshot.shape[0] + row
+                break
+        for col in range(screenshot.shape[1]):
+            if np.mean(screenshot[:,col,:]) != 255:
+                col1 = col - 1
+                break
+        for col in range(0,-screenshot.shape[1], -1):
+            if np.mean(screenshot[:,col,:]) != 255:
+                col2 = screenshot.shape[1] + col
+                break
+        screenshot = screenshot[row1:row2, col1:col2, :]
+        brain.close()
+        ax.imshow(screenshot)
+        ax.axis('off')
+    ############################################### colorbar ###############################################
+    sm = ScalarMappable(cmap=cmap)
+    sm.set_array((vmin, vmax))  # 设置值范围
+    if colorbar:
+        formatter = ScalarFormatter(useMathText=True)  # 科学计数法相关
+        formatter.set_powerlimits((-1, 2))  # <=-1也就是小于等于0.1，>=2，也就是大于等于100，会写成科学计数法
+        if colorbar_direction == 'vertical':
+            cax = fig.add_axes([1, 0.425, 0.01, 0.15])  # [left, bottom, width, height]
+            cbar = fig.colorbar(sm, cax=cax, orientation='vertical', cmap=cmap)  # "vertical", "horizontal"
+            cbar.ax.set_ylabel(colorbar_label_name, fontsize=10)
+            # cbar.ax.yaxis.set_label_position("left")  # 原本设置y轴label默认在右边，现在换到左边
+            cbar.ax.tick_params(axis='y', which='major', labelsize=colorbar_tick_fontsize, rotation=colorbar_tick_rotation, length=0)
+            cbar.outline.set_visible(False)
+            cbar.ax.set_ylabel(colorbar_label_name, fontsize=colorbar_label_fontsize, rotation=270, labelpad=15)
+            cbar.ax.yaxis.set_ticks_position('left')
+            cbar.ax.tick_params(labelsize=colorbar_tick_fontsize)
+            cbar.ax.tick_params(length=0)
+            ticks = np.linspace(vmin, vmax, colorbar_nticks)
+            cbar.set_ticks(ticks)
+            if vmax < 0.1 or vmax > 100:  # y轴设置科学计数法
+                cbar.ax.yaxis.set_major_formatter(formatter)
+                cbar.ax.yaxis.set_offset_position('left')
+                cbar.ax.yaxis.get_offset_text().set_y(2)
+                cbar.ax.yaxis.get_offset_text().set_position((5, 0))  # 貌似set_y不起作用，只能靠set_x来排版
+        elif colorbar_direction == 'horizontal':
+            cax = fig.add_axes([0.44, 0.53, 0.15, 0.01])  # [left, bottom, width, height]
+            cbar = fig.colorbar(sm, cax=cax, orientation='horizontal', cmap=cmap)  # "vertical", "horizontal"
+            cbar.ax.set_title(colorbar_label_name, fontsize=colorbar_label_fontsize)
+            cbar.ax.tick_params(axis='x', which='major', labelsize=colorbar_tick_fontsize, rotation=colorbar_tick_rotation, length=0)
+            if vmax < 0.1 or vmax > 100:  # y轴设置科学计数法
+                cbar.ax.xaxis.set_major_formatter(formatter)
+        if not colorbar_outline:
+            cbar.outline.set_visible(False)  # 去除colorbar的边框
+        cbar.set_ticks([vmin, vmax])
+    fig.suptitle(title_name, fontsize=title_fontsize, y=title_y)
+    return fig
+
+def plot_v1_macaque_hemi_brain_figure(data, ax_direction='horizontal', hemi='lh', cmap='Reds', atlas='macaque_CHARM5', surf='inflated', vmin=None, vmax=None, colorbar=True, colorbar_direction='vertical', colorbar_label_name='', colorbar_label_fontsize=10, colorbar_tick_fontsize=10, colorbar_tick_rotation=0, colorbar_outline=False, colorbar_nticks=2, title_name='', title_fontsize=15, title_y=0.77):
+    '''
+    surf的种类有：inflated, midthickness, pial, white
+    '''
+    # 定义路径
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    subj_dir = op.join(current_dir, 'FS')
+    if atlas == 'macaque_CHARM5':
+        lh_atlas_file = 'L.charm5.label.gii'
+        csv_file = 'macaque_CHARM5.csv'
+    elif atlas == 'macaque_CHARM6':
+        lh_atlas_file = 'L.charm6.label.gii'
+        csv_file = 'macaque_CHARM6.csv'
+    subj = atlas
+    lh_atlas_path, rh_atlas_path = op.join(subj_dir, subj, 'label', lh_atlas_file), op.join(subj_dir, subj, 'label', lh_atlas_file)
+    # 默认参数
+    if not isinstance(data, dict):
+        df = pd.read_csv(data)
+        data = {key:value for key,value in zip(df["ROIs_name"], df["Values"])}
+    if not vmin:
+        vmin = np.min(list(data.values()))
+    if not vmax:
+        vmax = np.max(list(data.values()))
+    if vmin == vmax and vmin > 0:
+        vmin = 0
+    elif vmin == vmax and vmax < 0:
+        vmax = 0
+    # 读取图集数据
+    lh_atlas, rh_atlas = nib.load(lh_atlas_path), nib.load(rh_atlas_path)
+    lh_atlas_data, rh_atlas_data = lh_atlas.darrays[0].data, rh_atlas.darrays[0].data
+    df = pd.read_csv(op.join(current_dir, csv_file))
+    lh_rois_name, rh_rois_name = list(df['ROIs_name'])[0: int(len(df['ROIs_name'])/2)], list(df['ROIs_name'])[int(len(df['ROIs_name'])/2): len(df['ROIs_name'])]
+    for roi in data:
+        if roi not in (lh_rois_name + rh_rois_name):
+            print(f"没有这个脑区：{roi}")
+    lh_label_roi, rh_label_roi = {index+1:roi for index, roi in enumerate(lh_rois_name)}, {index+1:roi for index, roi in enumerate(rh_rois_name)}  # {1: 'lh_area_32', 2: 'lh_area_25', ...}
+    # 转换Overlay数据
+    if hemi == 'lh':
+        lh_index_label = {}
+        for index, label in enumerate(lh_atlas_data):
+            lh_index_label[index] = label
+        lh_plot_data = np.zeros(lh_atlas_data.shape)
+        for index in range(lh_plot_data.shape[0]):
+            label = lh_index_label[index]
+            if label == 0:  # 如果label为0，跳过。因为没有为0分配脑区名字
+                continue
+            roi = lh_label_roi[label]
+            if roi in data:  # 如果roi不在data中，则默认值为0
+                value = data[roi]
+            else:
+                value = 0
+            lh_plot_data[index] = value
+            plot_data = lh_plot_data
+    elif hemi == 'rh':
+        rh_index_label = {}
+        for index, label in enumerate(rh_atlas_data):
+            rh_index_label[index] = label
+        rh_plot_data = np.zeros(rh_atlas_data.shape)
+        for index in range(rh_plot_data.shape[0]):
+            label = rh_index_label[index]
+            if label == 0:  # 如果label为0，跳过。因为没有为0分配脑区名字
+                continue
+            roi = rh_label_roi[label]
+            if roi in data:  # 如果roi不在data中，则默认值为0
+                value = data[roi]
+            else:
+                value = 0
+            rh_plot_data[index] = value
+            plot_data = rh_plot_data
+    # 画图
+    ax_args = {'view':['lateral','medial']}  # 'rostral', 'caudal', 'dorsal', 'ventral', 'lateral', 'medial', 'frontal', 'parietal'
+    if ax_direction == 'horizontal':
+        fig, axes = plt.subplots(1, 2, figsize=(9, 5))
+    elif ax_direction == 'vertical':
+        fig, axes = plt.subplots(2, 1, figsize=(9, 5))
+    fig.subplots_adjust(wspace=0.1, hspace=0.1)
+    for index, ax in enumerate(axes.flat):
+        # 画Underlay
+        brain = mne.viz.Brain(subj, hemi=hemi, surf=surf, subjects_dir=subj_dir, cortex="low_contrast", background="white", views=ax_args['view'][index], size=[1800,1000])
+        # 画Overlay
+        if np.all(plot_data == 0) or np.all(np.isnan(plot_data)):
+            fmin, fmax = -1, 1  # 当数据全部为0时，需要设置fmin和fmax，否则会报错
+        else:
+            fmin, fmax = vmin, vmax
+        plot_data = plot_data.astype(float)
+        plot_data[plot_data == 0] = np.nan  # 将0值成nan值，可以保证没有值的脑区不被分配任何颜色
+        brain.add_data(plot_data, colormap=cmap, colorbar=False, fmin=fmin, fmax=fmax)
+        screenshot = brain.screenshot()
+        # 把sreenshot截到最小
+        for row in range(screenshot.shape[0]):
+            if np.mean(screenshot[row,:,:]) != 255:
+                row1 = row - 1
+                break
+        for row in range(0,-screenshot.shape[0], -1):
+            if np.mean(screenshot[row,:,:]) != 255:
+                row2 = screenshot.shape[0] + row
+                break
+        for col in range(screenshot.shape[1]):
+            if np.mean(screenshot[:,col,:]) != 255:
+                col1 = col - 1
+                break
+        for col in range(0,-screenshot.shape[1], -1):
+            if np.mean(screenshot[:,col,:]) != 255:
+                col2 = screenshot.shape[1] + col
+                break
+        screenshot = screenshot[row1:row2, col1:col2, :]
+        brain.close()
+        im = ax.imshow(screenshot)
+        ax.spines[['top', 'bottom', 'left', 'right']].set_visible(False)
+        ax.axis('off')
+    ############################################### colorbar ###############################################
+    sm = ScalarMappable(cmap=cmap)
+    sm.set_array((vmin, vmax))  # 设置值范围
+    if colorbar:
+        formatter = ScalarFormatter(useMathText=True)  # 科学计数法相关
+        formatter.set_powerlimits((-1, 2))  # <=-1也就是小于等于0.1，>=2，也就是大于等于100，会写成科学计数法
+        if colorbar_direction == 'vertical':
+            if ax_direction == 'horizontal':
+                cax = fig.add_axes([1, 0.425, 0.01, 0.15])  # [left, bottom, width, height]
+            elif ax_direction == 'vertical':
+                cax = fig.add_axes([0.8, 0.425, 0.01, 0.15])  # [left, bottom, width, height]
+            cbar = fig.colorbar(sm, cax=cax, orientation='vertical', cmap=cmap)  # "vertical", "horizontal"
+
+
+
+
+            # cbar.ax.set_ylabel(colorbar_label_name, fontsize=colorbar_label_fontsize)
+            # # cbar.ax.yaxis.set_label_position("left")  # 原本设置y轴label默认在右边，现在换到左边
+            # cbar.ax.tick_params(axis='y', which='major', labelsize=colorbar_tick_fontsize, rotation=colorbar_tick_rotation, length=0, labelleft=True)
+            # cbar.ax.tick_params(labelleft=True)
+            cbar.outline.set_visible(False)
+            cbar.ax.set_ylabel(colorbar_label_name, fontsize=colorbar_label_fontsize, rotation=270, labelpad=15)
+            cbar.ax.yaxis.set_ticks_position('left')
+            cbar.ax.tick_params(labelsize=colorbar_tick_fontsize)
+            cbar.ax.tick_params(length=0)
+            ticks = np.linspace(vmin, vmax, colorbar_nticks)
+            cbar.set_ticks(ticks)
+
+
+
+
+            if vmax < 0.1 or vmax > 100:  # y轴设置科学计数法
+                cbar.ax.yaxis.set_major_formatter(formatter)
+                cbar.ax.yaxis.set_offset_position('left')
+                cbar.ax.yaxis.get_offset_text().set_y(2)
+                cbar.ax.yaxis.get_offset_text().set_position((5, 0))  # 貌似set_y不起作用，只能靠set_x来排版
+        elif colorbar_direction == 'horizontal':
+            if ax_direction == 'horizontal':
+                cax = fig.add_axes([0.44, 0.3, 0.15, 0.01])  # [left, bottom, width, height]
+            elif ax_direction == 'vertical':
+                cax = fig.add_axes([0.44, 0, 0.15, 0.01])  # [left, bottom, width, height]
+            cbar = fig.colorbar(sm, cax=cax, orientation='horizontal', cmap=cmap)  # "vertical", "horizontal"
+            cbar.ax.set_title(colorbar_label_name, fontsize=colorbar_label_fontsize)
+            cbar.ax.tick_params(axis='x', which='major', labelsize=colorbar_tick_fontsize, rotation=colorbar_tick_rotation, length=0)
+            if vmax < 0.1 or vmax > 100:  # y轴设置科学计数法
+                    cbar.ax.xaxis.set_major_formatter(formatter)
+        if not colorbar_outline:
+            cbar.outline.set_visible(False)  # 去除colorbar的边框
+        
+    fig.suptitle(title_name, fontsize=title_fontsize, y=title_y)
+    return fig
