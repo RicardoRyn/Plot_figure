@@ -1,6 +1,19 @@
 # 更新记录 (CHANGELOG)
 
+## [2025-01-06] - v2.0.1
+
+### 新增
+
+- 为所有脑图函数增加`rjx_colorbar`。拥有更多可自定义的选项，可绘制复杂的colorbar。
+
+### 修复
+
+- 修复部分情况下，值小于1时，脑图上不显示颜色的bug。
+
+
+
 ## [2025-01-06] - v2.0.0
+
 ### 新增
 
 - 在`plot_one_group_bar_figure`和`plot_one_group_violin_figure`函数中，参数`test_method`增加`'external'`选项（即`test_method='external'`）。可在外部计算p值，以列表的形式传入，函数会自动根据p值绘制星号。
