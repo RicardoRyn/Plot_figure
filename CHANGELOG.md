@@ -21,8 +21,8 @@
 - 新增`plot_macaque_hemi_brain_figure`函数。原`plot_macaque_hemi_brain_figure`更名为`plot_v1_macaque_hemi_brain_figure`。
 ### 注意
 
-- `plot_v1_macaque_brain_figure`函数将在下个版本中移除
-- `plot_v1_macaque_hemi_brain_figure`函数将在下个版本中移除
+- `plot_v1_macaque_brain_figure`函数将在下个大版本中移除
+- `plot_v1_macaque_hemi_brain_figure`函数将在下个大版本中移除
 
 ### 修复
 
