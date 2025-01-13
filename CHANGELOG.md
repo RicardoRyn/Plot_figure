@@ -1,6 +1,19 @@
 # 更新记录 (CHANGELOG)
 
-## [2025-01-09] - v2.0.1
+## [2025-01-013] - v1.0.3
+
+### 优化
+
+- 优化了 Python 包的代码架构，提升了代码的可维护性和扩展性。
+
+### 移除
+
+- `plot_v1_macaque_brain_figure`
+- `plot_v1_macaque_hemi_brain_figure`
+
+
+
+## [2025-01-09] - v1.0.2
 
 ### 新增
 
@@ -12,7 +25,7 @@
 
 
 
-## [2025-01-06] - v2.0.0
+## [2025-01-06] - v1.0.1
 
 ### 新增
 
@@ -21,8 +34,8 @@
 - 新增`plot_macaque_hemi_brain_figure`函数。原`plot_macaque_hemi_brain_figure`更名为`plot_v1_macaque_hemi_brain_figure`。
 ### 注意
 
-- `plot_v1_macaque_brain_figure`函数将在下个大版本中移除
-- `plot_v1_macaque_hemi_brain_figure`函数将在下个大版本中移除
+- `plot_v1_macaque_brain_figure`函数将在下个版本中移除
+- `plot_v1_macaque_hemi_brain_figure`函数将在下个版本中移除
 
 ### 修复
 

@@ -4,23 +4,7 @@
 
 
 
-# 二. MNE包安装
-
-一般情况下只需要：
-
-```bash
-pip install mne -i https://pypi.tuna.tsinghua.edu.cn/simple  # 安装MNE包即可
-```
-
-如果安装完成后依旧报错，原因有很多，根据经验（一条条尝试，直到不报错为止）：
-
-1. 安装`pyvistaqt`、`ipywidgets`以及`qdarkstyle`包；
-2. 安装`mne`的时候，除了`pip install mne`，还可以尝试`pip install mne-base`；
-3. `import vtk`是否报错，如果报错，则卸载重新`pip install vtk==9.3.0`。
-
-
-
-# 三. 代码介绍
+# 二. 代码介绍
 
 ## 1. 单组bar图
 
@@ -29,7 +13,7 @@ pip install mne -i https://pypi.tuna.tsinghua.edu.cn/simple  # 安装MNE包即�
 ```python
 import numpy as np
 import matplotlib.pyplot as plt
-from Plot_figure.plot_figure import *  # 从Plot_figure文件夹中的plot_figure.py文件中导入所有函数
+from Plot_figure import *  # 从Plot_figure文件夹中的plot_figure.py文件中导入所有函数
 
 
 # 出于演示目的，随机生成3组数据
@@ -204,7 +188,7 @@ fig.savefig("./figures/single_bar.png", dpi=250, bbox_inches='tight')  # 保存�
 ```bash
 import numpy as np
 import matplotlib.pyplot as plt
-from Plot_figure.plot_figure import *  # 从Plot_figure文件夹中的plot_figure.py文件中导入所有函数
+from Plot_figure import *  # 从Plot_figure文件夹中的plot_figure.py文件中导入所有函数
 
 # 出于演示目的，随机生成3组数据
 np.random.seed(1998)
@@ -257,7 +241,7 @@ fig.savefig("./figures/single_violin.png", dpi=250, bbox_inches='tight')
 ```python
 import numpy as np
 import matplotlib.pyplot as plt
-from Plot_figure.plot_figure import *  # 从Plot_figure文件夹中的plot_figure.py文件中导入所有函数
+from Plot_figure import *  # 从Plot_figure文件夹中的plot_figure.py文件中导入所有函数
 
 # 出于演示目的，生成随机数据
 np.random.seed(0)
@@ -414,7 +398,7 @@ fig.savefig(r"./figures/correlation.png",dpi=250, bbox_inches='tight')  # 保存
 ```python
 import numpy as np
 import matplotlib.pyplot as plt
-from Plot_figure.plot_figure import *  # 从Plot_figure文件夹中的plot_figure.py文件中导入所有函数
+from Plot_figure import *  # 从Plot_figure文件夹中的plot_figure.py文件中导入所有函数
 
 # 数据
 np.random.seed(1998)
@@ -532,7 +516,7 @@ fig.savefig("./figures/matrix.png", dpi=250, bbox_inches='tight')
 ```python
 import numpy as np
 import matplotlib.pyplot as plt
-from Plot_figure.plot_figure import *
+from Plot_figure import *
 
 data = {'lh_V1':10, 'lh_MST':15, 'rh_V1':-10}
 
@@ -642,4 +626,4 @@ fig.savefig(r"./figures/human_brain4.png", dpi=250, bbox_inches='tight')
 
 ## 6. 猴CHARM5脑图
 
-同上。
+同人类脑图函数。
