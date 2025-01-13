@@ -191,9 +191,9 @@ def plot_macaque_brain_figure(data, surf='veryinflated', atlas='charm5', vmin=No
             rh_data[hemi_data] = data[hemi_data]
     # 加载分区数据
     if atlas == 'charm5':
-        df = pd.read_csv(op.join(current_dir, 'atlas_tables', 'macaque_CHARM5.csv'))
+        df = pd.read_csv(op.join(current_dir, 'atlas_tables', 'macaque_charm5.csv'))
     elif atlas == 'charm6':
-        df = pd.read_csv(op.join(current_dir, 'atlas_tables', 'macaque_CHARM6.csv'))
+        df = pd.read_csv(op.join(current_dir, 'atlas_tables', 'macaque_charm6.csv'))
     lh_roi_list, rh_roi_list = list(df['ROIs_name'])[0: int(len(df['ROIs_name'])/2)], list(df['ROIs_name'])[int(len(df['ROIs_name'])/2): len(df['ROIs_name'])]
     if atlas == 'charm5':
         rh_parc = nib.load(rh_CHARM5_atlas_dir).darrays[0].data
@@ -294,9 +294,9 @@ def plot_macaque_hemi_brain_figure(data, hemi='lh', surf='veryinflated', atlas='
             rh_data[hemi_data] = data[hemi_data]
     # 加载分区数据
     if atlas == 'charm5':
-        df = pd.read_csv(op.join(current_dir, 'atlas_tables', 'macaque_CHARM5.csv'))
+        df = pd.read_csv(op.join(current_dir, 'atlas_tables', 'macaque_charm5.csv'))
     elif atlas == 'charm6':
-        df = pd.read_csv(op.join(current_dir, 'atlas_tables', 'macaque_CHARM6.csv'))
+        df = pd.read_csv(op.join(current_dir, 'atlas_tables', 'macaque_charm6.csv'))
     lh_roi_list, rh_roi_list = list(df['ROIs_name'])[0: int(len(df['ROIs_name'])/2)], list(df['ROIs_name'])[int(len(df['ROIs_name'])/2): len(df['ROIs_name'])]
     if atlas == 'charm5':
         lh_parc = nib.load(lh_CHARM5_atlas_dir).darrays[0].data
