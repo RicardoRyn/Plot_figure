@@ -10,6 +10,10 @@
   - 使用`plot=false`参数，可以选择返回`fig`，或者左半球 (`lh_parc`) 和右半球 (`rh_parc`) 的数据。
 - 为`plot_human_brain_figure`函数增加"BNA"图集，[参考文献](https://doi.org/10.1093/cercor/bhw157)。
 
+### 优化
+
+- 优化`plot_human_brain_figure`，`plot_macaque_brain_figure`，`plot_human_hemi_brain_figure`和`plot_macaque_hemi_brain_figure`函数的可读性。
+
 ---
 
 ## [2025-01-13] - v1.0.3

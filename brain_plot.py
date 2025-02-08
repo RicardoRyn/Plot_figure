@@ -23,68 +23,45 @@ def plot_human_brain_figure(data, surf='veryinflated', atlas='glasser', vmin=Non
     current_dir = os.path.dirname(__file__)
     neuromaps_data_dir = op.join(current_dir, 'neuromaps-data')
     if atlas == 'glasser':
-        lh_Glasser_atlas_dir = op.join(current_dir, 'neuromaps-data', 'atlases', 'rjx_Glasser_atlas', 'fsaverage.L.Glasser.32k_fs_LR.label.gii')
-        rh_Glasser_atlas_dir = op.join(current_dir, 'neuromaps-data', 'atlases', 'rjx_Glasser_atlas', 'fsaverage.R.Glasser.32k_fs_LR.label.gii')
+        lh_atlas_dir = op.join(current_dir, 'neuromaps-data', 'atlases', 'rjx_Glasser_atlas', 'fsaverage.L.Glasser.32k_fs_LR.label.gii')
+        rh_atlas_dir = op.join(current_dir, 'neuromaps-data', 'atlases', 'rjx_Glasser_atlas', 'fsaverage.R.Glasser.32k_fs_LR.label.gii')
+        df = pd.read_csv(op.join(current_dir, 'atlas_tables', 'human_glasser.csv'))
     elif atlas == 'bna':
-        lh_BNA_atlas_dir = op.join(current_dir, 'neuromaps-data', 'atlases', 'rjx_BNA_atlas', 'fsaverage.L.BNA.32k_fs_LR.label.gii')
-        rh_BNA_atlas_dir = op.join(current_dir, 'neuromaps-data', 'atlases', 'rjx_BNA_atlas', 'fsaverage.R.BNA.32k_fs_LR.label.gii')
+        lh_atlas_dir = op.join(current_dir, 'neuromaps-data', 'atlases', 'rjx_BNA_atlas', 'fsaverage.L.BNA.32k_fs_LR.label.gii')
+        rh_atlas_dir = op.join(current_dir, 'neuromaps-data', 'atlases', 'rjx_BNA_atlas', 'fsaverage.R.BNA.32k_fs_LR.label.gii')
+        df = pd.read_csv(op.join(current_dir, 'atlas_tables', 'human_bna.csv'))
     # 获取文件Underlay
     surfaces = fetch_fslr(data_dir=neuromaps_data_dir)
     lh, rh = surfaces[surf]
     p = Plot(lh, rh)
     # 将原始数据拆分成左右脑数据
     lh_data, rh_data = {}, {}
-    for hemi_data in data:
-        if 'lh_' in hemi_data:
-            lh_data[hemi_data] = data[hemi_data]
-        else:
-            rh_data[hemi_data] = data[hemi_data]
+    for roi in data:
+        if 'lh_' in roi:
+            lh_data[roi] = data[roi]
+        elif 'rh_' in roi:
+            rh_data[roi] = data[roi]
     # 加载图集分区数据
-    if atlas == 'glasser':
-        df = pd.read_csv(op.join(current_dir, 'atlas_tables', 'human_glasser.csv'))
-    elif atlas == 'bna':
-        df = pd.read_csv(op.join(current_dir, 'atlas_tables', 'human_bna.csv'))
-
     lh_roi_list, rh_roi_list = list(df['ROIs_name'])[0: int(len(df['ROIs_name'])/2)], list(df['ROIs_name'])[int(len(df['ROIs_name'])/2): len(df['ROIs_name'])]
-
-    if atlas == 'glasser':
-        lh_parc = nib.load(lh_Glasser_atlas_dir).darrays[0].data
-        roi_vertics = {roi:[] for roi in lh_roi_list}
-        for index, roi_index in enumerate(lh_parc):
-            if roi_index-181 >= 0:
-                roi_vertics[lh_roi_list[roi_index-181]].append(index)
-        lh_parc = np.zeros_like(lh_parc).astype('float32')
-        for roi_data in lh_data:
-            lh_parc[roi_vertics[roi_data]] = lh_data[roi_data]
-    elif atlas == 'bna':
-        lh_parc = nib.load(lh_BNA_atlas_dir).darrays[0].data
-        roi_vertics = {roi:[] for roi in lh_roi_list}
-        for index, roi_index in enumerate(lh_parc):
-            if roi_index-1 >= 0:
-                roi_vertics[lh_roi_list[roi_index-1]].append(index)
-        lh_parc = np.zeros_like(lh_parc).astype('float32')
-        for roi_data in lh_data:
-            lh_parc[roi_vertics[roi_data]] = lh_data[roi_data]
-
-    if atlas == 'glasser':
-        rh_parc = nib.load(rh_Glasser_atlas_dir).darrays[0].data
-        roi_vertics = {roi:[] for roi in rh_roi_list}
-        for index, roi_index in enumerate(rh_parc):
-            if roi_index-1 >= 0:
-                roi_vertics[rh_roi_list[roi_index-1]].append(index)
-        rh_parc = np.zeros_like(rh_parc).astype('float32')
-        for roi_data in rh_data:
-            rh_parc[roi_vertics[roi_data]] = rh_data[roi_data]
-    elif atlas == 'bna':
-        rh_parc = nib.load(rh_BNA_atlas_dir).darrays[0].data
-        roi_vertics = {roi:[] for roi in rh_roi_list}
-        for index, roi_index in enumerate(rh_parc):
-            if roi_index-106 >= 0:
-                roi_vertics[rh_roi_list[roi_index-106]].append(index)
-        rh_parc = np.zeros_like(rh_parc).astype('float32')
-        for roi_data in rh_data:
-            rh_parc[roi_vertics[roi_data]] = rh_data[roi_data]
-
+    # 处理左脑数据
+    lh_parc = nib.load(lh_atlas_dir).darrays[0].data
+    roi_vertics = {roi:[] for roi in lh_roi_list}
+    for vertex_index, label in enumerate(lh_parc):
+        if label-1 >= 0:
+            roi_vertics[lh_roi_list[label-1]].append(vertex_index)
+    lh_parc = np.zeros_like(lh_parc).astype('float32')
+    for roi in lh_data:
+        lh_parc[roi_vertics[roi]] = lh_data[roi]
+    # 处理右脑数据
+    rh_parc = nib.load(rh_atlas_dir).darrays[0].data
+    roi_vertics = {roi:[] for roi in rh_roi_list}
+    for vertex_index, label in enumerate(rh_parc):
+        if label-1-len(lh_roi_list) >= 0:
+            roi_vertics[rh_roi_list[label-1-len(lh_roi_list)]].append(vertex_index)
+    rh_parc = np.zeros_like(rh_parc).astype('float32')
+    for roi in rh_data:
+        rh_parc[roi_vertics[roi]] = rh_data[roi]
+    # 画图
     if plot:
         # 画图元素参数设置
         if vmin is None:
@@ -134,51 +111,59 @@ def plot_human_brain_figure(data, surf='veryinflated', atlas='glasser', vmin=Non
                 if vmax < 0.001 or vmax > 1000:  # y轴设置科学计数法
                     cbar.ax.xaxis.set_major_formatter(formatter)
             cbar.set_ticks([vmin, vmax])
+            ########################################### rjx_colorbar ###############################################
         return fig
     return lh_parc, rh_parc
 
-def plot_human_hemi_brain_figure(data, hemi='lh', surf='veryinflated', vmin=None, vmax=None, cmap='Reds', colorbar=True, colorbar_location='right', colorbar_label_name= '', colorbar_label_rotation=0, colorbar_decimals=1, colorbar_fontsize=8, colorbar_nticks=2, colorbar_shrink=0.15, colorbar_aspect=8, colorbar_draw_border=False, title_name='', title_fontsize=15, title_y=0.9):
+def plot_human_hemi_brain_figure(data, hemi='lh', surf='veryinflated', atlas='glasser', vmin=None, vmax=None, cmap='Reds', colorbar=True, colorbar_location='right', colorbar_label_name= '', colorbar_label_rotation=0, colorbar_decimals=1, colorbar_fontsize=8, colorbar_nticks=2, colorbar_shrink=0.15, colorbar_aspect=8, colorbar_draw_border=False, title_name='', title_fontsize=15, title_y=0.9):
     '''
     surf的种类有：veryinflated, inflated, midthickness, sphere
     '''
     # 设置必要文件路径
     current_dir = os.path.dirname(__file__)
     neuromaps_data_dir = op.join(current_dir, 'neuromaps-data')
-    lh_Glasser_atlas_dir = op.join(current_dir, 'neuromaps-data', 'atlases', 'rjx_Glasser_atlas', 'fsaverage.L.Glasser.32k_fs_LR.label.gii')
-    rh_Glasser_atlas_dir = op.join(current_dir, 'neuromaps-data', 'atlases', 'rjx_Glasser_atlas', 'fsaverage.R.Glasser.32k_fs_LR.label.gii')
+    if atlas == 'glasser':
+        lh_atlas_dir = op.join(current_dir, 'neuromaps-data', 'atlases', 'rjx_Glasser_atlas', 'fsaverage.L.Glasser.32k_fs_LR.label.gii')
+        rh_atlas_dir = op.join(current_dir, 'neuromaps-data', 'atlases', 'rjx_Glasser_atlas', 'fsaverage.R.Glasser.32k_fs_LR.label.gii')
+        df = pd.read_csv(op.join(current_dir, 'atlas_tables', 'human_glasser.csv'))
+    elif atlas == 'bna':
+        lh_atlas_dir = op.join(current_dir, 'neuromaps-data', 'atlases', 'rjx_BNA_atlas', 'fsaverage.L.BNA.32k_fs_LR.label.gii')
+        rh_atlas_dir = op.join(current_dir, 'neuromaps-data', 'atlases', 'rjx_BNA_atlas', 'fsaverage.R.BNA.32k_fs_LR.label.gii')
+        df = pd.read_csv(op.join(current_dir, 'atlas_tables', 'human_bna.csv'))
     # 获取文件Underlay
     surfaces = fetch_fslr(data_dir=neuromaps_data_dir)
     lh, rh = surfaces[surf]
     if hemi == 'lh':
         p = Plot(lh, size=(800, 400), zoom=1.2)
-    else:
+    elif hemi == 'rh':
         p = Plot(rh, size=(800, 400), zoom=1.2)
     # 将原始数据拆分成左右脑数据
     lh_data, rh_data = {}, {}
-    for hemi_data in data:
-        if 'lh_' in hemi_data:
-            lh_data[hemi_data] = data[hemi_data]
-        else:
-            rh_data[hemi_data] = data[hemi_data]
-    # 加载Glasser分区数据
-    df = pd.read_csv(op.join(current_dir, 'atlas_tables', 'human_glasser.csv'))
+    for roi in data:
+        if 'lh_' in roi:
+            lh_data[roi] = data[roi]
+        elif 'rh_' in roi:
+            rh_data[roi] = data[roi]
+    # 加载图集分区数据
     lh_roi_list, rh_roi_list = list(df['ROIs_name'])[0: int(len(df['ROIs_name'])/2)], list(df['ROIs_name'])[int(len(df['ROIs_name'])/2): len(df['ROIs_name'])]
-    lh_parc = nib.load(lh_Glasser_atlas_dir).darrays[0].data
+    # 处理左脑数据
+    lh_parc = nib.load(lh_atlas_dir).darrays[0].data
     roi_vertics = {roi:[] for roi in lh_roi_list}
-    for index, roi_index in enumerate(lh_parc):
-        if roi_index-181 >= 0:
-            roi_vertics[lh_roi_list[roi_index-181]].append(index)
+    for vertex_index, label in enumerate(lh_parc):
+        if label-1 >= 0:
+            roi_vertics[lh_roi_list[label-1]].append(vertex_index)
     lh_parc = np.zeros_like(lh_parc).astype('float32')
-    for roi_data in lh_data:
-        lh_parc[roi_vertics[roi_data]] = lh_data[roi_data]
-    rh_parc = nib.load(rh_Glasser_atlas_dir).darrays[0].data
+    for roi in lh_data:
+        lh_parc[roi_vertics[roi]] = lh_data[roi]
+    # 处理右脑数据
+    rh_parc = nib.load(rh_atlas_dir).darrays[0].data
     roi_vertics = {roi:[] for roi in rh_roi_list}
-    for index, roi_index in enumerate(rh_parc):
-        if roi_index-1 >= 0:
-            roi_vertics[rh_roi_list[roi_index-1]].append(index)
+    for vertex_index, label in enumerate(rh_parc):
+        if label-1-len(lh_roi_list) >= 0:
+            roi_vertics[rh_roi_list[label-1-len(lh_roi_list)]].append(vertex_index)
     rh_parc = np.zeros_like(rh_parc).astype('float32')
-    for roi_data in rh_data:
-        rh_parc[roi_vertics[roi_data]] = rh_data[roi_data]
+    for roi in rh_data:
+        rh_parc[roi_vertics[roi]] = rh_data[roi]
     # 画图元素参数设置
     if vmin is None:
         vmin = min(data.values())
@@ -194,7 +179,7 @@ def plot_human_hemi_brain_figure(data, hemi='lh', surf='veryinflated', vmin=None
     colorbar_kws = {'location': colorbar_location, 'label_direction': colorbar_label_rotation, 'decimals': colorbar_decimals, 'fontsize': colorbar_fontsize, 'n_ticks': colorbar_nticks, 'shrink': colorbar_shrink, 'aspect': colorbar_aspect, 'draw_border': colorbar_draw_border}
     if hemi == 'lh':
         p.add_layer({'left': lh_parc}, cbar=colorbar, cmap=cmap, color_range=(vmin, vmax), cbar_label=colorbar_label_name)
-    else:
+    elif hemi == 'rh':
         p.add_layer({'left': rh_parc}, cbar=colorbar, cmap=cmap, color_range=(vmin, vmax), cbar_label=colorbar_label_name)  # 很怪，但是这里就是写“{'left': rh_parc}”
     fig = p.build(cbar_kws=colorbar_kws)
     fig.suptitle(title_name, fontsize=title_fontsize, y=title_y)
@@ -207,50 +192,46 @@ def plot_macaque_brain_figure(data, surf='veryinflated', atlas='charm5', vmin=No
     # 设置必要文件路径
     current_dir = os.path.dirname(__file__)
     neuromaps_data_dir = op.join(current_dir, 'neuromaps-data')
-    lh_CHARM5_atlas_dir = op.join(current_dir, 'neuromaps-data', 'atlases', 'rjx_CHARM5_atlas', 'L.charm5.label.gii')
-    rh_CHARM5_atlas_dir = op.join(current_dir, 'neuromaps-data', 'atlases', 'rjx_CHARM5_atlas', 'R.charm5.label.gii')
-    lh_CHARM6_atlas_dir = op.join(current_dir, 'neuromaps-data', 'atlases', 'rjx_CHARM6_atlas', 'L.charm6.label.gii')
-    rh_CHARM6_atlas_dir = op.join(current_dir, 'neuromaps-data', 'atlases', 'rjx_CHARM6_atlas', 'R.charm6.label.gii')
+    if atlas == 'charm5':
+        lh_atlas_dir = op.join(current_dir, 'neuromaps-data', 'atlases', 'rjx_CHARM5_atlas', 'L.charm5.label.gii')
+        rh_atlas_dir = op.join(current_dir, 'neuromaps-data', 'atlases', 'rjx_CHARM5_atlas', 'R.charm5.label.gii')
+        df = pd.read_csv(op.join(current_dir, 'atlas_tables', 'macaque_charm5.csv'))
+    elif atlas == 'charm6':
+        lh_atlas_dir = op.join(current_dir, 'neuromaps-data', 'atlases', 'rjx_CHARM6_atlas', 'L.charm6.label.gii')
+        rh_atlas_dir = op.join(current_dir, 'neuromaps-data', 'atlases', 'rjx_CHARM6_atlas', 'R.charm6.label.gii')
+        df = pd.read_csv(op.join(current_dir, 'atlas_tables', 'macaque_charm6.csv'))
     # 获取文件Underlay
     surfaces = fetch_rjx_hcpmacaque(data_dir=neuromaps_data_dir)
     lh, rh = surfaces[surf]
     p = Plot(lh, rh)
     # 将原始数据拆分成左右脑数据
     lh_data, rh_data = {}, {}
-    for hemi_data in data:
-        if 'lh_' in hemi_data:
-            lh_data[hemi_data] = data[hemi_data]
-        else:
-            rh_data[hemi_data] = data[hemi_data]
-    # 加载分区数据
-    if atlas == 'charm5':
-        df = pd.read_csv(op.join(current_dir, 'atlas_tables', 'macaque_charm5.csv'))
-    elif atlas == 'charm6':
-        df = pd.read_csv(op.join(current_dir, 'atlas_tables', 'macaque_charm6.csv'))
+    for roi in data:
+        if 'lh_' in roi:
+            lh_data[roi] = data[roi]
+        elif 'rh_' in roi:
+            rh_data[roi] = data[roi]
+    # 加载图集分区数据
     lh_roi_list, rh_roi_list = list(df['ROIs_name'])[0: int(len(df['ROIs_name'])/2)], list(df['ROIs_name'])[int(len(df['ROIs_name'])/2): len(df['ROIs_name'])]
-    if atlas == 'charm5':
-        rh_parc = nib.load(rh_CHARM5_atlas_dir).darrays[0].data
-    elif atlas == 'charm6':
-        rh_parc = nib.load(rh_CHARM6_atlas_dir).darrays[0].data
-    roi_vertics = {roi:[] for roi in rh_roi_list}
-    for index, roi_index in enumerate(rh_parc):
-        if roi_index-len(lh_roi_list)-1 >= 0:
-            roi_vertics[rh_roi_list[roi_index-len(lh_roi_list)-1]].append(index)
-    rh_parc = np.zeros_like(rh_parc).astype('float32')
-    for roi_data in rh_data:
-        rh_parc[roi_vertics[roi_data]] = rh_data[roi_data]
-    if atlas == 'charm5':
-        lh_parc = nib.load(lh_CHARM5_atlas_dir).darrays[0].data
-    elif atlas == 'charm6':
-        lh_parc = nib.load(lh_CHARM6_atlas_dir).darrays[0].data
+    # 处理左脑数据
+    lh_parc = nib.load(lh_atlas_dir).darrays[0].data
     roi_vertics = {roi:[] for roi in lh_roi_list}
-    for index, roi_index in enumerate(lh_parc):
-        if roi_index-1 >= 0:
-            roi_vertics[lh_roi_list[roi_index-1]].append(index)
+    for vertex_index, label in enumerate(lh_parc):
+        if label-1 >= 0:
+            roi_vertics[lh_roi_list[label-1]].append(vertex_index)
     lh_parc = np.zeros_like(lh_parc).astype('float32')
-    for roi_data in lh_data:
-        lh_parc[roi_vertics[roi_data]] = lh_data[roi_data]
-
+    for roi in lh_data:
+        lh_parc[roi_vertics[roi]] = lh_data[roi]
+    # 处理右脑数据
+    rh_parc = nib.load(rh_atlas_dir).darrays[0].data
+    roi_vertics = {roi:[] for roi in rh_roi_list}
+    for vertex_index, label in enumerate(rh_parc):
+        if label-1-len(lh_roi_list) >= 0:
+            roi_vertics[rh_roi_list[label-1-len(lh_roi_list)]].append(vertex_index)
+    rh_parc = np.zeros_like(rh_parc).astype('float32')
+    for roi in rh_data:
+        rh_parc[roi_vertics[roi]] = rh_data[roi]
+    # 画图
     if plot:
         # 画图元素参数设置
         if vmin is None:
@@ -300,6 +281,7 @@ def plot_macaque_brain_figure(data, surf='veryinflated', atlas='charm5', vmin=No
                 if vmax < 0.001 or vmax > 1000:  # y轴设置科学计数法
                     cbar.ax.xaxis.set_major_formatter(formatter)
             cbar.set_ticks([vmin, vmax])
+            ########################################### rjx_colorbar ###############################################
         return fig
     return lh_parc, rh_parc
 
@@ -310,52 +292,48 @@ def plot_macaque_hemi_brain_figure(data, hemi='lh', surf='veryinflated', atlas='
     # 设置必要文件路径
     current_dir = os.path.dirname(__file__)
     neuromaps_data_dir = op.join(current_dir, 'neuromaps-data')
-    lh_CHARM5_atlas_dir = op.join(current_dir, 'neuromaps-data', 'atlases', 'rjx_CHARM5_atlas', 'L.charm5.label.gii')
-    rh_CHARM5_atlas_dir = op.join(current_dir, 'neuromaps-data', 'atlases', 'rjx_CHARM5_atlas', 'R.charm5.label.gii')
-    lh_CHARM6_atlas_dir = op.join(current_dir, 'neuromaps-data', 'atlases', 'rjx_CHARM6_atlas', 'L.charm6.label.gii')
-    rh_CHARM6_atlas_dir = op.join(current_dir, 'neuromaps-data', 'atlases', 'rjx_CHARM6_atlas', 'R.charm6.label.gii')
+    if atlas == 'charm5':
+        lh_atlas_dir = op.join(current_dir, 'neuromaps-data', 'atlases', 'rjx_CHARM5_atlas', 'L.charm5.label.gii')
+        rh_atlas_dir = op.join(current_dir, 'neuromaps-data', 'atlases', 'rjx_CHARM5_atlas', 'R.charm5.label.gii')
+        df = pd.read_csv(op.join(current_dir, 'atlas_tables', 'macaque_charm5.csv'))
+    elif atlas == 'charm6':
+        lh_atlas_dir = op.join(current_dir, 'neuromaps-data', 'atlases', 'rjx_CHARM6_atlas', 'L.charm6.label.gii')
+        rh_atlas_dir = op.join(current_dir, 'neuromaps-data', 'atlases', 'rjx_CHARM6_atlas', 'R.charm6.label.gii')
+        df = pd.read_csv(op.join(current_dir, 'atlas_tables', 'macaque_charm6.csv'))
     # 获取文件Underlay
     surfaces = fetch_rjx_hcpmacaque(data_dir=neuromaps_data_dir)
     lh, rh = surfaces[surf]
     if hemi == 'lh':
         p = Plot(lh, size=(800, 400), zoom=1.2)
-    else:
+    elif hemi == 'rh':
         p = Plot(rh, size=(800, 400), zoom=1.2)
     # 将原始数据拆分成左右脑数据
     lh_data, rh_data = {}, {}
-    for hemi_data in data:
-        if 'lh_' in hemi_data:
-            lh_data[hemi_data] = data[hemi_data]
-        else:
-            rh_data[hemi_data] = data[hemi_data]
+    for roi in data:
+        if 'lh_' in roi:
+            lh_data[roi] = data[roi]
+        elif 'rh_' in roi:
+            rh_data[roi] = data[roi]
     # 加载分区数据
-    if atlas == 'charm5':
-        df = pd.read_csv(op.join(current_dir, 'atlas_tables', 'macaque_charm5.csv'))
-    elif atlas == 'charm6':
-        df = pd.read_csv(op.join(current_dir, 'atlas_tables', 'macaque_charm6.csv'))
     lh_roi_list, rh_roi_list = list(df['ROIs_name'])[0: int(len(df['ROIs_name'])/2)], list(df['ROIs_name'])[int(len(df['ROIs_name'])/2): len(df['ROIs_name'])]
-    if atlas == 'charm5':
-        lh_parc = nib.load(lh_CHARM5_atlas_dir).darrays[0].data
-    elif atlas == 'charm6':
-        lh_parc = nib.load(lh_CHARM6_atlas_dir).darrays[0].data
+    # 处理左脑数据
+    lh_parc = nib.load(lh_atlas_dir).darrays[0].data
     roi_vertics = {roi:[] for roi in lh_roi_list}
-    for index, roi_index in enumerate(lh_parc):
-        if roi_index-1 >= 0:
-            roi_vertics[lh_roi_list[roi_index-1]].append(index)
+    for vertex_index, label in enumerate(lh_parc):
+        if label-1 >= 0:
+            roi_vertics[lh_roi_list[label-1]].append(vertex_index)
     lh_parc = np.zeros_like(lh_parc).astype('float32')
-    for roi_data in lh_data:
-        lh_parc[roi_vertics[roi_data]] = lh_data[roi_data]
-    if atlas == 'charm5':
-        rh_parc = nib.load(rh_CHARM5_atlas_dir).darrays[0].data
-    elif atlas == 'charm6':
-        rh_parc = nib.load(rh_CHARM6_atlas_dir).darrays[0].data
+    for roi in lh_data:
+        lh_parc[roi_vertics[roi]] = lh_data[roi]
+    # 处理右脑数据
+    rh_parc = nib.load(rh_atlas_dir).darrays[0].data
     roi_vertics = {roi:[] for roi in rh_roi_list}
-    for index, roi_index in enumerate(rh_parc):
-        if roi_index-len(lh_roi_list)-1 >= 0:
-            roi_vertics[rh_roi_list[roi_index-len(lh_roi_list)-1]].append(index)
+    for vertex_index, label in enumerate(rh_parc):
+        if label-len(lh_roi_list)-1 >= 0:
+            roi_vertics[rh_roi_list[label-len(lh_roi_list)-1]].append(vertex_index)
     rh_parc = np.zeros_like(rh_parc).astype('float32')
-    for roi_data in rh_data:
-        rh_parc[roi_vertics[roi_data]] = rh_data[roi_data]
+    for roi in rh_data:
+        rh_parc[roi_vertics[roi]] = rh_data[roi]
     # 画图元素参数设置
     if vmin is None:
         vmin = min(data.values())
