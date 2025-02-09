@@ -1,15 +1,11 @@
 import os
 import os.path as op
 import math
-
 import numpy as np
 import pandas as pd
 import nibabel as nib
-
 from matplotlib.ticker import ScalarFormatter
 from matplotlib.cm import ScalarMappable
-
-
 from neuromaps.datasets import fetch_fslr
 from neuromaps.datasets import fetch_rjx_hcpmacaque
 from surfplot import Plot
