@@ -196,6 +196,10 @@ def plot_macaque_brain_figure(data, surf='veryinflated', atlas='charm5', vmin=No
         lh_atlas_dir = op.join(current_dir, 'neuromaps-data', 'atlases', 'rjx_CHARM6_atlas', 'L.charm6.label.gii')
         rh_atlas_dir = op.join(current_dir, 'neuromaps-data', 'atlases', 'rjx_CHARM6_atlas', 'R.charm6.label.gii')
         df = pd.read_csv(op.join(current_dir, 'atlas_tables', 'macaque_charm6.csv'))
+    elif atlas == 'bna':
+        lh_atlas_dir = op.join(current_dir, 'neuromaps-data', 'atlases', 'rjx_BNA_macaque_atlas', 'MBNA_124_32k_L.label.gii')
+        rh_atlas_dir = op.join(current_dir, 'neuromaps-data', 'atlases', 'rjx_BNA_macaque_atlas', 'MBNA_124_32k_R.label.gii')
+        df = pd.read_csv(op.join(current_dir, 'atlas_tables', 'macaque_bna.csv'))
     # 获取文件Underlay
     surfaces = fetch_rjx_hcpmacaque(data_dir=neuromaps_data_dir)
     lh, rh = surfaces[surf]
