@@ -6,7 +6,7 @@
 
 ### 新增
 
-- 为`plot_macaque_brain_figure`函数增加"BNA"图集，[参考文献](https://doi.org/10.1093/cercor/bhw157)。
+- 为`plot_macaque_brain_figure`函数增加"BNA"图集，[参考文献](https://doi.org/10.1016/j.scib.2024.03.031)。
 
 ### 注意
 
