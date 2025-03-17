@@ -104,7 +104,7 @@ def _fetch_atlas(atlas, density, keys, url=None, data_dir=None, verbose=1):
 
     if atlas == 'rjx_HCPmacaque':
         filenames = [
-            f'SC_06018.{hemi}.{surf}.{density}_fs_LR.surf.gii'
+            f'civm.{hemi}.{surf}.{density}_fs_LR.surf.gii'
             for surf in keys
             for hemi in ('L', 'R')
         ]  # 增加。by RJX
@@ -209,7 +209,7 @@ Returns
 
 ########################### 增加。by RJX ###########################
 def fetch_rjx_hcpmacaque(density='32k', url=None, data_dir=None, verbose=1): # noqa: D103
-    keys = ['midthickness', 'inflated', 'veryinflated', 'sphere','pial', 'white']
+    keys = ['midthickness', 'inflated', 'veryinflated','pial', 'white']
     if density in ('4k', '8k'):
         keys.remove('veryinflated')
     return _fetch_atlas(

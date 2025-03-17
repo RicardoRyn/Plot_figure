@@ -12,10 +12,7 @@
 
 **使用示例见`example.ipynb`，示例图见文件夹`example_figures`（更新比较勤）**
 
-<img src="./example_figures/single_bar.png" alt="1" style="zoom:20%;" />	<img src="./example_figures/single_violin.png" alt="1" style="zoom:20%;" />
-<img src="./example_figures/matrix.png" alt="1" style="zoom:20%;" />
-<img src="./example_figures/human_brain1.png" alt="1" style="zoom:30%;" />	<img src="./example_figures/macaque_brain1.png" alt="1" style="zoom:30%;" />
-<img src="./example_figures/circle1.png" alt="1" style="zoom:20%;" />	<img src="./example_figures/circle2.png" alt="1" style="zoom:20%;" />
+![Plot_figure](https://imgur.com/3CEDdxc.png)
 
 # 一. 简介
 
@@ -57,6 +54,7 @@
 - `mne`
 - `neuromaps` **（需要修改该包中的部分文件）**
 - `surfplot`
+- `plotly`
 
 安装包均可在终端使用以下命令完成：
 

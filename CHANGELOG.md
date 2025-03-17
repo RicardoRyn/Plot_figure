@@ -2,6 +2,18 @@
 
 ---
 
+## [2025-03-17] - v0.0.6
+
+### 新增
+
+- 新增`plot_macaque_brain_connection_figure`函数
+
+### 优化
+
+-更换猕猴surface文件。将原来的`SC_06018.?.*.32k_fs_LR.surf.gii`文件替换为`civm.?.*.32k_fs_LR.surf.gii`文件。来源于猕猴BNA模板。
+
+---
+
 ## [2025-03-9] - v0.0.5
 
 ### 新增
