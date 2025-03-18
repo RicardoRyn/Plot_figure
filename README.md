@@ -37,9 +37,6 @@
 > 基本知识，一张图中的基本元素的名字：
 >
 > <img src="https://matplotlib.org/stable/_images/anatomy.png" alt="../../_images/anatomy.png" style="zoom: 33%;" />
->
-> 提问：fig，ax，ylabel，xlabel，xtick，legend是什么？
-
 
 # 二. python依赖
 

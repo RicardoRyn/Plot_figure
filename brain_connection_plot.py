@@ -9,7 +9,7 @@ import matplotlib.colors as mcolors
 import matplotlib.cm as cm
 
 
-def plot_macaque_brain_connection_figure(
+def plot_brain_connection_figure(
     connectome: np.ndarray,
     lh_surfgii_file: str = None,
     rh_surfgii_file: str = None,
@@ -20,7 +20,9 @@ def plot_macaque_brain_connection_figure(
     scale_metheod: str = "",
     line_width: int | float = 10,
 ):
-    """绘制猕猴大脑连接图，保存在指定的html文件中
+    """绘制大脑连接图，保存在指定的html文件中
+    
+    如果不指定surface文件和图集nii文件，默认绘制NMT2空间上猕猴大脑连接图，图集包括个101脑区/半脑（88个皮层上 + 13个皮层下）
 
     Args:
         connectome (np.ndarray): 连接矩阵.
