@@ -1,9 +1,12 @@
 [project]
-name = "plot-figure"
-version = "0.1.0"
-description = "Add your description here"
+name = "plotfig"
+version = "0.0.6"
+description = "Scientific plotting package for Cognitive neuroscience"
 readme = "README.md"
 requires-python = ">=3.11"
+authors = [
+    { name = "Ricardo Ryn", email = "ricardoRyn1317@gmail.com" }
+]
 dependencies = [
     "ipykernel>=6.29.5",
     "matplotlib>=3.10.1",
@@ -14,4 +17,18 @@ dependencies = [
     "plotly>=6.0.1",
     "scipy>=1.15.2",
     "surfplot>=0.2.0",
+]
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["plotfig*"]  # 包含主包及其子包
+
+[tool.setuptools.package-data]
+plotfig = [
+    "data/atlas_tables/**/*",
+    "data/neurodata/**/*"
 ]
