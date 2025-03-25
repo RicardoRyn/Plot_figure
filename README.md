@@ -1,15 +1,6 @@
-# 写在最前面
-
-## 重要！！！修改原neuromaps库中的部分文件！！！重要
-
-1. 请将`<python_package_path>/neuromaps/datasets/atlases.py`替换为`Plot_figure/temp/atlases.py`
-2. 请将`<python_package_path>/neuromaps/datasets/__init__.py`替换为`Plot_figure/temp/__init__.py`
-3. 请将`<python_package_path>/neuromaps/datasets/data/osf.json`替换为`Plot_figure/temp/osf.json`
-
-
 # Plot Figure
 
-**使用示例见`example.ipynb`，示例图见文件夹`example_figures`（更新比较勤）**
+使用示例见`example.ipynb`
 
 ![Plot_figure](https://imgur.com/3CEDdxc.png)
 
@@ -47,12 +38,10 @@
 - `numpy`
 - `pandas`
 - `matplotlib`
-- `statsmodels`
 - `scipy`
-- `mne-connectivity`
-- `mne`
-- `neuromaps` **（需要修改该包中的部分文件）**
+- `nibabel`
 - `surfplot`
+- `mne-connectivity`
 - `plotly`
 
 安装包均可在终端使用以下命令完成：
