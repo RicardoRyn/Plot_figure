@@ -2,9 +2,9 @@
 
 ## 重要！！！修改原neuromaps库中的部分文件！！！重要
 
-1. 请将`<python_package_path>\neuromaps\datasets\atlases.py`替换为`Plot_figure/temp/atlases.py`
-2. 请将`<python_package_path>\neuromaps\datasets\__init__.py`替换为`Plot_figure/temp/__init__.py`
-3. 请将`<python_package_path>\neuromaps\datasets\data\osf.json`替换为`Plot_figure/temp/osf.json`
+1. 请将`<python_package_path>/neuromaps/datasets/atlases.py`替换为`Plot_figure/temp/atlases.py`
+2. 请将`<python_package_path>/neuromaps/datasets/__init__.py`替换为`Plot_figure/temp/__init__.py`
+3. 请将`<python_package_path>/neuromaps/datasets/data/osf.json`替换为`Plot_figure/temp/osf.json`
 
 
 # Plot Figure

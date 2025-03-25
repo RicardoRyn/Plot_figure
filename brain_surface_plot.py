@@ -5,8 +5,6 @@ import pandas as pd
 import nibabel as nib
 from matplotlib.ticker import ScalarFormatter
 from matplotlib.cm import ScalarMappable
-from neuromaps.datasets import fetch_fslr
-from neuromaps.datasets import fetch_rjx_hcpmacaque
 from surfplot import Plot
 
 
@@ -81,8 +79,8 @@ def plot_human_brain_figure(
         )
         df = pd.read_csv(op.join(current_dir, "atlas_tables", "human_bna.csv"))
     # 获取文件Underlay
-    surfaces = fetch_fslr(data_dir=neuromaps_data_dir)
-    lh, rh = surfaces[surf]
+    lh = op.join(neuromaps_data_dir, 'atlases/fsLR', f'tpl-fsLR_den-32k_hemi-L_{surf}.surf.gii') 
+    rh = op.join(neuromaps_data_dir, 'atlases/fsLR', f'tpl-fsLR_den-32k_hemi-R_{surf}.surf.gii') 
     p = Plot(lh, rh)
     # 将原始数据拆分成左右脑数据
     lh_data, rh_data = {}, {}
@@ -279,8 +277,9 @@ def plot_human_hemi_brain_figure(
         )
         df = pd.read_csv(op.join(current_dir, "atlas_tables", "human_bna.csv"))
     # 获取文件Underlay
-    surfaces = fetch_fslr(data_dir=neuromaps_data_dir)
-    lh, rh = surfaces[surf]
+
+    lh = op.join(neuromaps_data_dir, 'atlases/fsLR', f'tpl-fsLR_den-32k_hemi-L_{surf}.surf.gii') 
+    rh = op.join(neuromaps_data_dir, 'atlases/fsLR', f'tpl-fsLR_den-32k_hemi-R_{surf}.surf.gii') 
     if hemi == "lh":
         p = Plot(lh, size=(800, 400), zoom=1.2)
     elif hemi == "rh":
@@ -445,8 +444,8 @@ def plot_macaque_brain_figure(
         )
         df = pd.read_csv(op.join(current_dir, "atlas_tables", "macaque_bna.csv"))
     # 获取文件Underlay
-    surfaces = fetch_rjx_hcpmacaque(data_dir=neuromaps_data_dir)
-    lh, rh = surfaces[surf]
+    lh = op.join(neuromaps_data_dir, 'atlases/rjx_HCPmacaque', f'civm.L.{surf}.32k_fs_LR.surf.gii') 
+    rh = op.join(neuromaps_data_dir, 'atlases/rjx_HCPmacaque', f'civm.R.{surf}.32k_fs_LR.surf.gii') 
     p = Plot(lh, rh)
     # 将原始数据拆分成左右脑数据
     lh_data, rh_data = {}, {}
@@ -643,8 +642,8 @@ def plot_macaque_hemi_brain_figure(
         )
         df = pd.read_csv(op.join(current_dir, "atlas_tables", "macaque_charm6.csv"))
     # 获取文件Underlay
-    surfaces = fetch_rjx_hcpmacaque(data_dir=neuromaps_data_dir)
-    lh, rh = surfaces[surf]
+    lh = op.join(neuromaps_data_dir, 'atlases/rjx_HCPmacaque', f'civm.L.{surf}.32k_fs_LR.surf.gii') 
+    rh = op.join(neuromaps_data_dir, 'atlases/rjx_HCPmacaque', f'civm.R.{surf}.32k_fs_LR.surf.gii') 
     if hemi == "lh":
         p = Plot(lh, size=(800, 400), zoom=1.2)
     elif hemi == "rh":

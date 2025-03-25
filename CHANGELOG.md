@@ -1,7 +1,5 @@
 # 更新记录 (CHANGELOG)
 
----
-
 ## [2025-03-17] - v0.0.6
 
 ### 新增
@@ -32,7 +30,8 @@
 
 - 为`plot_human_brain_figure`和`plot_macaque_brain_figure`函数增加新功能：
   - 使用`plot=false`参数，可以选择返回`fig`，或者左半球 (`lh_parc`) 和右半球 (`rh_parc`) 的数据。
-- 为`plot_human_brain_figure`函数增加"BNA"图集，[参考文献](https://doi.org/10.1093/cercor/bhw157)。
+- 为`plot_human_brain_figure`函数增加"BNA"图集，[参考文献](https://doi.org/10.1093/cercor/bh
+- w157)。
 
 ### 优化
 

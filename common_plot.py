@@ -4,8 +4,6 @@ from matplotlib.ticker import FuncFormatter
 from matplotlib.ticker import ScalarFormatter
 from mpl_toolkits.axes_grid1 import make_axes_locatable
 from scipy import stats
-import statsmodels.api as sm
-from statsmodels.stats import multitest
 
 
 def plot_one_group_bar_figure(
@@ -558,8 +556,9 @@ def plot_correlation_figure(
     data2,
     ax=None,
     stats_method="pearson",
-    dots_color=None,
-    line_color=None,
+    ci=False,
+    dots_color='steelblue',
+    line_color='r',
     title_name="",
     title_fontsize=10,
     title_pad=10,
@@ -590,21 +589,28 @@ def plot_correlation_figure(
     if ax is None:
         ax = plt.gca()
     ##################################################################################################
-    exog, endog = sm.add_constant(data1), data2
-    model = sm.OLS(endog, exog, missing="drop")
-    results = model.fit()
-    if summary:
-        print(results.summary())
-    data2_pred = results.predict(exog)  # 模型预测
-    data1_idx = (
-        data1.argsort()
-    )  # 数组，[最小值的idx, 倒数第2小的值的idx, 倒数第3小的值的idx, ... , 最大值的idx]
-    data1_ord = data1[data1_idx]  # 根据idx排序的新数组x_ord
-    data2_pred_ord = data2_pred[data1_idx]
+    A = np.asarray(data1)
+    B = np.asarray(data2)
+    # 计算线性回归参数
+    slope, intercept, r_value, p_value, std_err = stats.linregress(A, B)
+    # 生成平滑的预测序列
+    x_seq = np.linspace(A.min(), A.max(), 100)
+    y_pred = slope * x_seq + intercept
+    # 计算置信区间
+    n = len(A)                                   # 样本量
+    dof = n - 2                                  # 自由度
+    t = stats.t.ppf(1 - 0.05/2, dof)           # 95%置信水平的t值
+    x_mean = np.mean(A)                        # x的均值
+    residuals = B - (slope * A + intercept)      # 残差
+    s_err = np.sqrt(np.sum(residuals**2) / dof)  # 残差标准误
+    SSxx = np.sum((A - x_mean)**2)             # x的离均差平方和
+    # 计算每个点的置信区间半宽
+    conf_interval = t * s_err * np.sqrt(1/n + (x_seq - x_mean)**2/SSxx)
     # 画图
-    ax.scatter(data1, data2, alpha=0.1, color=dots_color)
-    ax.plot(data1_ord, data2_pred_ord, color=line_color)
-    # ax.fill_between(x, y_est - y_err, y_est + y_err, color=line_color , alpha=0.4)
+    ax.scatter(A, B, c=dots_color, alpha=0.8, label='AAA')
+    ax.plot(x_seq, y_pred, line_color, lw=2, label='BBB')
+    if ci:
+        ax.fill_between(x_seq, y_pred - conf_interval, y_pred + conf_interval, color='salmon', alpha=0.3, label='95% CI')
     ############################################### ax ###############################################
     ax.spines[["top", "right"]].set_visible(False)  # 去掉上边和右边的spine
     ############################################## title #############################################
